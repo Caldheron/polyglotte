@@ -1,9 +1,9 @@
 {
   "version": 1,
   "langues": {
-    "es": { "nom": "Espagnol", "couleur": "#C98A0B", "phase": "Compréhension" },
-    "zh": { "nom": "Chinois (lecture)", "couleur": "#34509A", "phase": "Compréhension" },
-    "ja": { "nom": "Japonais", "couleur": "#9C3A63", "phase": "Immersion" }
+    "es": { "nom": "Espagnol", "couleur": "#D9A441", "phase": "Compréhension" },
+    "zh": { "nom": "Chinois (lecture)", "couleur": "#6F8FD1", "phase": "Compréhension" },
+    "ja": { "nom": "Japonais", "couleur": "#C46A8E", "phase": "Immersion" }
   },
   "semaine": {
     "lundi":    [{ "slot": "Trajet", "lang": "es", "minutes": 20, "type": "Renfort vocabulaire" }],
