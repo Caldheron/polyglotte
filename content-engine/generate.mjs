@@ -5,7 +5,7 @@
 // Exemples :
 //   node content-engine/generate.mjs --session es-mar-aller --semaine 2026-W41
 //   node content-engine/generate.mjs --semaine 2026-W41 --semaines 4        (une tranche de 4 semaines)
-//   options : --tier facile|standard|exigeant   --no-review   --sortie <dossier>   --ollama <url>   --model <nom>
+//   options : --tier facile|standard|exigeant   --no-review   --souple (longueur hors norme = simple avertissement)   --debug   --sortie <dossier>   --ollama <url>   --model <nom>
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -72,7 +72,8 @@ const SYSTEME = "Tu es un professeur de langues rigoureux. Tu produis uniquement
 
 function promptUtilisateur({ cfg, lang, recette, tier, dejaVus }) {
   const L = cfg.langues[lang], r = recette.reading, zh = lang === 'zh';
-  const [mn, mx] = r.longueur;
+  const [mn, mx] = r.longueur, ph = r.phrases ?? [10, 14], lp = r.longueurPhrase ?? [10, 15];
+  const unite = zh ? 'caractères chinois' : 'mots';
   return [
     `Langue cible : ${L.nom}.`,
     `Élève : francophone (parle aussi anglais). ${L.niveau}`,
@@ -81,7 +82,7 @@ function promptUtilisateur({ cfg, lang, recette, tier, dejaVus }) {
     '',
     "Produis une séance d'entraînement contenant :",
     `1. "vocab" : exactement ${recette.vocab} éléments de vocabulaire utiles et fréquents, sur un thème cohérent avec le texte. Pour chacun : term (dans la langue cible), gloss (traduction française), example (phrase d'exemple courte dans la langue cible), exampleGloss (sa traduction française)${zh ? ', pinyin (avec tons)' : ''}.`,
-    `2. "reading" : ${r.forme === 'dialogue' ? 'un dialogue' : 'un texte'} de ${mn} à ${mx} ${zh ? 'caractères chinois' : 'mots'}, découpé en phrases (une entrée de "sentences" par ${r.forme === 'dialogue' ? 'réplique' : 'phrase'} : t = texte en langue cible, fr = traduction française${zh ? ', py = pinyin avec tons' : ''}), avec un titre (title), puis ${r.questions} questions de compréhension en ${L.questionsEn} (q ; choices = 4 propositions ; answer = index de la bonne réponse, en partant de 0 ; explain = courte explication en français). Réutilise plusieurs mots du vocabulaire dans le texte.`,
+    `2. "reading" : ${r.forme === 'dialogue' ? 'un dialogue' : 'un texte'} de ${mn} à ${mx} ${unite} AU TOTAL, soit ${ph[0]} à ${ph[1]} ${r.forme === 'dialogue' ? 'répliques' : 'phrases'} de ${lp[0]} à ${lp[1]} ${unite} chacune (une entrée de "sentences" par ${r.forme === 'dialogue' ? 'réplique' : 'phrase'} : t = texte en langue cible, fr = traduction française${zh ? ', py = pinyin avec tons' : ''}). Un texte plus court sera rejeté : compte tes phrases. Cette longueur reste la même quel que soit le niveau de difficulté. Ajoute un titre (title), puis ${r.questions} questions de compréhension en ${L.questionsEn} (q ; choices = 4 propositions ; answer = index de la bonne réponse, en partant de 0 ; explain = courte explication en français). Réutilise plusieurs mots du vocabulaire dans le texte.`,
     recette.production ? `3. "production" : une consigne (prompt), en français, demandant d'écrire 2 à 3 phrases en ${L.nom} sur le thème du texte.` : '',
     dejaVus.length ? `\nNe reprends PAS ces termes déjà travaillés : ${dejaVus.join(', ')}.` : '',
     '\nRéponds uniquement avec le JSON demandé.'
@@ -111,8 +112,8 @@ async function appelOllama(cfg, messages, format, temperature) {
 
 // ---------- validation (la forme est garantie par le schéma ; on vérifie le fond) ----------
 const HAN = /\p{Script=Han}/u;
-function valider(d, recette, lang) {
-  const e = [], zh = lang === 'zh', rd = d.reading, [mn, mx] = recette.reading.longueur;
+function valider(d, recette, lang, souple = false) {
+  const e = [], av = [], zh = lang === 'zh', rd = d.reading, [mn, mx] = recette.reading.longueur;
   const v = d.vocab;
   if (!Array.isArray(v) || Math.abs(v.length - recette.vocab) > 2) e.push(`vocab : ${recette.vocab} éléments attendus, reçu ${v?.length ?? 0}`);
   else v.forEach((x, i) => {
@@ -121,7 +122,7 @@ function valider(d, recette, lang) {
     if (zh && !x.pinyin?.trim()) e.push(`vocab[${i}] : pinyin manquant`);
     if (!zh && HAN.test(x.term ?? '')) e.push(`vocab[${i}] : le terme doit être en ${lang}`);
   });
-  if (!rd?.sentences?.length) return [...e, 'reading : aucune phrase'];
+  if (!rd?.sentences?.length) return { erreurs: [...e, 'reading : aucune phrase'], avert: av };
   rd.sentences.forEach((s, i) => {
     if (!s.t?.trim() || !s.fr?.trim()) e.push(`phrase ${i} incomplète`);
     if (zh && (!HAN.test(s.t ?? '') || !s.py?.trim())) e.push(`phrase ${i} : caractères ou pinyin manquants`);
@@ -129,7 +130,8 @@ function valider(d, recette, lang) {
   });
   const texte = rd.sentences.map((s) => s.t).join(zh ? '' : ' ');
   const taille = zh ? [...texte].filter((c) => HAN.test(c)).length : texte.split(/\s+/).filter(Boolean).length;
-  if (taille < mn * 0.7 || taille > mx * 1.3) e.push(`reading : ${taille} ${zh ? 'caractères' : 'mots'}, ${mn} à ${mx} attendus`);
+  if (taille < mn * 0.7 || taille > mx * 1.3)
+    (souple ? av : e).push(`reading trop ${taille < mn ? 'court' : 'long'} : ${taille} ${zh ? 'caractères' : 'mots'} (${rd.sentences.length} phrases), ${mn} à ${mx} attendus`);
   const qs = rd.questions ?? [];
   if (Math.abs(qs.length - recette.reading.questions) > 1) e.push(`${recette.reading.questions} questions attendues, reçu ${qs.length}`);
   qs.forEach((q, i) => {
@@ -137,7 +139,7 @@ function valider(d, recette, lang) {
     else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.choices.length) e.push(`question ${i} : index de réponse invalide`);
   });
   if (recette.production && !d.production?.prompt?.trim()) e.push('production : consigne manquante');
-  return e;
+  return { erreurs: e, avert: av };
 }
 
 // ---------- assemblage ----------
@@ -171,9 +173,11 @@ async function genererTier({ cfg, lang, recette, tier, dejaVus, review }) {
       log(`    tentative ${n}/${cfg.tentatives} : ${erreurs[0]}`);
       continue;
     }
-    erreurs = valider(data, recette, lang);
+    const v = valider(data, recette, lang, flag('souple'));
+    erreurs = v.erreurs;
     if (!erreurs.length) {
       const sortie = { blocks: assembler(data, lang, recette), reviewed: false };
+      if (v.avert.length) sortie.warnings = v.avert;
       if (review) {
         try {
           const rv = await appelOllama(cfg, [
@@ -186,6 +190,7 @@ async function genererTier({ cfg, lang, recette, tier, dejaVus, review }) {
       return sortie;
     }
     log(`    tentative ${n}/${cfg.tentatives} invalide : ${erreurs.slice(0, 3).join(' ; ')}`);
+    if (flag('debug')) log(`    [debug] ${JSON.stringify(data.reading?.sentences?.map((x) => x.t) ?? data).slice(0, 700)}`);
   }
   throw new Error(`échec après ${cfg.tentatives} tentatives (${erreurs[0]})`);
 }
@@ -246,6 +251,7 @@ for (let w = 0; w < nbSemaines; w++, semaine = semaineSuivante(semaine)) {
         const dejaVus = [...(connus[s.lang] ?? [])].slice(-60);
         session.tiers[tier] = await genererTier({ cfg, lang: s.lang, recette, tier, dejaVus, review: !flag('no-review') });
         for (const bl of session.tiers[tier].blocks) if (bl.type === 'vocab') for (const it of bl.items) (connus[s.lang] ??= new Set()).add(it.term);
+        (session.tiers[tier].warnings ?? []).forEach((w) => log(`      ! ${w}`));
         const issues = session.tiers[tier].review?.issues ?? [];
         log(`    ok en ${Math.round((Date.now() - t0) / 1000)} s${issues.length ? ` — ${issues.length} point(s) signalé(s) à la relecture` : ''}`);
         issues.forEach((i) => log(`      · ${i.where} : ${i.problem}`));

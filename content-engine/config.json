@@ -5,9 +5,9 @@
   "tentatives": 3,
   "sortie": "public/batches",
   "tiers": {
-    "facile": "Phrases courtes et simples, vocabulaire très courant, temps simples. Un cran en dessous du niveau de l'élève.",
+    "facile": "Vocabulaire très courant et structures simples (surtout le présent). Un cran en dessous du niveau de l'élève.",
     "standard": "Adapté au niveau de l'élève.",
-    "exigeant": "Phrases plus longues et variées, quelques structures ou temps nouveaux, vocabulaire un peu plus riche. Un cran au-dessus du niveau de l'élève."
+    "exigeant": "Structures plus variées, quelques temps ou tournures nouveaux, vocabulaire un peu plus riche. Un cran au-dessus du niveau de l'élève."
   },
   "langues": {
     "es": {
@@ -24,8 +24,65 @@
     }
   },
   "recettes": {
-    "es:Vocabulaire + lecture": { "vocab": 8, "reading": { "forme": "texte", "longueur": [120, 180], "questions": 5 }, "production": true },
-    "es:Renfort vocabulaire":   { "vocab": 6, "reading": { "forme": "dialogue", "longueur": [60, 100], "questions": 3 }, "production": false },
-    "zh:Lecture":               { "vocab": 6, "reading": { "forme": "texte", "longueur": [150, 250], "questions": 4 }, "production": false }
+    "es:Vocabulaire + lecture": {
+      "vocab": 8,
+      "reading": {
+        "forme": "texte",
+        "longueur": [
+          120,
+          180
+        ],
+        "questions": 5,
+        "phrases": [
+          11,
+          14
+        ],
+        "longueurPhrase": [
+          10,
+          15
+        ]
+      },
+      "production": true
+    },
+    "es:Renfort vocabulaire": {
+      "vocab": 6,
+      "reading": {
+        "forme": "dialogue",
+        "longueur": [
+          60,
+          100
+        ],
+        "questions": 3,
+        "phrases": [
+          8,
+          10
+        ],
+        "longueurPhrase": [
+          6,
+          10
+        ]
+      },
+      "production": false
+    },
+    "zh:Lecture": {
+      "vocab": 6,
+      "reading": {
+        "forme": "texte",
+        "longueur": [
+          150,
+          250
+        ],
+        "questions": 4,
+        "phrases": [
+          10,
+          14
+        ],
+        "longueurPhrase": [
+          12,
+          20
+        ]
+      },
+      "production": false
+    }
   }
 }
