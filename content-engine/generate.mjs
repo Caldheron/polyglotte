@@ -1,0 +1,262 @@
+#!/usr/bin/env node
+// content-engine : génère les batchs d'exercices de Polyglotte avec Qwen (Ollama), sur le PC.
+// Aucune dépendance : Node 18+ suffit.
+//
+// Exemples :
+//   node content-engine/generate.mjs --session es-mar-aller --semaine 2026-W41
+//   node content-engine/generate.mjs --semaine 2026-W41 --semaines 4        (une tranche de 4 semaines)
+//   options : --tier facile|standard|exigeant   --no-review   --sortie <dossier>   --ollama <url>   --model <nom>
+
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+const ICI = path.dirname(fileURLToPath(import.meta.url));
+const RACINE = path.join(ICI, '..');
+const lireJSON = async (p) => JSON.parse(await readFile(p, 'utf8'));
+const log = (...a) => console.log(...a);
+
+// ---------- arguments ----------
+const args = process.argv.slice(2);
+const opt = (nom, def) => { const i = args.indexOf(`--${nom}`); return i >= 0 ? args[i + 1] : def; };
+const flag = (nom) => args.includes(`--${nom}`);
+
+// ---------- semaines ISO ("2026-W41") ----------
+function lundiDe(id) {
+  const m = /^(\d{4})-W(\d{2})$/.exec(id);
+  if (!m) throw new Error(`Semaine invalide : "${id}" (attendu : 2026-W41)`);
+  const quatre = new Date(Date.UTC(+m[1], 0, 4)); // le 4 janvier est toujours en semaine 1
+  const lundi = new Date(quatre);
+  lundi.setUTCDate(quatre.getUTCDate() - ((quatre.getUTCDay() + 6) % 7) + (+m[2] - 1) * 7);
+  return lundi;
+}
+function idSemaine(date) {
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  const n = Math.ceil(((d - Date.UTC(d.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7);
+  return `${d.getUTCFullYear()}-W${String(n).padStart(2, '0')}`;
+}
+function semaineSuivante(id) { const d = lundiDe(id); d.setUTCDate(d.getUTCDate() + 7); return idSemaine(d); }
+
+// ---------- catalogue des sessions (dérivé du scheduler) ----------
+const JOURS = { lundi: 'lun', mardi: 'mar', mercredi: 'mer', jeudi: 'jeu', vendredi: 'ven', samedi: 'sam', dimanche: 'dim' };
+const slug = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function catalogue(planning, cfg) {
+  const out = [];
+  for (const [jour, slots] of Object.entries(planning.semaine))
+    for (const s of slots)
+      if (cfg.langues[s.lang]) out.push({ id: `${s.lang}-${JOURS[jour]}-${slug(s.slot)}`, jour, ...s }); // ja : pas encore généré
+  return out;
+}
+
+// ---------- schéma JSON imposé à Ollama ----------
+const S = { type: 'string' };
+const obj = (properties, required = Object.keys(properties)) => ({ type: 'object', properties, required });
+function schemaPour(recette, lang) {
+  const zh = lang === 'zh';
+  const vocabItem = obj({ term: S, gloss: S, example: S, exampleGloss: S, ...(zh ? { pinyin: S } : {}) });
+  const phrase = obj({ t: S, fr: S, ...(zh ? { py: S } : {}) });
+  const question = obj({ q: S, choices: { type: 'array', items: S }, answer: { type: 'integer' }, explain: S });
+  const props = {
+    vocab: { type: 'array', items: vocabItem },
+    reading: obj({ title: S, sentences: { type: 'array', items: phrase }, questions: { type: 'array', items: question } })
+  };
+  if (recette.production) props.production = obj({ prompt: S });
+  return obj(props);
+}
+const SCHEMA_REVIEW = obj({ issues: { type: 'array', items: obj({ where: S, problem: S, fix: S }) } });
+
+// ---------- prompts ----------
+const SYSTEME = "Tu es un professeur de langues rigoureux. Tu produis uniquement du JSON conforme au schéma demandé, sans texte autour. Ta priorité est l'exactitude de la langue cible.";
+
+function promptUtilisateur({ cfg, lang, recette, tier, dejaVus }) {
+  const L = cfg.langues[lang], r = recette.reading, zh = lang === 'zh';
+  const [mn, mx] = r.longueur;
+  return [
+    `Langue cible : ${L.nom}.`,
+    `Élève : francophone (parle aussi anglais). ${L.niveau}`,
+    `Difficulté demandée : ${tier} — ${cfg.tiers[tier]}`,
+    L.consignes,
+    '',
+    "Produis une séance d'entraînement contenant :",
+    `1. "vocab" : exactement ${recette.vocab} éléments de vocabulaire utiles et fréquents, sur un thème cohérent avec le texte. Pour chacun : term (dans la langue cible), gloss (traduction française), example (phrase d'exemple courte dans la langue cible), exampleGloss (sa traduction française)${zh ? ', pinyin (avec tons)' : ''}.`,
+    `2. "reading" : ${r.forme === 'dialogue' ? 'un dialogue' : 'un texte'} de ${mn} à ${mx} ${zh ? 'caractères chinois' : 'mots'}, découpé en phrases (une entrée de "sentences" par ${r.forme === 'dialogue' ? 'réplique' : 'phrase'} : t = texte en langue cible, fr = traduction française${zh ? ', py = pinyin avec tons' : ''}), avec un titre (title), puis ${r.questions} questions de compréhension en ${L.questionsEn} (q ; choices = 4 propositions ; answer = index de la bonne réponse, en partant de 0 ; explain = courte explication en français). Réutilise plusieurs mots du vocabulaire dans le texte.`,
+    recette.production ? `3. "production" : une consigne (prompt), en français, demandant d'écrire 2 à 3 phrases en ${L.nom} sur le thème du texte.` : '',
+    dejaVus.length ? `\nNe reprends PAS ces termes déjà travaillés : ${dejaVus.join(', ')}.` : '',
+    '\nRéponds uniquement avec le JSON demandé.'
+  ].join('\n');
+}
+
+// ---------- appel Ollama ----------
+async function appelOllama(cfg, messages, format, temperature) {
+  let r;
+  try {
+    r = await fetch(`${cfg.ollama}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: cfg.model, messages, stream: false, think: false, format, options: { temperature, num_ctx: 8192 } }),
+      signal: AbortSignal.timeout(cfg.timeoutMs)
+    });
+  } catch (e) {
+    if (e.name === 'TimeoutError') throw new Error('délai dépassé');
+    const err = new Error(`Ollama injoignable sur ${cfg.ollama} (${e.cause?.code ?? e.message}). Ollama est-il lancé ?`);
+    err.fatal = true;
+    throw err;
+  }
+  if (!r.ok) throw new Error(`Ollama a répondu ${r.status} : ${(await r.text()).slice(0, 200)}`);
+  const j = await r.json();
+  return JSON.parse(j.message.content);
+}
+
+// ---------- validation (la forme est garantie par le schéma ; on vérifie le fond) ----------
+const HAN = /\p{Script=Han}/u;
+function valider(d, recette, lang) {
+  const e = [], zh = lang === 'zh', rd = d.reading, [mn, mx] = recette.reading.longueur;
+  const v = d.vocab;
+  if (!Array.isArray(v) || Math.abs(v.length - recette.vocab) > 2) e.push(`vocab : ${recette.vocab} éléments attendus, reçu ${v?.length ?? 0}`);
+  else v.forEach((x, i) => {
+    if (![x.term, x.gloss, x.example, x.exampleGloss].every((s) => s?.trim())) e.push(`vocab[${i}] incomplet`);
+    if (zh && !HAN.test(x.term ?? '')) e.push(`vocab[${i}] : le terme doit être en caractères chinois`);
+    if (zh && !x.pinyin?.trim()) e.push(`vocab[${i}] : pinyin manquant`);
+    if (!zh && HAN.test(x.term ?? '')) e.push(`vocab[${i}] : le terme doit être en ${lang}`);
+  });
+  if (!rd?.sentences?.length) return [...e, 'reading : aucune phrase'];
+  rd.sentences.forEach((s, i) => {
+    if (!s.t?.trim() || !s.fr?.trim()) e.push(`phrase ${i} incomplète`);
+    if (zh && (!HAN.test(s.t ?? '') || !s.py?.trim())) e.push(`phrase ${i} : caractères ou pinyin manquants`);
+    if (!zh && HAN.test(s.t ?? '')) e.push(`phrase ${i} : caractères chinois inattendus`);
+  });
+  const texte = rd.sentences.map((s) => s.t).join(zh ? '' : ' ');
+  const taille = zh ? [...texte].filter((c) => HAN.test(c)).length : texte.split(/\s+/).filter(Boolean).length;
+  if (taille < mn * 0.7 || taille > mx * 1.3) e.push(`reading : ${taille} ${zh ? 'caractères' : 'mots'}, ${mn} à ${mx} attendus`);
+  const qs = rd.questions ?? [];
+  if (Math.abs(qs.length - recette.reading.questions) > 1) e.push(`${recette.reading.questions} questions attendues, reçu ${qs.length}`);
+  qs.forEach((q, i) => {
+    if (!q.q?.trim() || !Array.isArray(q.choices) || q.choices.length < 3) e.push(`question ${i} : au moins 3 choix requis`);
+    else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.choices.length) e.push(`question ${i} : index de réponse invalide`);
+  });
+  if (recette.production && !d.production?.prompt?.trim()) e.push('production : consigne manquante');
+  return e;
+}
+
+// ---------- assemblage ----------
+const idMot = (lang, terme) => `${lang}-${createHash('sha1').update(terme.trim().toLowerCase()).digest('hex').slice(0, 8)}`;
+function melanger(q) { // les modèles placent souvent la bonne réponse en premier : on mélange
+  const idx = q.choices.map((_, i) => i);
+  for (let i = idx.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+  return { ...q, choices: idx.map((i) => q.choices[i]), answer: idx.indexOf(q.answer) };
+}
+function assembler(d, lang, recette) {
+  const blocks = [
+    { type: 'vocab', items: d.vocab.map((x) => ({ id: idMot(lang, x.term), ...x })) },
+    { type: 'reading', title: d.reading.title, sentences: d.reading.sentences, questions: d.reading.questions.map(melanger) }
+  ];
+  if (recette.production) blocks.push({ type: 'production', kind: 'written', prompt: d.production.prompt });
+  return blocks;
+}
+
+// ---------- génération d'un niveau de difficulté ----------
+async function genererTier({ cfg, lang, recette, tier, dejaVus, review }) {
+  const base = promptUtilisateur({ cfg, lang, recette, tier, dejaVus });
+  let erreurs = [];
+  for (let n = 1; n <= cfg.tentatives; n++) {
+    const contenu = erreurs.length ? `${base}\n\nTa tentative précédente était invalide :\n- ${erreurs.join('\n- ')}\nCorrige ces points.` : base;
+    let data;
+    try {
+      data = await appelOllama(cfg, [{ role: 'system', content: SYSTEME }, { role: 'user', content: contenu }], schemaPour(recette, lang), 0.7);
+    } catch (e) {
+      if (e.fatal) throw e;
+      erreurs = [`réponse inutilisable (${e.message})`];
+      log(`    tentative ${n}/${cfg.tentatives} : ${erreurs[0]}`);
+      continue;
+    }
+    erreurs = valider(data, recette, lang);
+    if (!erreurs.length) {
+      const sortie = { blocks: assembler(data, lang, recette), reviewed: false };
+      if (review) {
+        try {
+          const rv = await appelOllama(cfg, [
+            { role: 'system', content: SYSTEME },
+            { role: 'user', content: `Relis ce contenu d'exercices en ${cfg.langues[lang].nom}. Signale UNIQUEMENT les erreurs certaines : grammaire, vocabulaire, traduction fausse${lang === 'zh' ? ', pinyin faux' : ''}, réponse de question incorrecte. S'il n'y en a aucune, renvoie issues = [].\n\n${JSON.stringify(data)}` }
+          ], SCHEMA_REVIEW, 0);
+          sortie.review = { by: cfg.model, issues: rv.issues ?? [] };
+        } catch (e) { if (e.fatal) throw e; sortie.review = { by: cfg.model, error: e.message }; }
+      }
+      return sortie;
+    }
+    log(`    tentative ${n}/${cfg.tentatives} invalide : ${erreurs.slice(0, 3).join(' ; ')}`);
+  }
+  throw new Error(`échec après ${cfg.tentatives} tentatives (${erreurs[0]})`);
+}
+
+// ---------- fichiers de sortie ----------
+async function termesConnus(dossier) {
+  const m = {};
+  let fichiers = [];
+  try { fichiers = (await readdir(dossier)).filter((f) => /^\d{4}-W\d{2}\.json$/.test(f)).sort(); } catch { /* dossier absent */ }
+  for (const f of fichiers) {
+    const b = await lireJSON(path.join(dossier, f));
+    for (const s of b.sessions) for (const t of Object.values(s.tiers)) for (const bl of t.blocks)
+      if (bl.type === 'vocab') for (const it of bl.items) (m[s.lang] ??= new Set()).add(it.term);
+  }
+  return m;
+}
+async function sauver(dossier, idSem, cfg, session) {
+  await mkdir(dossier, { recursive: true });
+  const f = path.join(dossier, `${idSem}.json`);
+  let b;
+  try { b = await lireJSON(f); } catch { b = { schema: 1, batchId: idSem, model: cfg.model, sessions: [] }; }
+  b.generatedAt = new Date().toISOString();
+  const i = b.sessions.findIndex((s) => s.id === session.id);
+  if (i >= 0) b.sessions[i] = session; else b.sessions.push(session);
+  await writeFile(f, JSON.stringify(b, null, 2));
+  const ids = (await readdir(dossier)).filter((x) => /^\d{4}-W\d{2}\.json$/.test(x)).map((x) => x.slice(0, -5)).sort();
+  await writeFile(path.join(dossier, 'index.json'), JSON.stringify({ schema: 1, batches: ids }, null, 2));
+}
+
+// ---------- programme principal ----------
+const cfg = await lireJSON(path.join(ICI, 'config.json'));
+if (opt('ollama')) cfg.ollama = opt('ollama');
+if (opt('model')) cfg.model = opt('model');
+const dossier = path.resolve(RACINE, opt('sortie', cfg.sortie));
+const planning = await lireJSON(path.join(RACINE, 'src/scheduler/config.json'));
+const toutes = catalogue(planning, cfg);
+const choix = opt('session');
+const sessions = choix ? toutes.filter((s) => s.id === choix) : toutes;
+if (!sessions.length) { console.error(`Session inconnue "${choix}". Disponibles : ${toutes.map((s) => s.id).join(', ')}`); process.exit(2); }
+const tiers = opt('tier') ? [opt('tier')] : Object.keys(cfg.tiers);
+if (tiers.some((t) => !cfg.tiers[t])) { console.error(`Niveau inconnu. Choix : ${Object.keys(cfg.tiers).join(', ')}`); process.exit(2); }
+
+let semaine = opt('semaine') ?? idSemaine(new Date(Date.now() + 7 * 864e5));
+const nbSemaines = Number(opt('semaines', '1'));
+const connus = await termesConnus(dossier);
+let echecs = 0;
+
+for (let w = 0; w < nbSemaines; w++, semaine = semaineSuivante(semaine)) {
+  log(`\n=== ${semaine} ===`);
+  for (const s of sessions) {
+    const recette = cfg.recettes[`${s.lang}:${s.type}`];
+    if (!recette) { log(`${s.id} : pas de recette pour "${s.lang}:${s.type}", ignorée`); continue; }
+    const session = { id: s.id, day: s.jour, slot: s.slot, lang: s.lang, minutes: s.minutes, type: s.type, tiers: {} };
+    for (const tier of tiers) {
+      const t0 = Date.now();
+      log(`${s.id} [${tier}] …`);
+      try {
+        const dejaVus = [...(connus[s.lang] ?? [])].slice(-60);
+        session.tiers[tier] = await genererTier({ cfg, lang: s.lang, recette, tier, dejaVus, review: !flag('no-review') });
+        for (const bl of session.tiers[tier].blocks) if (bl.type === 'vocab') for (const it of bl.items) (connus[s.lang] ??= new Set()).add(it.term);
+        const issues = session.tiers[tier].review?.issues ?? [];
+        log(`    ok en ${Math.round((Date.now() - t0) / 1000)} s${issues.length ? ` — ${issues.length} point(s) signalé(s) à la relecture` : ''}`);
+        issues.forEach((i) => log(`      · ${i.where} : ${i.problem}`));
+      } catch (e) {
+        if (e.fatal) { console.error(`\n${e.message}`); process.exit(1); }
+        echecs++;
+        log(`    ÉCHEC : ${e.message}`);
+      }
+    }
+    if (Object.keys(session.tiers).length) await sauver(dossier, semaine, cfg, session);
+  }
+}
+log(`\nTerminé. Sortie : ${dossier}${echecs ? ` — ${echecs} niveau(x) en échec` : ''}`);
+process.exit(echecs ? 1 : 0);

@@ -1,0 +1,31 @@
+{
+  "ollama": "http://127.0.0.1:11434",
+  "model": "qwen3:8b",
+  "timeoutMs": 600000,
+  "tentatives": 3,
+  "sortie": "public/batches",
+  "tiers": {
+    "facile": "Phrases courtes et simples, vocabulaire très courant, temps simples. Un cran en dessous du niveau de l'élève.",
+    "standard": "Adapté au niveau de l'élève.",
+    "exigeant": "Phrases plus longues et variées, quelques structures ou temps nouveaux, vocabulaire un peu plus riche. Un cran au-dessus du niveau de l'élève."
+  },
+  "langues": {
+    "es": {
+      "nom": "espagnol",
+      "niveau": "Niveau A2 (base A1 solide). Repère bien les mots proches du français et de l'anglais.",
+      "consignes": "Espagnol standard et naturel, pas de régionalismes.",
+      "questionsEn": "espagnol simple"
+    },
+    "zh": {
+      "nom": "chinois mandarin (caractères simplifiés)",
+      "niveau": "Environ 300 caractères connus, niveau HSK 1-2, pratique ancienne. Objectif : la lecture.",
+      "consignes": "Caractères simplifiés uniquement. Pinyin avec les tons en diacritiques (ex. nǐ hǎo). Phrases courtes.",
+      "questionsEn": "français"
+    }
+  },
+  "recettes": {
+    "es:Vocabulaire + lecture": { "vocab": 8, "reading": { "forme": "texte", "longueur": [120, 180], "questions": 5 }, "production": true },
+    "es:Renfort vocabulaire":   { "vocab": 6, "reading": { "forme": "dialogue", "longueur": [60, 100], "questions": 3 }, "production": false },
+    "zh:Lecture":               { "vocab": 6, "reading": { "forme": "texte", "longueur": [150, 250], "questions": 4 }, "production": false }
+  }
+}
