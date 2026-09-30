@@ -69,8 +69,8 @@
       "reading": {
         "forme": "texte",
         "longueur": [
-          150,
-          250
+          80,
+          150
         ],
         "questions": 4,
         "phrases": [
@@ -78,11 +78,84 @@
           14
         ],
         "longueurPhrase": [
-          12,
-          20
+          8,
+          12
         ]
       },
       "production": false
     }
+  },
+  "reviewModel": null,
+  "themes": {
+    "es": [
+      "Se présenter et présenter sa famille",
+      "Une journée ordinaire",
+      "Au marché : acheter des fruits et des légumes",
+      "Au restaurant : commander un repas",
+      "Demander son chemin en ville",
+      "Prendre le train ou le bus",
+      "Réserver une chambre d'hôtel",
+      "Une journée à la plage",
+      "Le temps qu'il fait et les saisons",
+      "Acheter des vêtements",
+      "Chez le médecin pour un petit rhume",
+      "Le travail et les collègues",
+      "Les loisirs du week-end",
+      "Une fête d'anniversaire",
+      "Faire du sport",
+      "Le logement et les voisins",
+      "Un voyage en avion",
+      "Les animaux de compagnie",
+      "Téléphoner à un ami",
+      "Des vacances en famille",
+      "Une visite au musée",
+      "Le cinéma et les séries",
+      "La musique et les concerts",
+      "Les courses au supermarché",
+      "Le métro et les transports en ville",
+      "Un nouveau travail",
+      "Un match de football",
+      "La famille qui se réunit pour un repas",
+      "Un rendez-vous chez le coiffeur",
+      "Un appel pour réparer quelque chose à la maison",
+      "Un voyage en voiture",
+      "La rentrée et les études",
+      "Organiser une soirée entre amis",
+      "Un problème avec une réservation",
+      "La lecture et les livres",
+      "Une randonnée à la montagne"
+    ],
+    "zh": [
+      "Se présenter (nom, pays, âge)",
+      "La famille",
+      "Les nombres, l'argent et les prix",
+      "Au restaurant",
+      "Faire les courses",
+      "Le temps et la météo",
+      "Les jours de la semaine et les dates",
+      "Aller à l'école ou au travail",
+      "Prendre le taxi ou le métro",
+      "À l'hôtel",
+      "À l'hôpital pour un petit rhume",
+      "Les loisirs et le sport",
+      "Mon logement",
+      "Un ami au téléphone",
+      "Les vêtements et les couleurs",
+      "Le Nouvel An chinois",
+      "Les animaux",
+      "Une journée en ville",
+      "Voyager en train",
+      "La bibliothèque et les livres",
+      "Le thé et le café",
+      "Un anniversaire",
+      "Le cinéma",
+      "Les projets du week-end",
+      "Ma ville",
+      "Les métiers",
+      "Le corps et la santé",
+      "Les saisons",
+      "Le téléphone et Internet",
+      "Un voyage en avion"
+    ]
   }
 }

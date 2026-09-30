@@ -5,7 +5,7 @@
 // Exemples :
 //   node content-engine/generate.mjs --session es-mar-aller --semaine 2026-W41
 //   node content-engine/generate.mjs --semaine 2026-W41 --semaines 4        (une tranche de 4 semaines)
-//   options : --tier facile|standard|exigeant   --no-review   --souple (longueur hors norme = simple avertissement)   --debug   --sortie <dossier>   --ollama <url>   --model <nom>
+//   options : --tier facile|standard|exigeant   --no-review   --souple (longueur hors norme = simple avertissement)   --debug   --review-model <nom>   --sortie <dossier>   --ollama <url>   --model <nom>
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -70,7 +70,7 @@ const SCHEMA_REVIEW = obj({ issues: { type: 'array', items: obj({ where: S, prob
 // ---------- prompts ----------
 const SYSTEME = "Tu es un professeur de langues rigoureux. Tu produis uniquement du JSON conforme au schéma demandé, sans texte autour. Ta priorité est l'exactitude de la langue cible.";
 
-function promptUtilisateur({ cfg, lang, recette, tier, dejaVus }) {
+function promptUtilisateur({ cfg, lang, recette, tier, dejaVus, theme }) {
   const L = cfg.langues[lang], r = recette.reading, zh = lang === 'zh';
   const [mn, mx] = r.longueur, ph = r.phrases ?? [10, 14], lp = r.longueurPhrase ?? [10, 15];
   const unite = zh ? 'caractères chinois' : 'mots';
@@ -79,9 +79,10 @@ function promptUtilisateur({ cfg, lang, recette, tier, dejaVus }) {
     `Élève : francophone (parle aussi anglais). ${L.niveau}`,
     `Difficulté demandée : ${tier} — ${cfg.tiers[tier]}`,
     L.consignes,
+    theme ? `Thème imposé : ${theme}. Le texte ET tout le vocabulaire portent sur ce thème, sans en sortir.` : '',
     '',
     "Produis une séance d'entraînement contenant :",
-    `1. "vocab" : exactement ${recette.vocab} éléments de vocabulaire utiles et fréquents, sur un thème cohérent avec le texte. Pour chacun : term (dans la langue cible), gloss (traduction française), example (phrase d'exemple courte dans la langue cible), exampleGloss (sa traduction française)${zh ? ', pinyin (avec tons)' : ''}.`,
+    `1. "vocab" : exactement ${recette.vocab} éléments de vocabulaire utiles et fréquents, utiles pour ce thème. Pour chacun : term (dans la langue cible), gloss (traduction française), example (phrase d'exemple courte dans la langue cible), exampleGloss (sa traduction française)${zh ? ', pinyin (avec tons)' : ''}.`,
     `2. "reading" : ${r.forme === 'dialogue' ? 'un dialogue' : 'un texte'} de ${mn} à ${mx} ${unite} AU TOTAL, soit ${ph[0]} à ${ph[1]} ${r.forme === 'dialogue' ? 'répliques' : 'phrases'} de ${lp[0]} à ${lp[1]} ${unite} chacune (une entrée de "sentences" par ${r.forme === 'dialogue' ? 'réplique' : 'phrase'} : t = texte en langue cible, fr = traduction française${zh ? ', py = pinyin avec tons' : ''}). Un texte plus court sera rejeté : compte tes phrases. Cette longueur reste la même quel que soit le niveau de difficulté. Ajoute un titre (title), puis ${r.questions} questions de compréhension en ${L.questionsEn} (q ; choices = 4 propositions ; answer = index de la bonne réponse, en partant de 0 ; explain = courte explication en français). Réutilise plusieurs mots du vocabulaire dans le texte.`,
     recette.production ? `3. "production" : une consigne (prompt), en français, demandant d'écrire 2 à 3 phrases en ${L.nom} sur le thème du texte.` : '',
     dejaVus.length ? `\nNe reprends PAS ces termes déjà travaillés : ${dejaVus.join(', ')}.` : '',
@@ -90,15 +91,18 @@ function promptUtilisateur({ cfg, lang, recette, tier, dejaVus }) {
 }
 
 // ---------- appel Ollama ----------
-async function appelOllama(cfg, messages, format, temperature) {
+async function appelOllama(cfg, messages, format, temperature, model = cfg.model) {
+  const requete = (avecThink) => fetch(`${cfg.ollama}/api/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model, messages, stream: false, ...(avecThink ? { think: false } : {}), format, options: { temperature, num_ctx: 8192 } }),
+    signal: AbortSignal.timeout(cfg.timeoutMs)
+  });
   let r;
   try {
-    r = await fetch(`${cfg.ollama}/api/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: cfg.model, messages, stream: false, think: false, format, options: { temperature, num_ctx: 8192 } }),
-      signal: AbortSignal.timeout(cfg.timeoutMs)
-    });
+    r = await requete(true);
+    // certains modèles (mistral…) refusent le paramètre « think » : on réessaie sans
+    if (r.status === 400 && /think/i.test(await r.clone().text())) r = await requete(false);
   } catch (e) {
     if (e.name === 'TimeoutError') throw new Error('délai dépassé');
     const err = new Error(`Ollama injoignable sur ${cfg.ollama} (${e.cause?.code ?? e.message}). Ollama est-il lancé ?`);
@@ -108,6 +112,20 @@ async function appelOllama(cfg, messages, format, temperature) {
   if (!r.ok) throw new Error(`Ollama a répondu ${r.status} : ${(await r.text()).slice(0, 200)}`);
   const j = await r.json();
   return JSON.parse(j.message.content);
+}
+
+// ---------- filtre du bruit de la relecture ----------
+const normaliser = (x) => String(x ?? '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+const valeurA = (obj, chemin) => String(chemin).split(/[.\[\]]+/).filter(Boolean).reduce((o, k) => o?.[k], obj);
+function filtrerReview(issues, vue) {
+  return issues.filter((i) => {
+    const cur = valeurA(vue, i.where), fix = String(i.fix ?? '');
+    if (!i.problem?.trim()) return false;
+    if (/pas de correction|aucune correction|pas d'erreur|no correction/i.test(`${i.problem} ${fix}`)) return false;
+    if (typeof cur === 'string' && normaliser(cur) === normaliser(fix)) return false; // « correction » identique au texte
+    if (typeof cur === 'number' && fix.match(/\d+/)?.[0] === String(cur)) return false; // index de réponse déjà bon
+    return true;
+  });
 }
 
 // ---------- validation (la forme est garantie par le schéma ; on vérifie le fond) ----------
@@ -159,8 +177,8 @@ function assembler(d, lang, recette) {
 }
 
 // ---------- génération d'un niveau de difficulté ----------
-async function genererTier({ cfg, lang, recette, tier, dejaVus, review }) {
-  const base = promptUtilisateur({ cfg, lang, recette, tier, dejaVus });
+async function genererTier({ cfg, lang, recette, tier, dejaVus, review, theme }) {
+  const base = promptUtilisateur({ cfg, lang, recette, tier, dejaVus, theme });
   let erreurs = [];
   for (let n = 1; n <= cfg.tentatives; n++) {
     const contenu = erreurs.length ? `${base}\n\nTa tentative précédente était invalide :\n- ${erreurs.join('\n- ')}\nCorrige ces points.` : base;
@@ -179,13 +197,16 @@ async function genererTier({ cfg, lang, recette, tier, dejaVus, review }) {
       const sortie = { blocks: assembler(data, lang, recette), reviewed: false };
       if (v.avert.length) sortie.warnings = v.avert;
       if (review) {
+        // la relecture porte sur la version finale (réponses déjà mélangées) : les chemins signalés correspondent au fichier
+        const vue = { vocab: sortie.blocks[0].items.map(({ id, ...x }) => x), reading: { title: sortie.blocks[1].title, sentences: sortie.blocks[1].sentences, questions: sortie.blocks[1].questions } };
         try {
           const rv = await appelOllama(cfg, [
             { role: 'system', content: SYSTEME },
-            { role: 'user', content: `Relis ce contenu d'exercices en ${cfg.langues[lang].nom}. Signale UNIQUEMENT les erreurs certaines : grammaire, vocabulaire, traduction fausse${lang === 'zh' ? ', pinyin faux' : ''}, réponse de question incorrecte. S'il n'y en a aucune, renvoie issues = [].\n\n${JSON.stringify(data)}` }
-          ], SCHEMA_REVIEW, 0);
-          sortie.review = { by: cfg.model, issues: rv.issues ?? [] };
-        } catch (e) { if (e.fatal) throw e; sortie.review = { by: cfg.model, error: e.message }; }
+            { role: 'user', content: `Relis ce contenu d'exercices en ${cfg.langues[lang].nom}. Signale UNIQUEMENT les erreurs certaines : grammaire, vocabulaire, traduction fausse${lang === 'zh' ? ', pinyin faux' : ''}, réponse de question incorrecte. Pour chaque erreur : where = chemin précis (ex. reading.questions[2].choices[1]), problem = description du problème en une phrase, fix = correction proposée. S'il n'y en a aucune, renvoie issues = [].\n\n${JSON.stringify(vue)}` }
+          ], SCHEMA_REVIEW, 0, cfg.reviewModel ?? cfg.model);
+          const brut = rv.issues ?? [], gardees = filtrerReview(brut, vue);
+          sortie.review = { by: cfg.reviewModel ?? cfg.model, issues: gardees, filtered: brut.length - gardees.length };
+        } catch (e) { if (e.fatal) throw e; sortie.review = { by: cfg.reviewModel ?? cfg.model, error: e.message }; }
       }
       return sortie;
     }
@@ -224,12 +245,21 @@ async function sauver(dossier, idSem, cfg, session) {
 const cfg = await lireJSON(path.join(ICI, 'config.json'));
 if (opt('ollama')) cfg.ollama = opt('ollama');
 if (opt('model')) cfg.model = opt('model');
+if (opt('review-model')) cfg.reviewModel = opt('review-model');
 const dossier = path.resolve(RACINE, opt('sortie', cfg.sortie));
 const planning = await lireJSON(path.join(RACINE, 'src/scheduler/config.json'));
 const toutes = catalogue(planning, cfg);
 const choix = opt('session');
 const sessions = choix ? toutes.filter((s) => s.id === choix) : toutes;
 if (!sessions.length) { console.error(`Session inconnue "${choix}". Disponibles : ${toutes.map((s) => s.id).join(', ')}`); process.exit(2); }
+const semainesDepuis = (id) => Math.round((lundiDe(id) - lundiDe('2026-W01')) / (7 * 864e5));
+function themeDe(s, semaine) { // déterministe : deux sessions d'une même langue n'ont jamais le même thème de suite
+  const liste = cfg.themes?.[s.lang];
+  if (!liste?.length) return null;
+  const memes = toutes.filter((x) => x.lang === s.lang);
+  return liste[(semainesDepuis(semaine) * memes.length + memes.findIndex((x) => x.id === s.id)) % liste.length];
+}
+const t00 = Date.now();
 const tiers = opt('tier') ? [opt('tier')] : Object.keys(cfg.tiers);
 if (tiers.some((t) => !cfg.tiers[t])) { console.error(`Niveau inconnu. Choix : ${Object.keys(cfg.tiers).join(', ')}`); process.exit(2); }
 
@@ -243,18 +273,19 @@ for (let w = 0; w < nbSemaines; w++, semaine = semaineSuivante(semaine)) {
   for (const s of sessions) {
     const recette = cfg.recettes[`${s.lang}:${s.type}`];
     if (!recette) { log(`${s.id} : pas de recette pour "${s.lang}:${s.type}", ignorée`); continue; }
-    const session = { id: s.id, day: s.jour, slot: s.slot, lang: s.lang, minutes: s.minutes, type: s.type, tiers: {} };
+    const theme = themeDe(s, semaine);
+    const session = { id: s.id, day: s.jour, slot: s.slot, lang: s.lang, minutes: s.minutes, type: s.type, theme, tiers: {} };
     for (const tier of tiers) {
       const t0 = Date.now();
-      log(`${s.id} [${tier}] …`);
+      log(`${s.id} [${tier}]${theme ? ` — thème : ${theme}` : ''} …`);
       try {
         const dejaVus = [...(connus[s.lang] ?? [])].slice(-60);
-        session.tiers[tier] = await genererTier({ cfg, lang: s.lang, recette, tier, dejaVus, review: !flag('no-review') });
+        session.tiers[tier] = await genererTier({ cfg, lang: s.lang, recette, tier, dejaVus, review: !flag('no-review'), theme });
         for (const bl of session.tiers[tier].blocks) if (bl.type === 'vocab') for (const it of bl.items) (connus[s.lang] ??= new Set()).add(it.term);
         (session.tiers[tier].warnings ?? []).forEach((w) => log(`      ! ${w}`));
         const issues = session.tiers[tier].review?.issues ?? [];
-        log(`    ok en ${Math.round((Date.now() - t0) / 1000)} s${issues.length ? ` — ${issues.length} point(s) signalé(s) à la relecture` : ''}`);
-        issues.forEach((i) => log(`      · ${i.where} : ${i.problem}`));
+        log(`    ok en ${Math.round((Date.now() - t0) / 1000)} s${issues.length ? ` — ${issues.length} point(s) signalé(s) à la relecture` : ''}${session.tiers[tier].review?.filtered ? ` (${session.tiers[tier].review.filtered} alerte(s) sans valeur écartée(s))` : ''}`);
+        issues.forEach((i) => log(`      · ${i.where} : ${i.problem}${i.fix ? ` → ${i.fix}` : ''}`));
       } catch (e) {
         if (e.fatal) { console.error(`\n${e.message}`); process.exit(1); }
         echecs++;
@@ -264,5 +295,6 @@ for (let w = 0; w < nbSemaines; w++, semaine = semaineSuivante(semaine)) {
     if (Object.keys(session.tiers).length) await sauver(dossier, semaine, cfg, session);
   }
 }
-log(`\nTerminé. Sortie : ${dossier}${echecs ? ` — ${echecs} niveau(x) en échec` : ''}`);
+const dt = Math.round((Date.now() - t00) / 1000);
+log(`\nTerminé en ${Math.floor(dt / 60)} min ${dt % 60} s. Sortie : ${dossier}${echecs ? ` — ${echecs} niveau(x) en échec` : ''}`);
 process.exit(echecs ? 1 : 0);
