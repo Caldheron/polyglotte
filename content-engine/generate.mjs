@@ -70,7 +70,7 @@ const SCHEMA_REVIEW = obj({ issues: { type: 'array', items: obj({ where: S, prob
 // ---------- prompts ----------
 const SYSTEME = "Tu es un professeur de langues rigoureux. Tu produis uniquement du JSON conforme au schéma demandé, sans texte autour. Ta priorité est l'exactitude de la langue cible.";
 
-function promptUtilisateur({ cfg, lang, recette, tier, dejaVus, theme }) {
+function promptUtilisateur({ cfg, lang, recette, tier, dejaVus, theme, total = 1 }) {
   const L = cfg.langues[lang], r = recette.reading, zh = lang === 'zh';
   const [mn, mx] = r.longueur, ph = r.phrases ?? [10, 14], lp = r.longueurPhrase ?? [10, 15];
   const unite = zh ? 'caractères chinois' : 'mots';
@@ -80,6 +80,7 @@ function promptUtilisateur({ cfg, lang, recette, tier, dejaVus, theme }) {
     `Difficulté demandée : ${tier} — ${cfg.tiers[tier]}`,
     L.consignes,
     theme ? `Thème imposé : ${theme}. Le texte ET tout le vocabulaire portent sur ce thème, sans en sortir.` : '',
+    total > 1 ? `Cette séance comporte ${total} passages de lecture : écris ici le passage 1 sur ${total} (courte mise en situation du thème).` : '',
     '',
     "Produis une séance d'entraînement contenant :",
     `1. "vocab" : exactement ${recette.vocab} éléments de vocabulaire utiles et fréquents, utiles pour ce thème. Pour chacun : term (dans la langue cible), gloss (traduction française), example (phrase d'exemple courte dans la langue cible), exampleGloss (sa traduction française)${zh ? ', pinyin (avec tons)' : ''}.`,
@@ -130,10 +131,10 @@ function filtrerReview(issues, vue) {
 
 // ---------- validation (la forme est garantie par le schéma ; on vérifie le fond) ----------
 const HAN = /\p{Script=Han}/u;
-function valider(d, recette, lang, souple = false) {
+function valider(d, recette, lang, souple = false, sansVocab = false) {
   const e = [], av = [], zh = lang === 'zh', rd = d.reading, [mn, mx] = recette.reading.longueur;
   const v = d.vocab;
-  if (!Array.isArray(v) || Math.abs(v.length - recette.vocab) > 2) e.push(`vocab : ${recette.vocab} éléments attendus, reçu ${v?.length ?? 0}`);
+  if (sansVocab) { /* passage suivant : pas de vocabulaire */ } else if (!Array.isArray(v) || Math.abs(v.length - recette.vocab) > 2) e.push(`vocab : ${recette.vocab} éléments attendus, reçu ${v?.length ?? 0}`);
   else v.forEach((x, i) => {
     if (![x.term, x.gloss, x.example, x.exampleGloss].every((s) => s?.trim())) e.push(`vocab[${i}] incomplet`);
     if (zh && !HAN.test(x.term ?? '')) e.push(`vocab[${i}] : le terme doit être en caractères chinois`);
@@ -156,7 +157,7 @@ function valider(d, recette, lang, souple = false) {
     if (!q.q?.trim() || !Array.isArray(q.choices) || q.choices.length < 3) e.push(`question ${i} : au moins 3 choix requis`);
     else if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.choices.length) e.push(`question ${i} : index de réponse invalide`);
   });
-  if (recette.production && !d.production?.prompt?.trim()) e.push('production : consigne manquante');
+  if (recette.production && !sansVocab && !d.production?.prompt?.trim()) e.push('production : consigne manquante');
   return { erreurs: e, avert: av };
 }
 
@@ -168,52 +169,80 @@ function melanger(q) { // les modèles placent souvent la bonne réponse en prem
   return { ...q, choices: idx.map((i) => q.choices[i]), answer: idx.indexOf(q.answer) };
 }
 function assembler(d, lang, recette) {
-  const blocks = [
-    { type: 'vocab', items: d.vocab.map((x) => ({ id: idMot(lang, x.term), ...x })) },
-    { type: 'reading', title: d.reading.title, sentences: d.reading.sentences, questions: d.reading.questions.map(melanger) }
-  ];
+  const blocks = [{ type: 'vocab', items: d.vocab.map((x) => ({ id: idMot(lang, x.term), ...x })) }];
+  for (const r of d.readings ?? [d.reading])
+    blocks.push({ type: 'reading', title: r.title, sentences: r.sentences, questions: r.questions.map(melanger) });
   if (recette.production) blocks.push({ type: 'production', kind: 'written', prompt: d.production.prompt });
   return blocks;
 }
 
 // ---------- génération d'un niveau de difficulté ----------
-async function genererTier({ cfg, lang, recette, tier, dejaVus, review, theme }) {
-  const base = promptUtilisateur({ cfg, lang, recette, tier, dejaVus, theme });
+async function avecReessais(cfg, base, schema, verifier) {
   let erreurs = [];
   for (let n = 1; n <= cfg.tentatives; n++) {
     const contenu = erreurs.length ? `${base}\n\nTa tentative précédente était invalide :\n- ${erreurs.join('\n- ')}\nCorrige ces points.` : base;
     let data;
     try {
-      data = await appelOllama(cfg, [{ role: 'system', content: SYSTEME }, { role: 'user', content: contenu }], schemaPour(recette, lang), 0.7);
+      data = await appelOllama(cfg, [{ role: 'system', content: SYSTEME }, { role: 'user', content: contenu }], schema, 0.7);
     } catch (e) {
       if (e.fatal) throw e;
       erreurs = [`réponse inutilisable (${e.message})`];
       log(`    tentative ${n}/${cfg.tentatives} : ${erreurs[0]}`);
       continue;
     }
-    const v = valider(data, recette, lang, flag('souple'));
+    const v = verifier(data);
     erreurs = v.erreurs;
-    if (!erreurs.length) {
-      const sortie = { blocks: assembler(data, lang, recette), reviewed: false };
-      if (v.avert.length) sortie.warnings = v.avert;
-      if (review) {
-        // la relecture porte sur la version finale (réponses déjà mélangées) : les chemins signalés correspondent au fichier
-        const vue = { vocab: sortie.blocks[0].items.map(({ id, ...x }) => x), reading: { title: sortie.blocks[1].title, sentences: sortie.blocks[1].sentences, questions: sortie.blocks[1].questions } };
-        try {
-          const rv = await appelOllama(cfg, [
-            { role: 'system', content: SYSTEME },
-            { role: 'user', content: `Relis ce contenu d'exercices en ${cfg.langues[lang].nom}. Signale UNIQUEMENT les erreurs certaines : grammaire, vocabulaire, traduction fausse${lang === 'zh' ? ', pinyin faux' : ''}, réponse de question incorrecte. Pour chaque erreur : where = chemin précis (ex. reading.questions[2].choices[1]), problem = description du problème en une phrase, fix = correction proposée. S'il n'y en a aucune, renvoie issues = [].\n\n${JSON.stringify(vue)}` }
-          ], SCHEMA_REVIEW, 0, cfg.reviewModel ?? cfg.model);
-          const brut = rv.issues ?? [], gardees = filtrerReview(brut, vue);
-          sortie.review = { by: cfg.reviewModel ?? cfg.model, issues: gardees, filtered: brut.length - gardees.length };
-        } catch (e) { if (e.fatal) throw e; sortie.review = { by: cfg.reviewModel ?? cfg.model, error: e.message }; }
-      }
-      return sortie;
-    }
+    if (!erreurs.length) return { data, avert: v.avert };
     log(`    tentative ${n}/${cfg.tentatives} invalide : ${erreurs.slice(0, 3).join(' ; ')}`);
     if (flag('debug')) log(`    [debug] ${JSON.stringify(data.reading?.sentences?.map((x) => x.t) ?? data).slice(0, 700)}`);
   }
   throw new Error(`échec après ${cfg.tentatives} tentatives (${erreurs[0]})`);
+}
+
+function promptPassage({ cfg, lang, recette, tier, theme, n, total, termes, titres }) {
+  const L = cfg.langues[lang], r = recette.reading, zh = lang === 'zh', unite = zh ? 'caractères chinois' : 'mots';
+  const [mn, mx] = r.longueur, ph = r.phrases ?? [4, 8], lp = r.longueurPhrase ?? [5, 10];
+  return [
+    `Langue cible : ${L.nom}.`,
+    `Élève : francophone (parle aussi anglais). ${L.niveau}`,
+    `Difficulté demandée : ${tier} — ${cfg.tiers[tier]}`,
+    L.consignes,
+    `Thème : ${theme ?? 'libre'}. C'est le passage ${n} sur ${total} d'une même séance : même thème, mais une autre situation que les passages précédents (titres déjà pris : ${titres.join(' ; ')}).`,
+    '',
+    `Produis "reading" : un texte de ${mn} à ${mx} ${unite} AU TOTAL, soit ${ph[0]} à ${ph[1]} phrases de ${lp[0]} à ${lp[1]} ${unite} chacune (une entrée de "sentences" par phrase : t = texte en langue cible, fr = traduction française${zh ? ', py = pinyin avec tons' : ''}). Un texte plus court sera rejeté : compte tes phrases. Ajoute un titre (title), puis ${r.questions} questions de compréhension en ${L.questionsEn} (q ; choices = 4 propositions ; answer = index de la bonne réponse, en partant de 0 ; explain = courte explication en français). Réutilise si possible ces mots : ${termes.join(', ')}.`,
+    '\nRéponds uniquement avec le JSON demandé.'
+  ].join('\n');
+}
+
+async function genererTier({ cfg, lang, recette, tier, dejaVus, review, theme }) {
+  const total = recette.passages ?? 1, souple = flag('souple');
+  const premier = await avecReessais(cfg, promptUtilisateur({ cfg, lang, recette, tier, dejaVus, theme, total }), schemaPour(recette, lang),
+    (d) => valider(d, recette, lang, souple));
+  const data = premier.data, avert = [...premier.avert];
+  data.readings = [data.reading];
+  for (let n = 2; n <= total; n++) {
+    const p = await avecReessais(cfg,
+      promptPassage({ cfg, lang, recette, tier, theme, n, total, termes: data.vocab.map((x) => x.term), titres: data.readings.map((r) => r.title) }),
+      obj({ reading: schemaPour(recette, lang).properties.reading }),
+      (d) => valider(d, recette, lang, souple, true));
+    data.readings.push(p.data.reading);
+    avert.push(...p.avert);
+  }
+  const sortie = { blocks: assembler(data, lang, recette), reviewed: false };
+  if (avert.length) sortie.warnings = avert;
+  if (review) {
+    // la relecture porte sur la version finale (réponses déjà mélangées) : les chemins signalés correspondent au fichier
+    const vue = { vocab: sortie.blocks[0].items.map(({ id, ...x }) => x), readings: sortie.blocks.filter((b) => b.type === 'reading').map(({ type, ...x }) => x) };
+    try {
+      const rv = await appelOllama(cfg, [
+        { role: 'system', content: SYSTEME },
+        { role: 'user', content: `Relis ce contenu d'exercices en ${cfg.langues[lang].nom}. Signale UNIQUEMENT les erreurs certaines : grammaire, vocabulaire, traduction fausse${lang === 'zh' ? ', pinyin faux' : ''}, réponse de question incorrecte. Pour chaque erreur : where = chemin précis (ex. readings[0].questions[2].choices[1]), problem = description du problème en une phrase, rédigée en FRANÇAIS, fix = correction proposée. S'il n'y en a aucune, renvoie issues = [].\n\n${JSON.stringify(vue)}` }
+      ], SCHEMA_REVIEW, 0, cfg.reviewModel ?? cfg.model);
+      const brut = rv.issues ?? [], gardees = filtrerReview(brut, vue);
+      sortie.review = { by: cfg.reviewModel ?? cfg.model, issues: gardees, filtered: brut.length - gardees.length };
+    } catch (e) { if (e.fatal) throw e; sortie.review = { by: cfg.reviewModel ?? cfg.model, error: e.message }; }
+  }
+  return sortie;
 }
 
 // ---------- fichiers de sortie ----------

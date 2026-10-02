@@ -69,19 +69,20 @@
       "reading": {
         "forme": "texte",
         "longueur": [
-          80,
-          150
+          30,
+          80
         ],
-        "questions": 4,
         "phrases": [
-          10,
-          14
+          4,
+          8
         ],
         "longueurPhrase": [
-          8,
-          12
-        ]
+          5,
+          10
+        ],
+        "questions": 2
       },
+      "passages": 3,
       "production": false
     }
   },

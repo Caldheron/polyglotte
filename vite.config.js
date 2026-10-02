@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [
     svelte(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt', // la mise à jour attend ton accord (bandeau « Nouvelle version disponible »)
+      injectRegister: false,
       manifest: {
         name: 'Polyglotte',
         short_name: 'Polyglotte',
