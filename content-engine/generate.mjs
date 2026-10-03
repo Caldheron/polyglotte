@@ -116,7 +116,8 @@ async function appelOllama(cfg, messages, format, temperature, model = cfg.model
 }
 
 // ---------- filtre du bruit de la relecture ----------
-const normaliser = (x) => String(x ?? '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+// NFC : un même pinyin accentué peut être écrit en une ou en plusieurs unités Unicode ; on conserve les accents (un ton faux reste une vraie erreur)
+const normaliser = (x) => String(x ?? '').normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\p{M}]+/gu, ' ').trim();
 const valeurA = (obj, chemin) => String(chemin).split(/[.\[\]]+/).filter(Boolean).reduce((o, k) => o?.[k], obj);
 function filtrerReview(issues, vue) {
   return issues.filter((i) => {

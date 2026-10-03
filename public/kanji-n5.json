@@ -1,0 +1,1038 @@
+{
+  "version": 1,
+  "source": "KANJIDIC2 (EDRDG, licence CC BY-SA)",
+  "niveau": "N5",
+  "genere": "2026-10-03T08:20:08.432Z",
+  "kanji": [
+    {
+      "id": "ja-k-日",
+      "term": "日",
+      "lecture": "音 ニチ、ジツ · 訓 ひ、び、か",
+      "gloss": "jour, soleil, Japon, compteur de jours",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 1
+    },
+    {
+      "id": "ja-k-一",
+      "term": "一",
+      "lecture": "音 イチ、イツ · 訓 ひと、ひと（つ）",
+      "gloss": "un, radical un (no. 1)",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 1,
+      "freq": 2
+    },
+    {
+      "id": "ja-k-国",
+      "term": "国",
+      "lecture": "音 コク · 訓 くに",
+      "gloss": "pays",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 3
+    },
+    {
+      "id": "ja-k-会",
+      "term": "会",
+      "lecture": "音 カイ、エ · 訓 あ（う）、あ（わせる）、あつ（まる）",
+      "gloss": "réunion, rencontre, meeting, parti",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 4
+    },
+    {
+      "id": "ja-k-人",
+      "term": "人",
+      "lecture": "音 ジン、ニン · 訓 ひと、り、と",
+      "gloss": "être humain, personne",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 2,
+      "freq": 5
+    },
+    {
+      "id": "ja-k-年",
+      "term": "年",
+      "lecture": "音 ネン · 訓 とし",
+      "gloss": "année, compteur d'années",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 6
+    },
+    {
+      "id": "ja-k-大",
+      "term": "大",
+      "lecture": "音 ダイ、タイ · 訓 おお、おお（きい）、おお（いに）",
+      "gloss": "grand",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 7
+    },
+    {
+      "id": "ja-k-十",
+      "term": "十",
+      "lecture": "音 ジュウ、ジッ、ジュッ · 訓 とお、と、そ",
+      "gloss": "dix",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 2,
+      "freq": 8
+    },
+    {
+      "id": "ja-k-二",
+      "term": "二",
+      "lecture": "音 ニ、ジ · 訓 ふた、ふた（つ）、ふたたび",
+      "gloss": "deux, radical deux (no. 2)",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 2,
+      "freq": 9
+    },
+    {
+      "id": "ja-k-本",
+      "term": "本",
+      "lecture": "音 ホン · 訓 もと",
+      "gloss": "livre, présent, essentiel, origine",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 10
+    },
+    {
+      "id": "ja-k-中",
+      "term": "中",
+      "lecture": "音 チュウ · 訓 なか、うち、あた（る）",
+      "gloss": "dans, dedans, à l'intérieur, milieu",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 11
+    },
+    {
+      "id": "ja-k-長",
+      "term": "長",
+      "lecture": "音 チョウ · 訓 なが（い）、おさ",
+      "gloss": "long, chef",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 12
+    },
+    {
+      "id": "ja-k-出",
+      "term": "出",
+      "lecture": "音 シュツ、スイ · 訓 で（る）、で、だ（す）、だ（す）、い（でる）、い（だす）",
+      "gloss": "sortir, quitter, présence",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 13
+    },
+    {
+      "id": "ja-k-三",
+      "term": "三",
+      "lecture": "音 サン、ゾウ · 訓 み、み（つ）、みっ（つ）",
+      "gloss": "trois",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 14
+    },
+    {
+      "id": "ja-k-時",
+      "term": "時",
+      "lecture": "音 ジ · 訓 とき、どき",
+      "gloss": "temps, heure",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 10,
+      "freq": 16
+    },
+    {
+      "id": "ja-k-行",
+      "term": "行",
+      "lecture": "音 コウ、ギョウ、アン · 訓 い（く）、ゆ（く）、ゆ（き）、ゆき、い（き）、いき、おこな（う）、おこ（なう）",
+      "gloss": "aller, voyage",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 20
+    },
+    {
+      "id": "ja-k-社",
+      "term": "社",
+      "lecture": "音 シャ · 訓 やしろ",
+      "gloss": "temple shinto, compagnie, firme, bureau",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 21
+    },
+    {
+      "id": "ja-k-見",
+      "term": "見",
+      "lecture": "音 ケン · 訓 み（る）、み（える）、み（せる）",
+      "gloss": "regarder, voir, visible, espoirs",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 22
+    },
+    {
+      "id": "ja-k-月",
+      "term": "月",
+      "lecture": "音 ゲツ、ガツ · 訓 つき",
+      "gloss": "lune, mois",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 23
+    },
+    {
+      "id": "ja-k-分",
+      "term": "分",
+      "lecture": "音 ブン、フン、ブ · 訓 わ（ける）、わ（け）、わ（かれる）、わ（かる）、わ（かつ）",
+      "gloss": "portion, minute, section, part",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 24
+    },
+    {
+      "id": "ja-k-後",
+      "term": "後",
+      "lecture": "音 ゴ、コウ · 訓 のち、うし（ろ）、うしろ、あと、おく（れる）",
+      "gloss": "après, derrière, plus tard",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 9,
+      "freq": 26
+    },
+    {
+      "id": "ja-k-前",
+      "term": "前",
+      "lecture": "音 ゼン · 訓 まえ、まえ",
+      "gloss": "devant, avant",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 9,
+      "freq": 27
+    },
+    {
+      "id": "ja-k-生",
+      "term": "生",
+      "lecture": "音 セイ、ショウ · 訓 い（きる）、い（かす）、い（ける）、う（まれる）、うま（れる）、う（まれ）、うまれ、う（む）、お（う）、は（える）、は（やす）、き、なま、なま、な（る）、な（す）、む（す）、う",
+      "gloss": "vie, naissance, authentique, cru",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 29
+    },
+    {
+      "id": "ja-k-五",
+      "term": "五",
+      "lecture": "音 ゴ · 訓 いつ、いつ（つ）",
+      "gloss": "cinq",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 31
+    },
+    {
+      "id": "ja-k-間",
+      "term": "間",
+      "lecture": "音 カン、ケン · 訓 あいだ、ま、あい",
+      "gloss": "intervalle, espace",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 12,
+      "freq": 33
+    },
+    {
+      "id": "ja-k-上",
+      "term": "上",
+      "lecture": "音 ジョウ、ショウ、シャン · 訓 うえ、うえ、うわ、かみ、あ（げる）、あ（げる）、あ（がる）、あ（がる）、あ（がり）、あ（がり）、のぼ（る）、のぼ（り）、のぼ（せる）、のぼ（す）、たてまつ（る）",
+      "gloss": "au-dessus, haut, monter, donner (je te donne)",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 35
+    },
+    {
+      "id": "ja-k-東",
+      "term": "東",
+      "lecture": "音 トウ · 訓 ひがし",
+      "gloss": "Est",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 37
+    },
+    {
+      "id": "ja-k-四",
+      "term": "四",
+      "lecture": "音 シ · 訓 よ、よ（つ）、よっ（つ）、よん",
+      "gloss": "quatre",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 47
+    },
+    {
+      "id": "ja-k-今",
+      "term": "今",
+      "lecture": "音 コン、キン · 訓 いま",
+      "gloss": "maintenant",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 49
+    },
+    {
+      "id": "ja-k-新",
+      "term": "新",
+      "lecture": "音 シン · 訓 あたら（しい）、あら（た）、あら、にい",
+      "gloss": "nouveau",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 13,
+      "freq": 51
+    },
+    {
+      "id": "ja-k-金",
+      "term": "金",
+      "lecture": "音 キン、コン、ゴン · 訓 かね、かな、がね",
+      "gloss": "or",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 53
+    },
+    {
+      "id": "ja-k-九",
+      "term": "九",
+      "lecture": "音 キュウ、ク · 訓 ここの、ここの（つ）",
+      "gloss": "neuf",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 2,
+      "freq": 55
+    },
+    {
+      "id": "ja-k-入",
+      "term": "入",
+      "lecture": "音 ニュウ、ジュ · 訓 い（る）、い（る）、い（り）、い（れる）、い（れ）、はい（る）",
+      "gloss": "entrer, insérer",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 2,
+      "freq": 56
+    },
+    {
+      "id": "ja-k-立",
+      "term": "立",
+      "lecture": "音 リツ、リュウ、リットル · 訓 た（つ）、た（つ）、た（ち）、た（てる）、た（てる）、た（て）、たて、た（て）、だ（て）、だ（てる）",
+      "gloss": "debout",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 58
+    },
+    {
+      "id": "ja-k-手",
+      "term": "手",
+      "lecture": "音 シュ、ズ · 訓 て、て、て、た",
+      "gloss": "main",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 60
+    },
+    {
+      "id": "ja-k-学",
+      "term": "学",
+      "lecture": "音 ガク · 訓 まな（ぶ）",
+      "gloss": "étudier, apprendre, science",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 63
+    },
+    {
+      "id": "ja-k-高",
+      "term": "高",
+      "lecture": "音 コウ · 訓 たか（い）、たか、だか、たか（まる）、たか（める）",
+      "gloss": "haut, élevé, grand, cher",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 10,
+      "freq": 65
+    },
+    {
+      "id": "ja-k-円",
+      "term": "円",
+      "lecture": "音 エン · 訓 まる（い）、まる、まど、まど（か）、まろ（やか）",
+      "gloss": "cercle, yen, rond",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 69
+    },
+    {
+      "id": "ja-k-子",
+      "term": "子",
+      "lecture": "音 シ、ス、ツ · 訓 こ、こ、ね",
+      "gloss": "enfant, signe de la 1ère branche terrestre, signe du Rat (zodiaque), 23 h à 01 h",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 72
+    },
+    {
+      "id": "ja-k-目",
+      "term": "目",
+      "lecture": "音 モク、ボク · 訓 め、め、ま",
+      "gloss": "oeil, regard, aperçu, numérateur ordinal",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 76
+    },
+    {
+      "id": "ja-k-外",
+      "term": "外",
+      "lecture": "音 ガイ、ゲ · 訓 そと、ほか、はず（す）、はず（れる）、と",
+      "gloss": "extérieur",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 81
+    },
+    {
+      "id": "ja-k-言",
+      "term": "言",
+      "lecture": "音 ゲン、ゴン · 訓 い（う）、こと",
+      "gloss": "dire",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 83
+    },
+    {
+      "id": "ja-k-八",
+      "term": "八",
+      "lecture": "音 ハチ、ハツ · 訓 や、や（つ）、やっ（つ）、よう",
+      "gloss": "huit, radical huit (no. 12)",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 2,
+      "freq": 92
+    },
+    {
+      "id": "ja-k-六",
+      "term": "六",
+      "lecture": "音 ロク、リク · 訓 む、む（つ）、むっ（つ）、むい",
+      "gloss": "six",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 93
+    },
+    {
+      "id": "ja-k-下",
+      "term": "下",
+      "lecture": "音 カ、ゲ · 訓 した、しも、もと、さ（げる）、さ（がる）、くだ（る）、くだ（り）、くだ（す）、くだ（す）、くだ（さる）、お（ろす）、お（りる）",
+      "gloss": "au-dessous, descendre, bas, donner (vous me donnez)",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 97
+    },
+    {
+      "id": "ja-k-来",
+      "term": "来",
+      "lecture": "音 ライ、タイ · 訓 く（る）、きた（る）、きた（す）、き（たす）、き（たる）、き、こ",
+      "gloss": "venir, dû à, suivant, causer",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 102
+    },
+    {
+      "id": "ja-k-気",
+      "term": "気",
+      "lecture": "音 キ、ケ · 訓 いき、き",
+      "gloss": "esprit, air, atmosphère, humeur",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 113
+    },
+    {
+      "id": "ja-k-小",
+      "term": "小",
+      "lecture": "音 ショウ · 訓 ちい（さい）、こ、お、さ",
+      "gloss": "petit",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 114
+    },
+    {
+      "id": "ja-k-七",
+      "term": "七",
+      "lecture": "音 シチ · 訓 なな、なな（つ）、なの",
+      "gloss": "sept",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 2,
+      "freq": 115
+    },
+    {
+      "id": "ja-k-山",
+      "term": "山",
+      "lecture": "音 サン、セン · 訓 やま",
+      "gloss": "montagne",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 131
+    },
+    {
+      "id": "ja-k-話",
+      "term": "話",
+      "lecture": "音 ワ · 訓 はな（す）、はなし",
+      "gloss": "parler, histoire",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 13,
+      "freq": 134
+    },
+    {
+      "id": "ja-k-多",
+      "term": "多",
+      "lecture": "音 タ · 訓 おお（い）、まさ（に）、まさ（る）",
+      "gloss": "beaucoup, nombreux, fréquent",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 139
+    },
+    {
+      "id": "ja-k-安",
+      "term": "安",
+      "lecture": "音 アン · 訓 やす（い）、やす（まる）、やす、やす（らか）",
+      "gloss": "paisible, calme, tranquille, pas cher",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 144
+    },
+    {
+      "id": "ja-k-女",
+      "term": "女",
+      "lecture": "音 ジョ、ニョ、ニョウ · 訓 おんな、め",
+      "gloss": "femme, féminin",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 151
+    },
+    {
+      "id": "ja-k-北",
+      "term": "北",
+      "lecture": "音 ホク · 訓 きた",
+      "gloss": "nord",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 153
+    },
+    {
+      "id": "ja-k-午",
+      "term": "午",
+      "lecture": "音 ゴ · 訓 うま",
+      "gloss": "midi, signe de la 7ème branche terrestre, signe du Cheval (zodiaque), 11 h à 13 h",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 154
+    },
+    {
+      "id": "ja-k-百",
+      "term": "百",
+      "lecture": "音 ヒャク、ビャク · 訓 もも",
+      "gloss": "cent",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 163
+    },
+    {
+      "id": "ja-k-書",
+      "term": "書",
+      "lecture": "音 ショ · 訓 か（く）、が（き）、がき",
+      "gloss": "écrire",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 10,
+      "freq": 169
+    },
+    {
+      "id": "ja-k-先",
+      "term": "先",
+      "lecture": "音 セン · 訓 さき、ま（ず）",
+      "gloss": "avant, devant, précédent, futur",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 173
+    },
+    {
+      "id": "ja-k-名",
+      "term": "名",
+      "lecture": "音 メイ、ミョウ · 訓 な、な",
+      "gloss": "nom, célèbre, fameux, réputation",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 177
+    },
+    {
+      "id": "ja-k-川",
+      "term": "川",
+      "lecture": "音 セン · 訓 かわ",
+      "gloss": "rivière, fleuve, radical rivière (no. 47)",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 181
+    },
+    {
+      "id": "ja-k-千",
+      "term": "千",
+      "lecture": "音 セン · 訓 ち",
+      "gloss": "mille",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 195
+    },
+    {
+      "id": "ja-k-道",
+      "term": "道",
+      "lecture": "音 ドウ、トウ · 訓 みち、いう",
+      "gloss": "voie, route, rue, région",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 12,
+      "freq": 207
+    },
+    {
+      "id": "ja-k-水",
+      "term": "水",
+      "lecture": "音 スイ · 訓 みず、みず",
+      "gloss": "eau",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 223
+    },
+    {
+      "id": "ja-k-半",
+      "term": "半",
+      "lecture": "音 ハン · 訓 なか（ば）",
+      "gloss": "moitié, demi, milieu, nombre impair",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 224
+    },
+    {
+      "id": "ja-k-男",
+      "term": "男",
+      "lecture": "音 ダン、ナン · 訓 おとこ、お",
+      "gloss": "homme, mâle",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 240
+    },
+    {
+      "id": "ja-k-西",
+      "term": "西",
+      "lecture": "音 セイ、サイ、ス · 訓 にし",
+      "gloss": "Ouest, Espagne",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 259
+    },
+    {
+      "id": "ja-k-電",
+      "term": "電",
+      "lecture": "音 デン",
+      "gloss": "électricité",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 13,
+      "freq": 268
+    },
+    {
+      "id": "ja-k-口",
+      "term": "口",
+      "lecture": "音 コウ、ク · 訓 くち",
+      "gloss": "bouche",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 284
+    },
+    {
+      "id": "ja-k-少",
+      "term": "少",
+      "lecture": "音 ショウ · 訓 すく（ない）、すこ（し）",
+      "gloss": "un petit peu, un peu",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 287
+    },
+    {
+      "id": "ja-k-校",
+      "term": "校",
+      "lecture": "音 コウ、キョウ",
+      "gloss": "école, examen, impression, épreuve",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 10,
+      "freq": 294
+    },
+    {
+      "id": "ja-k-語",
+      "term": "語",
+      "lecture": "音 ゴ · 訓 かた（る）、かた（らう）",
+      "gloss": "langage, mot, raconter",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 14,
+      "freq": 301
+    },
+    {
+      "id": "ja-k-空",
+      "term": "空",
+      "lecture": "音 クウ · 訓 そら、あ（く）、あ（き）、あ（ける）、から、す（く）、す（かす）、むな（しい）",
+      "gloss": "vide, ciel, vacant, creux",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 304
+    },
+    {
+      "id": "ja-k-土",
+      "term": "土",
+      "lecture": "音 ド、ト · 訓 つち",
+      "gloss": "sol, terre, terrain, Turquie",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 307
+    },
+    {
+      "id": "ja-k-木",
+      "term": "木",
+      "lecture": "音 ボク、モク · 訓 き、こ",
+      "gloss": "arbre, bois (matière)",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 317
+    },
+    {
+      "id": "ja-k-聞",
+      "term": "聞",
+      "lecture": "音 ブン、モン · 訓 き（く）、き（こえる）",
+      "gloss": "entendre, écouter, demander",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 14,
+      "freq": 319
+    },
+    {
+      "id": "ja-k-食",
+      "term": "食",
+      "lecture": "音 ショク、ジキ · 訓 く（う）、く（らう）、た（べる）、は（む）",
+      "gloss": "manger, nourriture",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 9,
+      "freq": 328
+    },
+    {
+      "id": "ja-k-車",
+      "term": "車",
+      "lecture": "音 シャ · 訓 くるま",
+      "gloss": "véhicule, voiture",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 333
+    },
+    {
+      "id": "ja-k-何",
+      "term": "何",
+      "lecture": "音 カ · 訓 なに、なん、なに、なん",
+      "gloss": "quoi",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 340
+    },
+    {
+      "id": "ja-k-南",
+      "term": "南",
+      "lecture": "音 ナン、ナ · 訓 みなみ",
+      "gloss": "sud",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 9,
+      "freq": 341
+    },
+    {
+      "id": "ja-k-足",
+      "term": "足",
+      "lecture": "音 ソク · 訓 あし、た（りる）、た（る）、た（す）",
+      "gloss": "jambe, pied, suffire, ajouter",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 343
+    },
+    {
+      "id": "ja-k-万",
+      "term": "万",
+      "lecture": "音 マン、バン · 訓 よろず",
+      "gloss": "myriade, 10000",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 3,
+      "freq": 375
+    },
+    {
+      "id": "ja-k-店",
+      "term": "店",
+      "lecture": "音 テン · 訓 みせ、たな",
+      "gloss": "magasin, échoppe",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 378
+    },
+    {
+      "id": "ja-k-毎",
+      "term": "毎",
+      "lecture": "音 マイ · 訓 ごと、ごと（に）",
+      "gloss": "chaque",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 436
+    },
+    {
+      "id": "ja-k-白",
+      "term": "白",
+      "lecture": "音 ハク、ビャク · 訓 しろ、しら、しろ（い）",
+      "gloss": "blanc",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 483
+    },
+    {
+      "id": "ja-k-古",
+      "term": "古",
+      "lecture": "音 コ · 訓 ふる（い）、ふる、ふる（す）",
+      "gloss": "vieux",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 509
+    },
+    {
+      "id": "ja-k-天",
+      "term": "天",
+      "lecture": "音 テン · 訓 あまつ、あめ、あま",
+      "gloss": "cieux, ciel, impérial",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 512
+    },
+    {
+      "id": "ja-k-買",
+      "term": "買",
+      "lecture": "音 バイ · 訓 か（う）",
+      "gloss": "acheter",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 12,
+      "freq": 520
+    },
+    {
+      "id": "ja-k-週",
+      "term": "週",
+      "lecture": "音 シュウ",
+      "gloss": "semaine",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 11,
+      "freq": 540
+    },
+    {
+      "id": "ja-k-母",
+      "term": "母",
+      "lecture": "音 ボ · 訓 はは、も",
+      "gloss": "maman, mère",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 570
+    },
+    {
+      "id": "ja-k-火",
+      "term": "火",
+      "lecture": "音 カ · 訓 ひ、び、ほ",
+      "gloss": "feu",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 574
+    },
+    {
+      "id": "ja-k-花",
+      "term": "花",
+      "lecture": "音 カ、ケ · 訓 はな",
+      "gloss": "fleur",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 7,
+      "freq": 578
+    },
+    {
+      "id": "ja-k-右",
+      "term": "右",
+      "lecture": "音 ウ、ユウ · 訓 みぎ",
+      "gloss": "droite",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 602
+    },
+    {
+      "id": "ja-k-読",
+      "term": "読",
+      "lecture": "音 ドク、トク、トウ · 訓 よ（む）、よ（み）",
+      "gloss": "lire",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 14,
+      "freq": 618
+    },
+    {
+      "id": "ja-k-友",
+      "term": "友",
+      "lecture": "音 ユウ · 訓 とも",
+      "gloss": "ami",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 622
+    },
+    {
+      "id": "ja-k-左",
+      "term": "左",
+      "lecture": "音 サ、シャ · 訓 ひだり",
+      "gloss": "gauche",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 5,
+      "freq": 630
+    },
+    {
+      "id": "ja-k-休",
+      "term": "休",
+      "lecture": "音 キュウ · 訓 やす（む）、やす（まる）、やす（める）",
+      "gloss": "repos, jour de repos, se coucher, dormir",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 642
+    },
+    {
+      "id": "ja-k-父",
+      "term": "父",
+      "lecture": "音 フ · 訓 ちち",
+      "gloss": "père",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 4,
+      "freq": 646
+    },
+    {
+      "id": "ja-k-駅",
+      "term": "駅",
+      "lecture": "音 エキ",
+      "gloss": "gare",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 14,
+      "freq": 724
+    },
+    {
+      "id": "ja-k-雨",
+      "term": "雨",
+      "lecture": "音 ウ · 訓 あめ、あま、さめ",
+      "gloss": "pluie",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 8,
+      "freq": 950
+    },
+    {
+      "id": "ja-k-飲",
+      "term": "飲",
+      "lecture": "音 イン、オン · 訓 の（む）、の（み）",
+      "gloss": "boire, fumer, prendre",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 12,
+      "freq": 969
+    },
+    {
+      "id": "ja-k-魚",
+      "term": "魚",
+      "lecture": "音 ギョ · 訓 うお、さかな、ざかな",
+      "gloss": "poisson",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 11,
+      "freq": 1208
+    },
+    {
+      "id": "ja-k-耳",
+      "term": "耳",
+      "lecture": "音 ジ · 訓 みみ",
+      "gloss": "oreille",
+      "example": "",
+      "exampleGloss": "",
+      "strokes": 6,
+      "freq": 1328
+    }
+  ]
+}
