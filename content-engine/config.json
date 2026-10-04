@@ -15,12 +15,6 @@
       "niveau": "Niveau A2 (base A1 solide). Repère bien les mots proches du français et de l'anglais.",
       "consignes": "Espagnol standard et naturel, pas de régionalismes.",
       "questionsEn": "espagnol simple"
-    },
-    "zh": {
-      "nom": "chinois mandarin (caractères simplifiés)",
-      "niveau": "Environ 300 caractères connus, niveau HSK 1-2, pratique ancienne. Objectif : la lecture.",
-      "consignes": "Caractères simplifiés uniquement. Pinyin avec les tons en diacritiques (ex. nǐ hǎo). Phrases courtes.",
-      "questionsEn": "français"
     }
   },
   "recettes": {
@@ -29,17 +23,17 @@
       "reading": {
         "forme": "texte",
         "longueur": [
-          120,
-          180
+          80,
+          130
         ],
         "questions": 5,
         "phrases": [
-          11,
-          14
+          10,
+          13
         ],
         "longueurPhrase": [
-          10,
-          15
+          7,
+          12
         ]
       },
       "production": true
@@ -62,27 +56,6 @@
           10
         ]
       },
-      "production": false
-    },
-    "zh:Lecture": {
-      "vocab": 6,
-      "reading": {
-        "forme": "texte",
-        "longueur": [
-          30,
-          80
-        ],
-        "phrases": [
-          4,
-          8
-        ],
-        "longueurPhrase": [
-          5,
-          10
-        ],
-        "questions": 2
-      },
-      "passages": 3,
       "production": false
     }
   },
@@ -125,38 +98,6 @@
       "Un problème avec une réservation",
       "La lecture et les livres",
       "Une randonnée à la montagne"
-    ],
-    "zh": [
-      "Se présenter (nom, pays, âge)",
-      "La famille",
-      "Les nombres, l'argent et les prix",
-      "Au restaurant",
-      "Faire les courses",
-      "Le temps et la météo",
-      "Les jours de la semaine et les dates",
-      "Aller à l'école ou au travail",
-      "Prendre le taxi ou le métro",
-      "À l'hôtel",
-      "À l'hôpital pour un petit rhume",
-      "Les loisirs et le sport",
-      "Mon logement",
-      "Un ami au téléphone",
-      "Les vêtements et les couleurs",
-      "Le Nouvel An chinois",
-      "Les animaux",
-      "Une journée en ville",
-      "Voyager en train",
-      "La bibliothèque et les livres",
-      "Le thé et le café",
-      "Un anniversaire",
-      "Le cinéma",
-      "Les projets du week-end",
-      "Ma ville",
-      "Les métiers",
-      "Le corps et la santé",
-      "Les saisons",
-      "Le téléphone et Internet",
-      "Un voyage en avion"
     ]
   }
 }

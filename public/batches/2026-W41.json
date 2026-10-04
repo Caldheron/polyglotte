@@ -4,168 +4,6 @@
   "model": "qwen3:8b",
   "sessions": [
     {
-      "id": "es-lun-trajet",
-      "day": "lundi",
-      "slot": "Trajet",
-      "lang": "es",
-      "minutes": 20,
-      "type": "Renfort vocabulaire",
-      "theme": "Une visite au musée",
-      "tiers": {
-        "exigeant": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "es-3282a9f5",
-                  "term": "exposición",
-                  "gloss": "exposition",
-                  "example": "La exposición tiene muchos cuadros interesantes.",
-                  "exampleGloss": "L’exposition a beaucoup de tableaux intéressants."
-                },
-                {
-                  "id": "es-9b858a74",
-                  "term": "pieza",
-                  "gloss": "oeuvre",
-                  "example": "Esta pieza es muy famosa.",
-                  "exampleGloss": "Cette œuvre est très célèbre."
-                },
-                {
-                  "id": "es-37e71734",
-                  "term": "guía",
-                  "gloss": "guide",
-                  "example": "El guía nos explicó la historia del museo.",
-                  "exampleGloss": "Le guide nous a expliqué l’histoire du musée."
-                },
-                {
-                  "id": "es-006ade79",
-                  "term": "detalle",
-                  "gloss": "détail",
-                  "example": "No dejes de ver el detalle de esta escultura.",
-                  "exampleGloss": "Ne rate pas le détail de cette sculpture."
-                },
-                {
-                  "id": "es-e8efa0f7",
-                  "term": "información",
-                  "gloss": "information",
-                  "example": "Pide más información sobre el autor.",
-                  "exampleGloss": "Demande plus d’information sur l’auteur."
-                },
-                {
-                  "id": "es-7927ca91",
-                  "term": "visita",
-                  "gloss": "visite",
-                  "example": "La visita al museo fue muy emocionante.",
-                  "exampleGloss": "La visite au musée fut très émouvante."
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "Visita al museo",
-              "sentences": [
-                {
-                  "t": "Ana: ¿Qué te parece la exposición?",
-                  "fr": "Ana : Qu’est-ce que tu penses de l’exposition ?"
-                },
-                {
-                  "t": "Lucas: Muy interesante, especialmente la pieza del siglo XIX.",
-                  "fr": "Lucas : Très intéressante, surtout l’œuvre du XIXe siècle."
-                },
-                {
-                  "t": "Ana: Sí, es una pieza única. ¿Sabes quién la pintó?",
-                  "fr": "Ana : Oui, c’est une œuvre unique. Savais-tu qui la peint ?"
-                },
-                {
-                  "t": "Lucas: No, pero el guía me dijo que es de un artista famoso.",
-                  "fr": "Lucas : Non, mais le guide m’a dit que c’est d’un artiste célèbre."
-                },
-                {
-                  "t": "Ana: ¿Qué detalle te llamó la atención?",
-                  "fr": "Ana : Quel détail t’a attiré l’attention ?"
-                },
-                {
-                  "t": "Lucas: La información que nos dio sobre la técnica del autor.",
-                  "fr": "Lucas : L’information que nous a donnée sur la technique de l’auteur."
-                },
-                {
-                  "t": "Ana: ¿Te gustó la visita?",
-                  "fr": "Ana : As-tu aimé la visite ?"
-                },
-                {
-                  "t": "Lucas: Sí, fue una visita inolvidable.",
-                  "fr": "Lucas : Oui, c’était une visite inoubliable."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "¿Qué mencionó Lucas sobre la pieza?",
-                  "choices": [
-                    "Que es de un artista anónimo.",
-                    "Que es de un artista desconocido.",
-                    "Que es de un artista moderno.",
-                    "Que es de un artista famoso."
-                  ],
-                  "answer": 3,
-                  "explain": "Lucas mencionó que el guía le dijo que es de un artista famoso."
-                },
-                {
-                  "q": "¿Qué detalle llamó la atención de Lucas?",
-                  "choices": [
-                    "La información sobre la exposición.",
-                    "La información sobre la técnica.",
-                    "La información sobre el autor.",
-                    "La información sobre la guía."
-                  ],
-                  "answer": 1,
-                  "explain": "Lucas mencionó que la información sobre la técnica del autor le llamó la atención."
-                },
-                {
-                  "q": "¿Cómo describió Ana la pieza?",
-                  "choices": [
-                    "Como una pieza común.",
-                    "Como una pieza única.",
-                    "Como una pieza interesante.",
-                    "Como una pieza anónima."
-                  ],
-                  "answer": 1,
-                  "explain": "Ana describió la pieza como única, lo que significa que es especial."
-                }
-              ]
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[0].sentences[5].fr",
-                "problem": "La traduction de 'el guía me dijo que es de un artista famoso' est incorrecte : 'm’a dit que c’est d’un artiste célèbre' ne correspond pas exactement à l’original.",
-                "fix": "Le guide m’a dit que c’est d’un artiste célèbre."
-              },
-              {
-                "where": "readings[0].sentences[6].fr",
-                "problem": "La traduction de 'La información que nos dio sobre la técnica del autor' est incorrecte : 'L’information que nous a donnée sur la technique de l’auteur' manque de cohérence grammaticale.",
-                "fix": "L’information que nous a donnée sur la technique de l’auteur."
-              },
-              {
-                "where": "readings[0].questions[1].answer",
-                "problem": "La réponse correcte est 'La información sobre la técnica' mais l’indice indique 'La información sobre la exposición'.",
-                "fix": "B"
-              },
-              {
-                "where": "readings[0].questions[2].answer",
-                "problem": "La réponse correcte est 'Como una pieza única' mais l’indice indique 'Como una pieza común'.",
-                "fix": "B"
-              }
-            ],
-            "filtered": 0
-          }
-        }
-      }
-    },
-    {
       "id": "es-mar-aller",
       "day": "mardi",
       "slot": "Aller",
@@ -183,167 +21,163 @@
                   "id": "es-84b698cc",
                   "term": "película",
                   "gloss": "film",
-                  "example": "¿Te gustan las películas de acción?",
-                  "exampleGloss": "Aimes-tu les films d'action ?"
+                  "example": "Voy a ver una película esta noche.",
+                  "exampleGloss": "Je vais regarder un film cette nuit."
                 },
                 {
                   "id": "es-82cd0722",
                   "term": "serie",
                   "gloss": "série",
-                  "example": "Estoy viendo una nueva serie.",
-                  "exampleGloss": "Je regarde une nouvelle série."
+                  "example": "Mi serie favorita es Breaking Bad.",
+                  "exampleGloss": "Ma série préférée est Breaking Bad."
+                },
+                {
+                  "id": "es-75c62016",
+                  "term": "actuación",
+                  "gloss": "actuation",
+                  "example": "La actuación de este actor es increíble.",
+                  "exampleGloss": "L'actuation de cet acteur est incroyable."
+                },
+                {
+                  "id": "es-f863f061",
+                  "term": "directo",
+                  "gloss": "direct",
+                  "example": "Este filme está dirigido por un gran director.",
+                  "exampleGloss": "Ce film est réalisé par un grand réalisateur."
+                },
+                {
+                  "id": "es-77b1690d",
+                  "term": "trama",
+                  "gloss": "plot",
+                  "example": "La trama de esta película es muy interesante.",
+                  "exampleGloss": "Le scénario de ce film est très intéressant."
                 },
                 {
                   "id": "es-4ed3655e",
                   "term": "actor",
                   "gloss": "acteur",
-                  "example": "Es un actor muy famoso.",
-                  "exampleGloss": "C'est un acteur très célèbre."
+                  "example": "Este actor es muy popular en España.",
+                  "exampleGloss": "Cet acteur est très populaire en Espagne."
                 },
                 {
-                  "id": "es-12f20133",
-                  "term": "directora",
-                  "gloss": "directrice",
-                  "example": "La directora de esta película es muy talentosa.",
-                  "exampleGloss": "La directrice de ce film est très talentueuse."
+                  "id": "es-d594c2cc",
+                  "term": "final",
+                  "gloss": "fin",
+                  "example": "El final de la serie es sorprendente.",
+                  "exampleGloss": "La fin de la série est surprenante."
                 },
                 {
-                  "id": "es-92ae7a7d",
-                  "term": "escena",
-                  "gloss": "scène",
-                  "example": "Esta escena es muy emocionante.",
-                  "exampleGloss": "Cette scène est très émouvante."
-                },
-                {
-                  "id": "es-77b1690d",
-                  "term": "trama",
-                  "gloss": "intrigue",
-                  "example": "La trama de esta serie es muy interesante.",
-                  "exampleGloss": "L'intrigue de cette série est très intéressante."
-                },
-                {
-                  "id": "es-ad3e5219",
-                  "term": "reparto",
-                  "gloss": "distribution",
-                  "example": "El reparto de esta película es excelente.",
-                  "exampleGloss": "La distribution de ce film est excellente."
-                },
-                {
-                  "id": "es-94cf78bc",
-                  "term": "estilo",
-                  "gloss": "style",
-                  "example": "El estilo de esta película es muy original.",
-                  "exampleGloss": "Le style de ce film est très original."
+                  "id": "es-69820d08",
+                  "term": "repetir",
+                  "gloss": "replay",
+                  "example": "Quiero repetir esta película.",
+                  "exampleGloss": "Je veux revoir ce film."
                 }
               ]
             },
             {
               "type": "reading",
-              "title": "Una Película y una Serie",
+              "title": "Mi película favorita",
               "sentences": [
                 {
-                  "t": "La película es muy popular en todo el mundo.",
-                  "fr": "Le film est très populaire dans tout le monde."
+                  "t": "Mi película favorita es Titanic.",
+                  "fr": "Mon film préféré est Titanic."
                 },
                 {
-                  "t": "Tiene una trama interesante y una buena actriz.",
-                  "fr": "Elle a une intrigue intéressante et une bonne actrice."
+                  "t": "La actuación de Leonardo DiCaprio es muy buena.",
+                  "fr": "L'actuation de Leonardo DiCaprio est très bonne."
                 },
                 {
-                  "t": "El reparto es excelente y la directora es muy talentosa.",
-                  "fr": "La distribution est excellente et la directrice est très talentueuse."
+                  "t": "La trama de la película es trágica y emocionante.",
+                  "fr": "Le scénario de la film est tragique et émouvant."
                 },
                 {
-                  "t": "La serie es más corta pero igual de emocionante.",
-                  "fr": "La série est plus courte mais tout aussi émouvante."
+                  "t": "El final es muy impresionante.",
+                  "fr": "La fin est très impressionnante."
                 },
                 {
-                  "t": "Tienen escenas muy divertidas y una buena historia.",
-                  "fr": "Elles ont des scènes très amusantes et une bonne histoire."
+                  "t": "También me gustan las series de ciencia ficción.",
+                  "fr": "J'aime aussi les séries de science-fiction."
                 },
                 {
-                  "t": "El estilo de la película es diferente al de la serie.",
-                  "fr": "Le style du film est différent de celui de la série."
+                  "t": "Mi serie favorita es Star Wars.",
+                  "fr": "Ma série préférée est Star Wars."
                 },
                 {
-                  "t": "La actriz principal es famosa por su trabajo en esta película.",
-                  "fr": "L'actrice principale est célèbre pour son travail dans ce film."
+                  "t": "La actuación de los actores es excelente.",
+                  "fr": "L'actuation des acteurs est excellente."
                 },
                 {
-                  "t": "La serie tiene más escenas de acción que la película.",
-                  "fr": "La série a plus de scènes d'action que le film."
+                  "t": "Voy a repetir esta película mañana.",
+                  "fr": "Je vais revoir ce film demain."
                 },
                 {
-                  "t": "Los espectadores disfrutan mucho de ambas.",
-                  "fr": "Les spectateurs aiment beaucoup les deux."
-                },
-                {
-                  "t": "Es un ejemplo de cómo el cine y las series pueden ser emocionantes.",
-                  "fr": "C'est un exemple de la façon dont le cinéma et les séries peuvent être émouvants."
+                  "t": "Espero ver más películas este año.",
+                  "fr": "J'espère voir plus de films cette année."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Qué tipo de película es mencionada en el texto?",
+                  "q": "¿Cuál es la película favorita del narrador?",
                   "choices": [
-                    "Una película de ciencia ficción.",
-                    "Una película de acción.",
-                    "Una película de drama.",
-                    "Una película de comedia."
-                  ],
-                  "answer": 2,
-                  "explain": "El texto menciona que la película tiene una trama interesante, lo que sugiere un drama."
-                },
-                {
-                  "q": "¿Quién es famosa por su trabajo en esta película?",
-                  "choices": [
-                    "El director.",
-                    "La actriz principal.",
-                    "El guionista.",
-                    "El productor."
-                  ],
-                  "answer": 1,
-                  "explain": "El texto dice que la actriz principal es famosa por su trabajo en esta película."
-                },
-                {
-                  "q": "¿Qué tiene más escenas de acción?",
-                  "choices": [
-                    "La película.",
-                    "La serie.",
-                    "El reparto.",
-                    "La trama."
-                  ],
-                  "answer": 1,
-                  "explain": "El texto afirma que la serie tiene más escenas de acción que la película."
-                },
-                {
-                  "q": "¿Qué es el estilo de la película según el texto?",
-                  "choices": [
-                    "Muy sencillo.",
-                    "Muy parecido al de la serie.",
-                    "Muy repetitivo.",
-                    "Muy original."
-                  ],
-                  "answer": 3,
-                  "explain": "El texto menciona que el estilo de la película es muy original."
-                },
-                {
-                  "q": "¿Qué disfrutan mucho los espectadores?",
-                  "choices": [
-                    "La serie y la película.",
-                    "La actriz y el guion.",
-                    "El reparto y la trama.",
-                    "El estilo y la directora."
+                    "Titanic",
+                    "Star Wars",
+                    "La vida de los otros",
+                    "Breaking Bad"
                   ],
                   "answer": 0,
-                  "explain": "El texto dice que los espectadores disfrutan mucho de ambas, la película y la serie."
+                  "explain": "El narrador menciona que su película favorita es Titanic."
+                },
+                {
+                  "q": "¿Qué aspecto de la película menciona el narrador como buena?",
+                  "choices": [
+                    "La actuación",
+                    "La música",
+                    "El director",
+                    "El guion"
+                  ],
+                  "answer": 0,
+                  "explain": "El narrador dice que la actuación de Leonardo DiCaprio es muy buena."
+                },
+                {
+                  "q": "¿Qué tipo de película le gusta al narrador?",
+                  "choices": [
+                    "De acción",
+                    "De misterio",
+                    "De ciencia ficción",
+                    "De comedia"
+                  ],
+                  "answer": 2,
+                  "explain": "El narrador menciona que le gustan las series de ciencia ficción."
+                },
+                {
+                  "q": "¿Qué hace el narrador después de ver la película?",
+                  "choices": [
+                    "La compara",
+                    "La repite",
+                    "La graba",
+                    "La critica"
+                  ],
+                  "answer": 1,
+                  "explain": "El narrador dice que va a repetir la película mañana."
+                },
+                {
+                  "q": "¿Qué espera el narrador ver este año?",
+                  "choices": [
+                    "Más series",
+                    "Más directores",
+                    "Más actores",
+                    "Más películas"
+                  ],
+                  "answer": 3,
+                  "explain": "El narrador menciona que espera ver más películas este año."
                 }
               ]
             },
             {
               "type": "production",
               "kind": "written",
-              "prompt": "Écris 2 à 3 phrases en espagnol sur une série que tu as regardée récemment."
+              "prompt": "Escribe dos o tres frases en español sobre una película o serie que te gusta. Usa al menos dos palabras del vocabulario."
             }
           ],
           "reviewed": false,
@@ -351,22 +185,57 @@
             "by": "qwen3:8b",
             "issues": [
               {
-                "where": "readings[0].sentences[5].fr",
-                "problem": "La traduction de 'Tienen escenas muy divertidas y una buena historia.' est incorrecte. 'Tienen' est traduit par 'ont' qui est incorrect dans ce contexte.",
-                "fix": "Elles ont des scènes très amusantes et une bonne histoire."
+                "where": "vocab[4].exampleGloss",
+                "problem": "L'actuation de cet acteur est incroyable est incorrecte. Le mot 'actuation' est incorrect en français, le mot correct est 'acte' ou 'interprétation'.",
+                "fix": "L'interprétation de cet acteur est incroyable."
               },
               {
-                "where": "readings[0].questions[2].answer",
-                "problem": "La réponse de la question est incorrecte. Le texte indique que la série a plus de scènes d'action que la película, donc la réponse correcte est 'La serie.'",
-                "fix": "B"
+                "where": "vocab[5].exampleGloss",
+                "problem": "Ce film est réalisé par un grand réalisateur est incorrecte. Le mot 'realizado' est incorrect en français, le mot correct est 'réalisé'.",
+                "fix": "Ce film est réalisé par un grand réalisateur."
               },
               {
-                "where": "readings[0].questions[3].answer",
-                "problem": "La réponse de la question est incorrecte. Le texte indique que le style de la película est très original, donc la réponse correcte est 'Muy original.'",
-                "fix": "4"
+                "where": "vocab[6].exampleGloss",
+                "problem": "L'actuation de cet acteur est incroyable est incorrecte. Le mot 'actuation' est incorrect en français, le mot correct est 'acte' ou 'interprétation'.",
+                "fix": "L'interprétation de cet acteur est incroyable."
+              },
+              {
+                "where": "readings[0].sentences[2].fr",
+                "problem": "Le scénario de la film est tragique et émouvant est incorrecte. Le mot 'film' est incorrect en français, le mot correct est 'película'.",
+                "fix": "Le scénario de la película est tragique et émouvant."
+              },
+              {
+                "where": "readings[0].questions[1].choices[1]",
+                "problem": "El director est incorrecte. Le mot 'director' est incorrect en français, le mot correct est 'réalisateur'.",
+                "fix": "Le réalisateur"
+              },
+              {
+                "where": "readings[0].questions[1].choices[2]",
+                "problem": "El guion est incorrecte. Le mot 'guion' est incorrect en français, le mot correct est 'scénario'.",
+                "fix": "Le scénario"
+              },
+              {
+                "where": "readings[0].questions[3].choices[2]",
+                "problem": "La graba est incorrecte. Le mot 'graba' est incorrect en français, le mot correct est 'revoit' ou 'reprend'.",
+                "fix": "La revoit"
+              },
+              {
+                "where": "readings[0].questions[4].choices[1]",
+                "problem": "Más directores est incorrecte. Le mot 'directores' est incorrect en français, le mot correct est 'réalisateurs'.",
+                "fix": "Plus de réalisateurs"
+              },
+              {
+                "where": "readings[0].questions[4].choices[2]",
+                "problem": "Más actores est incorrecte. Le mot 'actores' est incorrect en français, le mot correct est 'acteurs'.",
+                "fix": "Plus d'acteurs"
+              },
+              {
+                "where": "readings[0].questions[4].choices[3]",
+                "problem": "Más películas est incorrecte. Le mot 'películas' est incorrect en français, le mot correct est 'films'.",
+                "fix": "Plus de films"
               }
             ],
-            "filtered": 2
+            "filtered": 0
           }
         },
         "standard": {
@@ -375,60 +244,60 @@
               "type": "vocab",
               "items": [
                 {
-                  "id": "es-77b1690d",
-                  "term": "trama",
-                  "gloss": "histoire",
-                  "example": "La trama de esta película es muy interesante.",
-                  "exampleGloss": "L'histoire de ce film est très intéressante."
+                  "id": "es-f94657f8",
+                  "term": "guion",
+                  "gloss": "scénario",
+                  "example": "El guion de la película es muy interesante.",
+                  "exampleGloss": "Le scénario de la película est très intéressant."
                 },
                 {
-                  "id": "es-ad3e5219",
-                  "term": "reparto",
-                  "gloss": "distribution",
-                  "example": "El reparto de la serie es muy talentoso.",
-                  "exampleGloss": "La distribution de la série est très talentueuse."
+                  "id": "es-de64b18f",
+                  "term": "personaje",
+                  "gloss": "personnage",
+                  "example": "El personaje principal es muy carismático.",
+                  "exampleGloss": "Le personnage principal est très charismatique."
                 },
                 {
-                  "id": "es-12f20133",
-                  "term": "directora",
-                  "gloss": "directrice",
-                  "example": "La directora de esta película es famosa.",
-                  "exampleGloss": "La directrice de ce film est célèbre."
+                  "id": "es-63746892",
+                  "term": "producción",
+                  "gloss": "production",
+                  "example": "La producción de la serie es muy profesional.",
+                  "exampleGloss": "La production de la série est très professionnelle."
                 },
                 {
-                  "id": "es-4ed3655e",
-                  "term": "actor",
-                  "gloss": "acteur",
-                  "example": "El actor principal de la serie es muy popular.",
-                  "exampleGloss": "L'acteur principal de la série est très populaire."
+                  "id": "es-e0cab407",
+                  "term": "estrella",
+                  "gloss": "vedette",
+                  "example": "La estrella de la película es muy popular.",
+                  "exampleGloss": "La vedette de la película est très populaire."
                 },
                 {
-                  "id": "es-92ae7a7d",
-                  "term": "escena",
-                  "gloss": "scène",
-                  "example": "Esta escena es muy emocionante.",
-                  "exampleGloss": "Cette scène est très émouvante."
+                  "id": "es-dbe4368e",
+                  "term": "cámara",
+                  "gloss": "caméra",
+                  "example": "La cámara del film captura bien la escena.",
+                  "exampleGloss": "La caméra du film capture bien la scène."
                 },
                 {
-                  "id": "es-94cf78bc",
-                  "term": "estilo",
-                  "gloss": "style",
-                  "example": "El estilo de la película es muy realista.",
-                  "exampleGloss": "Le style du film est très réaliste."
+                  "id": "es-1932ad89",
+                  "term": "fondo",
+                  "gloss": "arrière-plan",
+                  "example": "El fondo de la escena es muy detallado.",
+                  "exampleGloss": "L'arrière-plan de la scène est très détaillé."
                 },
                 {
-                  "id": "es-4c07aff1",
-                  "term": "séries",
-                  "gloss": "séries",
-                  "example": "Las series son una forma divertida de pasarlo bien.",
-                  "exampleGloss": "Les séries sont une façon amusante de passer le temps."
+                  "id": "es-00bba60f",
+                  "term": "ritmo",
+                  "gloss": "rythme",
+                  "example": "El ritmo de la serie es muy dinámico.",
+                  "exampleGloss": "Le rythme de la série est très dynamique."
                 },
                 {
-                  "id": "es-77b1690d",
-                  "term": "trama",
-                  "gloss": "histoire",
-                  "example": "La trama de esta serie es muy original.",
-                  "exampleGloss": "L'histoire de cette série est très originale."
+                  "id": "es-45c6f1f5",
+                  "term": "ambiente",
+                  "gloss": "ambiance",
+                  "example": "El ambiente de la película es muy misterioso.",
+                  "exampleGloss": "L'ambiance de la película est très mystérieuse."
                 }
               ]
             },
@@ -437,108 +306,104 @@
               "title": "El mundo del cine",
               "sentences": [
                 {
-                  "t": "El cine es una forma de entretenimiento muy popular.",
-                  "fr": "Le cinéma est une forme d'entretenement très populaire."
+                  "t": "El guion de la película es muy interesante.",
+                  "fr": "Le scénario de la película est très intéressant."
                 },
                 {
-                  "t": "Las películas y las series son parte importante de la cultura.",
-                  "fr": "Les films et les séries sont partie importante de la culture."
+                  "t": "La producción cuenta con una estrella de Hollywood.",
+                  "fr": "La production compte avec une vedette de Hollywood."
                 },
                 {
-                  "t": "La trama de una película es lo que la hace interesante.",
-                  "fr": "L'histoire d'un film est ce qui le rend intéressante."
+                  "t": "El personaje principal es muy carismático.",
+                  "fr": "Le personnage principal est très charismatique."
                 },
                 {
-                  "t": "El actor principal es el que más se nota en la pantalla.",
-                  "fr": "L'acteur principal est celui qui se distingue le plus à l'écran."
+                  "t": "El ritmo de la trama es muy rápido.",
+                  "fr": "Le rythme de la trame est très rapide."
                 },
                 {
-                  "t": "Las series suelen tener más capítulos que las películas.",
-                  "fr": "Les séries ont généralement plus d'épisodes que les films."
+                  "t": "La cámara captura bien los detalles del fondo.",
+                  "fr": "La caméra capture bien les détails de l'arrière-plan."
                 },
                 {
-                  "t": "El estilo de la película puede influir mucho en el público.",
-                  "fr": "Le style d'un film peut influencer beaucoup le public."
+                  "t": "El ambiente de la escena es muy misterioso.",
+                  "fr": "L'ambiance de la scène est très mystérieuse."
                 },
                 {
-                  "t": "La directora de esta película es muy reconocida.",
-                  "fr": "La directrice de ce film est très connue."
+                  "t": "La producción es muy profesional.",
+                  "fr": "La production est très professionnelle."
                 },
                 {
-                  "t": "Cada escena de la película tiene su propia importancia.",
-                  "fr": "Chaque scène d'un film a son propre importance."
+                  "t": "El personaje tiene un desarrollo muy completo.",
+                  "fr": "Le personnage a un développement très complet."
                 },
                 {
-                  "t": "El reparto de la serie es muy talentoso.",
-                  "fr": "La distribution de la série est très talentueuse."
-                },
-                {
-                  "t": "El cine es una forma de conectar con la cultura del mundo.",
-                  "fr": "Le cinéma est une façon de se connecter à la culture du monde."
+                  "t": "El guion incluye muchos giros inesperados.",
+                  "fr": "Le scénario inclut beaucoup de retournements inattendus."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Qué es lo que hace interesante una película según el texto?",
+                  "q": "¿Cuál es el aspecto más destacado de la película?",
                   "choices": [
-                    "El director",
-                    "La trama",
-                    "La música",
-                    "El público"
-                  ],
-                  "answer": 1,
-                  "explain": "Le texte dit que la trama est ce qui rend une película intéressante."
-                },
-                {
-                  "q": "¿Quién es el que más se nota en la pantalla según el texto?",
-                  "choices": [
-                    "La directora",
-                    "El director",
-                    "El actor principal",
-                    "El público"
+                    "El ambiente.",
+                    "La cámara.",
+                    "El guion.",
+                    "El ritmo."
                   ],
                   "answer": 2,
-                  "explain": "Le texte indique que l'acteur principal est celui qui se distingue le plus à l'écran."
+                  "explain": "El guion es lo que más se destaca según el texto."
                 },
                 {
-                  "q": "¿Qué tiene más capítulos, las películas o las series?",
+                  "q": "¿Qué aspecto se menciona como muy profesional?",
                   "choices": [
-                    "Las series",
-                    "El público",
-                    "El director",
-                    "Las películas"
+                    "El ritmo.",
+                    "El ambiente.",
+                    "La producción.",
+                    "El personaje."
                   ],
-                  "answer": 0,
-                  "explain": "Le texte affirme que les séries ont généralement plus d'épisodes."
+                  "answer": 2,
+                  "explain": "El texto menciona que la producción es muy profesional."
                 },
                 {
-                  "q": "¿Quién es muy reconocida según el texto?",
+                  "q": "¿Qué tipo de personaje se describe como carismático?",
                   "choices": [
-                    "El público",
-                    "La directora",
-                    "El director",
-                    "El actor principal"
-                  ],
-                  "answer": 1,
-                  "explain": "Le texte mentionne que la directrice de la película est très connue."
-                },
-                {
-                  "q": "¿Qué es importante en cada escena de una película según el texto?",
-                  "choices": [
-                    "La música",
-                    "El director",
-                    "La trama",
-                    "La importancia"
+                    "El personaje de apoyo.",
+                    "El antagonista.",
+                    "El secundario.",
+                    "El protagonista."
                   ],
                   "answer": 3,
-                  "explain": "Le texte dit que chaque scène a son propre importance."
+                  "explain": "El personaje principal se describe como carismático."
+                },
+                {
+                  "q": "¿Qué palabra significa 'ambiente' en el contexto del texto?",
+                  "choices": [
+                    "Cámara.",
+                    "Atmósfera.",
+                    "Fondo.",
+                    "Trama."
+                  ],
+                  "answer": 1,
+                  "explain": "En el contexto, 'ambiente' se refiere a la atmósfera de la escena."
+                },
+                {
+                  "q": "¿Qué elemento del cine se menciona como muy dinámico?",
+                  "choices": [
+                    "El guion.",
+                    "El ritmo.",
+                    "El fondo.",
+                    "La producción."
+                  ],
+                  "answer": 1,
+                  "explain": "El ritmo se describe como muy dinámico en el texto."
                 }
               ]
             },
             {
               "type": "production",
               "kind": "written",
-              "prompt": "Écris 2 à 3 phrases en espagnol sur ton film ou série favori."
+              "prompt": "Écris 2 à 3 phrases en espagnol sur la manière dont le cinéma influence la société."
             }
           ],
           "reviewed": false,
@@ -547,21 +412,21 @@
             "issues": [
               {
                 "where": "readings[0].sentences[1].fr",
-                "problem": "Erreur de vocabulaire : 'parte' doit être 'partie' pour concorder avec 'las películas y las series' (pluriel).",
-                "fix": "Les films et les séries sont une partie importante de la culture."
+                "problem": "L'expression 'compte avec' est incorrecte en français; la forme correcte est 'compte sur'.",
+                "fix": "La production compte sur une vedette de Hollywood."
               },
               {
-                "where": "readings[0].sentences[3].fr",
-                "problem": "Erreur de traduction : 'se distingue' est incorrect, le bon terme est 'se note'.",
-                "fix": "L'acteur principal est celui qui se note le plus à l'écran."
+                "where": "readings[0].questions[3].choices[1]",
+                "problem": "La réponse 'Atmósfera' est incorrecte; le mot correct est 'ambiance'.",
+                "fix": "Ambiance"
               },
               {
-                "where": "readings[0].sentences[5].fr",
-                "problem": "Erreur de vocabulaire : 'influencer' doit être 'influir' pour concorder avec le verbe en infinitif.",
-                "fix": "Le style d'un film peut influir beaucoup le public."
+                "where": "readings[0].questions[4].answer",
+                "problem": "La réponse correcte est 'El ritmo', mais l'indice indique 'El guion'.",
+                "fix": "3"
               }
             ],
-            "filtered": 2
+            "filtered": 0
           }
         },
         "exigeant": {
@@ -570,394 +435,166 @@
               "type": "vocab",
               "items": [
                 {
-                  "id": "es-63746892",
-                  "term": "producción",
-                  "gloss": "production",
-                  "example": "La producción de la película fue muy costosa.",
-                  "exampleGloss": "La production de la film fut très coûteuse."
+                  "id": "es-ad3e5219",
+                  "term": "reparto",
+                  "gloss": "distribution",
+                  "example": "El reparto de la película es muy talentoso.",
+                  "exampleGloss": "Le casting de la film est très talentueux."
                 },
                 {
-                  "id": "es-64c2d89a",
-                  "term": "formato",
-                  "gloss": "format",
-                  "example": "La serie tiene un formato de 30 minutos por episodio.",
-                  "exampleGloss": "La série a un format de 30 minutes par épisode."
+                  "id": "es-77b1690d",
+                  "term": "trama",
+                  "gloss": "plot",
+                  "example": "La trama de la serie es muy intrigante.",
+                  "exampleGloss": "Le scénario de la série est très intrigant."
                 },
                 {
-                  "id": "es-ddc8236f",
-                  "term": "estreno",
-                  "gloss": "première",
-                  "example": "El estreno de la película fue un gran éxito.",
-                  "exampleGloss": "Le premier de la film fut un grand succès."
+                  "id": "es-94cf78bc",
+                  "term": "estilo",
+                  "gloss": "style",
+                  "example": "El estilo de la película es muy visual.",
+                  "exampleGloss": "Le style de la film est très visuel."
+                },
+                {
+                  "id": "es-a523e566",
+                  "term": "corto",
+                  "gloss": "short",
+                  "example": "Voy a ver un corto de animación.",
+                  "exampleGloss": "Je vais regarder un court métrage d'animation."
+                },
+                {
+                  "id": "es-56a08b6d",
+                  "term": "música",
+                  "gloss": "music",
+                  "example": "La música de la serie es muy emotiva.",
+                  "exampleGloss": "La musique de la série est très émouvante."
+                },
+                {
+                  "id": "es-63b12989",
+                  "term": "drama",
+                  "gloss": "drama",
+                  "example": "La película es un drama sobre la guerra.",
+                  "exampleGloss": "Le film est un drame sur la guerre."
                 },
                 {
                   "id": "es-2e80b922",
                   "term": "narrativa",
                   "gloss": "narrative",
-                  "example": "La narrativa de la serie es muy original.",
-                  "exampleGloss": "La narrative de la série est très originale."
+                  "example": "La narrativa de la película es muy original.",
+                  "exampleGloss": "La narration de la film est très originale."
                 },
                 {
-                  "id": "es-45c6f1f5",
-                  "term": "ambiente",
-                  "gloss": "ambiance",
-                  "example": "El ambiente de la película es muy tenso.",
-                  "exampleGloss": "L'ambiance de la film est très tendu."
-                },
-                {
-                  "id": "es-054c786a",
-                  "term": "protagonista",
-                  "gloss": "protagonist",
-                  "example": "El protagonista de la serie es muy carismático.",
-                  "exampleGloss": "Le protagoniste de la série est très charismatique."
-                },
-                {
-                  "id": "es-c6107343",
-                  "term": "cierre",
-                  "gloss": "fin",
-                  "example": "El cierre de la trama fue sorprendente.",
-                  "exampleGloss": "La fin de la trame fut surprenante."
-                },
-                {
-                  "id": "es-79ad8175",
-                  "term": "tendencia",
-                  "gloss": "tendance",
-                  "example": "Hay una tendencia a crear más series dramáticas.",
-                  "exampleGloss": "Il y a une tendance à créer plus de séries dramatiques."
+                  "id": "es-2ffb1135",
+                  "term": "cine",
+                  "gloss": "cinema",
+                  "example": "Me encanta el cine de ciencia ficción.",
+                  "exampleGloss": "J'aime le cinéma de science-fiction."
                 }
               ]
             },
             {
               "type": "reading",
-              "title": "La Importancia del Cine en la Cultura",
+              "title": "La Magia del Cine",
               "sentences": [
                 {
-                  "t": "La producción cinematográfica es una industria muy importante.",
-                  "fr": "La production cinématographique est une industrie très importante."
+                  "t": "El cine es una forma de arte que captura la imaginación.",
+                  "fr": "Le cinéma est une forme d'art qui capte l'imagination."
                 },
                 {
-                  "t": "Muchas personas disfrutan viendo películas y series.",
-                  "fr": "Beaucoup de personnes aiment regarder des films et des séries."
+                  "t": "Cada película tiene su propio estilo y narrativa.",
+                  "fr": "Chaque film a son propre style et narration."
                 },
                 {
-                  "t": "El formato de las series es muy popular en la actualidad.",
-                  "fr": "Le format des séries est très populaire aujourd'hui."
+                  "t": "La trama es lo que hace que una historia sea interesante.",
+                  "fr": "La trame est ce qui rend une histoire intéressante."
                 },
                 {
-                  "t": "La narrativa de las películas puede influir en la opinión pública.",
-                  "fr": "La narrative des films peut influencer l'opinion publique."
+                  "t": "Los actores y actrices aportan mucha vida al reparto.",
+                  "fr": "Les acteurs et actrices apportent beaucoup de vie au casting."
                 },
                 {
-                  "t": "El ambiente de una película puede crear una experiencia única.",
-                  "fr": "L'ambiance d'un film peut créer une expérience unique."
+                  "t": "El drama y la música son elementos clave en la producción.",
+                  "fr": "Le drame et la musique sont des éléments clés dans la production."
                 },
                 {
-                  "t": "Los protagonistas de las películas suelen ser muy reconocidos.",
-                  "fr": "Les protagonistes des films sont souvent très reconnus."
+                  "t": "Un buen cine puede hacer que las personas sientan emociones fuertes.",
+                  "fr": "Un bon cinéma peut faire ressentir aux gens des émotions fortes."
                 },
                 {
-                  "t": "El cierre de una trama puede ser el punto más emocionante.",
-                  "fr": "La fin d'une trame peut être le point le plus émotionnel."
+                  "t": "La narrativa de la película nos lleva a otro mundo.",
+                  "fr": "La narration du film nous emmène dans un autre monde."
                 },
                 {
-                  "t": "Hay una tendencia a mezclar géneros en las últimas producciones.",
-                  "fr": "Il y a une tendance à mélanger des genres dans les dernières productions."
+                  "t": "Es importante que el estilo de la película sea coherente.",
+                  "fr": "Il est important que le style du film soit cohérent."
                 },
                 {
-                  "t": "La tendencia actual es crear contenido más diverso y representativo.",
-                  "fr": "La tendance actuelle est de créer du contenu plus divers et représentatif."
-                },
-                {
-                  "t": "El cine sigue siendo una forma de arte muy poderosa.",
-                  "fr": "Le cinéma reste une forme d'art très puissante."
+                  "t": "Cada corto tiene una forma única de contar una historia.",
+                  "fr": "Chaque court métrage a une forme unique de raconter une histoire."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Cuál es la industria mencionada en el texto?",
+                  "q": "¿Qué es lo que hace que una historia sea interesante según el texto?",
                   "choices": [
-                    "La industria cinematográfica",
-                    "La industria de la música",
-                    "La industria de la literatura",
-                    "La industria de la tecnología"
+                    "El reparto.",
+                    "El estilo.",
+                    "La trama.",
+                    "La música."
+                  ],
+                  "answer": 2,
+                  "explain": "El texto menciona que la trama es lo que hace que una historia sea interesante."
+                },
+                {
+                  "q": "¿Cuál de los siguientes elementos es clave en la producción según el texto?",
+                  "choices": [
+                    "La música.",
+                    "El estilo.",
+                    "La narrativa.",
+                    "El reparto."
                   ],
                   "answer": 0,
-                  "explain": "El texto menciona explícitamente la producción cinematográfica como una industria importante."
+                  "explain": "El texto afirma que la música es un elemento clave en la producción."
                 },
                 {
-                  "q": "¿Cuál es la tendencia actual mencionada en el texto?",
+                  "q": "¿Qué tipo de arte es mencionado al inicio del texto?",
                   "choices": [
-                    "Crear más películas de acción",
-                    "Crear contenido más diverso y representativo",
-                    "Crear series más cortas",
-                    "Crear más comedias"
+                    "La pintura.",
+                    "El cine.",
+                    "La danza.",
+                    "El teatro."
                   ],
                   "answer": 1,
-                  "explain": "El texto dice que hay una tendencia a crear contenido más diverso y representativo."
+                  "explain": "El texto comienza diciendo que el cine es una forma de arte."
                 },
                 {
-                  "q": "¿Qué aspecto de una película se menciona como una experiencia única?",
+                  "q": "¿Qué hace que el cine sea especial según el texto?",
                   "choices": [
-                    "El ambiente",
-                    "La banda sonora",
-                    "El director",
-                    "El guion"
-                  ],
-                  "answer": 0,
-                  "explain": "El texto menciona que el ambiente de una película puede crear una experiencia única."
-                },
-                {
-                  "q": "¿Quiénes suelen ser muy reconocidos según el texto?",
-                  "choices": [
-                    "Los guionistas",
-                    "Los protagonistas",
-                    "Los directores",
-                    "Los actores"
-                  ],
-                  "answer": 1,
-                  "explain": "El texto dice que los protagonistas de las películas suelen ser muy reconocidos."
-                },
-                {
-                  "q": "¿Qué se menciona como el punto más emocionante de una trama?",
-                  "choices": [
-                    "El inicio",
-                    "El climax",
-                    "El desarrollo",
-                    "El cierre"
+                    "La trama.",
+                    "La música.",
+                    "La narrativa.",
+                    "La imaginación."
                   ],
                   "answer": 3,
-                  "explain": "El texto menciona que el cierre de una trama puede ser el punto más emocionante."
+                  "explain": "El texto menciona que el cine captura la imaginación."
+                },
+                {
+                  "q": "¿Qué tipo de historia puede hacer que las personas sientan emociones fuertes?",
+                  "choices": [
+                    "Un corto.",
+                    "Un estilo.",
+                    "Un drama.",
+                    "Una narrativa."
+                  ],
+                  "answer": 2,
+                  "explain": "El texto indica que un buen cine puede hacer que las personas sientan emociones fuertes."
                 }
               ]
             },
             {
               "type": "production",
               "kind": "written",
-              "prompt": "Écris deux à trois phrases en espagnol sur l'importance du cinéma dans la société."
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [],
-            "filtered": 18
-          }
-        }
-      }
-    },
-    {
-      "id": "zh-mar-retour",
-      "day": "mardi",
-      "slot": "Retour",
-      "lang": "zh",
-      "minutes": 30,
-      "type": "Lecture",
-      "theme": "Se présenter (nom, pays, âge)",
-      "tiers": {
-        "facile": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "zh-34f201bc",
-                  "term": "我",
-                  "gloss": "je",
-                  "example": "我是李明。",
-                  "exampleGloss": "Je suis Li Ming.",
-                  "pinyin": "wǒ"
-                },
-                {
-                  "id": "zh-793f8679",
-                  "term": "叫",
-                  "gloss": "s'appeler",
-                  "example": "我叫李明。",
-                  "exampleGloss": "Je m'appelle Li Ming.",
-                  "pinyin": "jiào"
-                },
-                {
-                  "id": "zh-16593aa8",
-                  "term": "来自",
-                  "gloss": "venir de",
-                  "example": "我来自中国。",
-                  "exampleGloss": "Je viens de Chine.",
-                  "pinyin": "láizì"
-                },
-                {
-                  "id": "zh-d879c54e",
-                  "term": "国家",
-                  "gloss": "pays",
-                  "example": "我来自中国国家。",
-                  "exampleGloss": "Je viens du pays de Chine.",
-                  "pinyin": "guójiā"
-                },
-                {
-                  "id": "zh-28c02ea6",
-                  "term": "年龄",
-                  "gloss": "âge",
-                  "example": "我的年龄是十五。",
-                  "exampleGloss": "Mon âge est quinze.",
-                  "pinyin": "niánlíng"
-                },
-                {
-                  "id": "zh-440ee085",
-                  "term": "你好",
-                  "gloss": "bonjour",
-                  "example": "你好，李明。",
-                  "exampleGloss": "Bonjour, Li Ming.",
-                  "pinyin": "nǐ hǎo"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "自我介绍",
-              "sentences": [
-                {
-                  "t": "我叫李明。",
-                  "fr": "Je m'appelle Li Ming.",
-                  "py": "wǒ jiào lǐ míng."
-                },
-                {
-                  "t": "我来自中国国家。",
-                  "fr": "Je viens du pays de Chine.",
-                  "py": "wǒ láizì zhōngguó guójiā."
-                },
-                {
-                  "t": "我的年龄是十五。",
-                  "fr": "Mon âge est quinze.",
-                  "py": "wǒ de niánlíng shì shíwǔ."
-                },
-                {
-                  "t": "你好，李明。",
-                  "fr": "Bonjour, Li Ming.",
-                  "py": "nǐ hǎo, lǐ míng."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "李明来自哪里？",
-                  "choices": [
-                    "中国",
-                    "美国",
-                    "法国",
-                    "日本"
-                  ],
-                  "answer": 0,
-                  "explain": "文中提到李明来自中国国家。"
-                },
-                {
-                  "q": "李明的年龄是多少？",
-                  "choices": [
-                    "十岁",
-                    "十七岁",
-                    "十五岁",
-                    "十二岁"
-                  ],
-                  "answer": 2,
-                  "explain": "文中明确说他的年龄是十五。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "认识新朋友",
-              "sentences": [
-                {
-                  "t": "我叫李明，来自中国。",
-                  "fr": "Je m'appelle Li Ming, je viens de Chine.",
-                  "py": "Wǒ jiào Lǐ Míng, lái zì Zhōngguó."
-                },
-                {
-                  "t": "你好，我今年18岁。",
-                  "fr": "Salut, j'ai 18 ans cette année.",
-                  "py": "Nǐ hǎo, wǒ jīn nián 18 suì."
-                },
-                {
-                  "t": "我来自一个美丽的国家。",
-                  "fr": "Je viens d'un pays magnifique.",
-                  "py": "Wǒ lái zì yī gè měilì de guójiā."
-                },
-                {
-                  "t": "我的年龄是20岁。",
-                  "fr": "Mon âge est de 20 ans.",
-                  "py": "Wǒ de niánlíng shì 20 suì."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "李明来自哪个国家？",
-                  "choices": [
-                    "日本",
-                    "美国",
-                    "中国",
-                    "法国"
-                  ],
-                  "answer": 2,
-                  "explain": "文中明确提到李明来自中国。"
-                },
-                {
-                  "q": "李明的年龄是多少？",
-                  "choices": [
-                    "15岁",
-                    "18岁",
-                    "20岁",
-                    "25岁"
-                  ],
-                  "answer": 2,
-                  "explain": "文中提到李明今年20岁。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "我的新同学",
-              "sentences": [
-                {
-                  "t": "我叫李明，来自中国，年龄15岁。",
-                  "fr": "Je m'appelle Li Ming, je viens de Chine, j'ai 15 ans.",
-                  "py": "Wǒ jiào Lǐ Míng, lái zì Zhōngguó, niánlíng 15 suì."
-                },
-                {
-                  "t": "你好，我是新同学。",
-                  "fr": "Salut, je suis un nouveau camarade de classe.",
-                  "py": "Nǐ hǎo, wǒ shì xīn tóngxué."
-                },
-                {
-                  "t": "我们国家有很多风景。",
-                  "fr": "Notre pays a beaucoup de paysages.",
-                  "py": "Wǒmen guójiā yǒu hěn duō fēngjǐng."
-                },
-                {
-                  "t": "我最喜欢夏天。",
-                  "fr": "Je préfère l'été.",
-                  "py": "Wǒ zuì xǐhuān xiàtiān."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "李明来自哪个国家？",
-                  "choices": [
-                    "韩国",
-                    "美国",
-                    "中国",
-                    "日本"
-                  ],
-                  "answer": 2,
-                  "explain": "文中明确提到李明来自中国。"
-                },
-                {
-                  "q": "李明最喜欢哪个季节？",
-                  "choices": [
-                    "秋天",
-                    "夏天",
-                    "冬天",
-                    "春天"
-                  ],
-                  "answer": 1,
-                  "explain": "文中直接提到李明最喜欢夏天。"
-                }
-              ]
+              "prompt": "Escribe dos o tres frases en español sobre una película que te guste y explica por qué."
             }
           ],
           "reviewed": false,
@@ -965,489 +602,32 @@
             "by": "qwen3:8b",
             "issues": [
               {
-                "where": "vocab[3].example",
-                "problem": "例句不自然，'我来自中国国家'不符合汉语表达习惯，应为'我来自中国'。",
-                "fix": "我来自中国。"
+                "where": "readings[0].sentences[1].fr",
+                "problem": "Le mot 'narration' est utilisé à la place de 'narrativa' dans la traduction, ce qui est incorrect.",
+                "fix": "La narration est un terme incorrect ; la traduction correcte est : 'Chaque film a son propre style et narrativa.'"
               },
               {
-                "where": "vocab[3].exampleGloss",
-                "problem": "法语翻译错误，'来自中国国家'应译为'Je viens de Chine'，而非'Je viens du pays de Chine'。",
-                "fix": "Je viens de Chine."
+                "where": "readings[0].sentences[3].fr",
+                "problem": "Le mot 'casting' est utilisé à la place de 'reparto', ce qui est incorrect.",
+                "fix": "Les acteurs et actrices apportent beaucoup de vie au reparto."
               },
               {
-                "where": "vocab[3].pinyin",
-                "problem": "拼音错误，'来自'的正确拼音是'láizì'，而非'láizì'（重复）。",
-                "fix": "láizì"
+                "where": "readings[0].sentences[5].fr",
+                "problem": "Le mot 'drame' est utilisé à la place de 'drama', ce qui est incorrect.",
+                "fix": "Le drama et la musique sont des éléments clés dans la production."
               },
               {
-                "where": "readings[0].sentences[1].py",
-                "problem": "拼音错误，'中国国家'的正确拼音是'Zhōngguó guójiā'，而非'Zhōngguó guójiā'（重复）。",
-                "fix": "Zhōngguó guójiā"
+                "where": "readings[0].sentences[7].fr",
+                "problem": "Le mot 'narration' est utilisé à la place de 'narrativa', ce qui est incorrect.",
+                "fix": "La narration du film nous emmène dans un autre monde."
               },
               {
-                "where": "readings[1].sentences[1].py",
-                "problem": "拼音错误，'我今年18岁'的正确拼音是'Wǒ jīn nián 18 suì'，而非'Wǒ jīn nián 18 suì'（重复）。",
-                "fix": "Wǒ jīn nián 18 suì"
-              },
-              {
-                "where": "readings[2].sentences[1].py",
-                "problem": "拼音错误，'我叫李明，来自中国，年龄15岁'的正确拼音是'Wǒ jiào Lǐ Míng, lái zì Zhōngguó, niánlíng 15 suì'，而非'Wǒ jiào Lǐ Míng, lái zì Zhōngguó, niánlíng 15 suì'（重复）。",
-                "fix": "Wǒ jiào Lǐ Míng, lái zì Zhōngguó, niánlíng 15 suì"
+                "where": "readings[0].questions[4].answer",
+                "problem": "La réponse indique que le drama est le type de histoire qui fait ressentir des émotions fortes, mais le texte mentionne que c'est le cinéma qui fait ressentir des émotions fortes, pas spécifiquement le drama.",
+                "fix": "answer: 3"
               }
             ],
-            "filtered": 4
-          }
-        },
-        "standard": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "zh-364bd1bf",
-                  "term": "名字",
-                  "gloss": "nom",
-                  "example": "我的名字是李明。",
-                  "exampleGloss": "Mon nom est Li Ming.",
-                  "pinyin": "míng zì"
-                },
-                {
-                  "id": "zh-d4ac6048",
-                  "term": "法国",
-                  "gloss": "France",
-                  "example": "我来自法国。",
-                  "exampleGloss": "Je viens de la France.",
-                  "pinyin": "fǎ guó"
-                },
-                {
-                  "id": "zh-f7724d77",
-                  "term": "十八",
-                  "gloss": "dix-huit",
-                  "example": "我今年十八岁。",
-                  "exampleGloss": "J'ai dix-huit ans cette année.",
-                  "pinyin": "shí bā"
-                },
-                {
-                  "id": "zh-c560c19c",
-                  "term": "同学",
-                  "gloss": "camarade de classe",
-                  "example": "我们是同学。",
-                  "exampleGloss": "Nous sommes camarades de classe.",
-                  "pinyin": "tóng xué"
-                },
-                {
-                  "id": "zh-28aa475a",
-                  "term": "喜欢",
-                  "gloss": "aimer",
-                  "example": "我喜欢中文。",
-                  "exampleGloss": "J'aime le chinois.",
-                  "pinyin": "xǐ huān"
-                },
-                {
-                  "id": "zh-21cca561",
-                  "term": "见面",
-                  "gloss": "se voir",
-                  "example": "我们明天见面。",
-                  "exampleGloss": "Nous nous verrons demain.",
-                  "pinyin": "jiàn miàn"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "李明的自我介绍",
-              "sentences": [
-                {
-                  "t": "我的名字是李明。",
-                  "fr": "Mon nom est Li Ming.",
-                  "py": "wǒ de míng zì shì lǐ míng."
-                },
-                {
-                  "t": "我来自法国。",
-                  "fr": "Je viens de la France.",
-                  "py": "wǒ lái zì fǎ guó."
-                },
-                {
-                  "t": "我今年十八岁。",
-                  "fr": "J'ai dix-huit ans cette année.",
-                  "py": "wǒ jīn nián shí bā suì."
-                },
-                {
-                  "t": "我喜欢中文。",
-                  "fr": "J'aime le chinois.",
-                  "py": "wǒ xǐ huān zhōng wén."
-                },
-                {
-                  "t": "我们是同学。",
-                  "fr": "Nous sommes camarades de classe.",
-                  "py": "wǒ men shì tóng xué."
-                },
-                {
-                  "t": "我们明天见面。",
-                  "fr": "Nous nous verrons demain.",
-                  "py": "wǒ men míng tiān jiàn miàn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "李明来自哪个国家？",
-                  "choices": [
-                    "美国",
-                    "法国",
-                    "日本",
-                    "中国"
-                  ],
-                  "answer": 1,
-                  "explain": "文中提到李明来自法国。"
-                },
-                {
-                  "q": "李明今年多少岁？",
-                  "choices": [
-                    "16岁",
-                    "17岁",
-                    "15岁",
-                    "18岁"
-                  ],
-                  "answer": 3,
-                  "explain": "文中提到李明今年十八岁。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "玛丽的自我介绍",
-              "sentences": [
-                {
-                  "t": "我的名字是玛丽。",
-                  "fr": "Mon nom est Marie.",
-                  "py": "Wǒ de míngzì shì mǎlì."
-                },
-                {
-                  "t": "我来自法国。",
-                  "fr": "Je viens de la France.",
-                  "py": "Wǒ láizì fǎguó."
-                },
-                {
-                  "t": "我十八岁。",
-                  "fr": "J'ai dix-huit ans.",
-                  "py": "Wǒ shíbā suì."
-                },
-                {
-                  "t": "我喜欢见同学。",
-                  "fr": "J'aime rencontrer mes camarades.",
-                  "py": "Wǒ xǐhuān jiàn tóngxué."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "玛丽来自哪个国家？",
-                  "choices": [
-                    "美国",
-                    "法国",
-                    "中国",
-                    "日本"
-                  ],
-                  "answer": 1,
-                  "explain": "文中明确提到玛丽来自法国。"
-                },
-                {
-                  "q": "玛丽多大年纪？",
-                  "choices": [
-                    "二十五岁",
-                    "二十岁",
-                    "十五岁",
-                    "十八岁"
-                  ],
-                  "answer": 3,
-                  "explain": "文中提到玛丽十八岁。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "张伟的自我介绍",
-              "sentences": [
-                {
-                  "t": "我的名字是张伟。",
-                  "fr": "Mon nom est Zhang Wei.",
-                  "py": "Wǒ de míngzì shì Zhāng Wěi."
-                },
-                {
-                  "t": "我来自法国。",
-                  "fr": "Je viens de la France.",
-                  "py": "Wǒ lái zì Fǎguó."
-                },
-                {
-                  "t": "我十八岁。",
-                  "fr": "J'ai dix-huit ans.",
-                  "py": "Wǒ shíbā suì."
-                },
-                {
-                  "t": "我有一个同学。",
-                  "fr": "J'ai un camarade de classe.",
-                  "py": "Wǒ yǒu yīgè tóngxué."
-                },
-                {
-                  "t": "我喜欢见面。",
-                  "fr": "J'aime me retrouver.",
-                  "py": "Wǒ xǐhuān jiànmiàn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "张伟来自哪个国家？",
-                  "choices": [
-                    "美国",
-                    "法国",
-                    "中国",
-                    "日本"
-                  ],
-                  "answer": 1,
-                  "explain": "文中明确提到张伟来自法国。"
-                },
-                {
-                  "q": "张伟喜欢什么？",
-                  "choices": [
-                    "学习",
-                    "见面",
-                    "运动",
-                    "唱歌"
-                  ],
-                  "answer": 1,
-                  "explain": "文中提到张伟喜欢见面。"
-                }
-              ]
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[2].questions[1].answer",
-                "problem": "La réponse '1' est incorrecte. La bonne réponse est '3'.",
-                "fix": "3"
-              }
-            ],
-            "filtered": 19
-          }
-        },
-        "exigeant": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "zh-16593aa8",
-                  "term": "来自",
-                  "gloss": "venir de",
-                  "example": "我来自加拿大。",
-                  "exampleGloss": "Je viens du Canada.",
-                  "pinyin": "lái zì"
-                },
-                {
-                  "id": "zh-d879c54e",
-                  "term": "国家",
-                  "gloss": "pays",
-                  "example": "我的国家是日本。",
-                  "exampleGloss": "Mon pays est le Japon.",
-                  "pinyin": "guó jiā"
-                },
-                {
-                  "id": "zh-28c02ea6",
-                  "term": "年龄",
-                  "gloss": "âge",
-                  "example": "我的年龄是二十。",
-                  "exampleGloss": "Mon âge est vingt.",
-                  "pinyin": "nián líng"
-                },
-                {
-                  "id": "zh-21cca561",
-                  "term": "见面",
-                  "gloss": "rencontrer",
-                  "example": "我们明天见面。",
-                  "exampleGloss": "Nous nous retrouvons demain.",
-                  "pinyin": "jiàn miàn"
-                },
-                {
-                  "id": "zh-28aa475a",
-                  "term": "喜欢",
-                  "gloss": "aimer",
-                  "example": "我喜欢游泳。",
-                  "exampleGloss": "J'aime nager.",
-                  "pinyin": "xǐ huān"
-                },
-                {
-                  "id": "zh-c560c19c",
-                  "term": "同学",
-                  "gloss": "collègue",
-                  "example": "我的同学是小明。",
-                  "exampleGloss": "Mon collègue est Xiaoming.",
-                  "pinyin": "tóng xué"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "介绍我的朋友",
-              "sentences": [
-                {
-                  "t": "小明是我的同学。",
-                  "fr": "Xiaoming est mon collègue.",
-                  "py": "xiǎo míng shì wǒ de tóng xué."
-                },
-                {
-                  "t": "他来自日本。",
-                  "fr": "Il vient du Japon.",
-                  "py": "tā lái zì rì běn."
-                },
-                {
-                  "t": "他的年龄是二十。",
-                  "fr": "Son âge est vingt.",
-                  "py": "tā de nián líng shì èr shí."
-                },
-                {
-                  "t": "他喜欢游泳。",
-                  "fr": "Il aime nager.",
-                  "py": "tā xǐ huān yóu yǒng."
-                },
-                {
-                  "t": "我们明天见面。",
-                  "fr": "Nous nous retrouvons demain.",
-                  "py": "wǒ men míng tiān jiàn miàn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "小明来自哪个国家？",
-                  "choices": [
-                    "日本",
-                    "法国",
-                    "中国",
-                    "美国"
-                  ],
-                  "answer": 0,
-                  "explain": "文中提到小明来自日本。"
-                },
-                {
-                  "q": "小明的年龄是多少？",
-                  "choices": [
-                    "二十",
-                    "二十二",
-                    "二十一",
-                    "十九"
-                  ],
-                  "answer": 0,
-                  "explain": "文中明确说明小明的年龄是二十。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "我的新同学",
-              "sentences": [
-                {
-                  "t": "我来自中国，国家是北京。",
-                  "fr": "Je viens de Chine, le pays est Beijing.",
-                  "py": "Wǒ lái zì Zhōngguó, guójiā shì Běijīng."
-                },
-                {
-                  "t": "我今年15岁，年龄不大。",
-                  "fr": "J'ai 15 ans, mon âge n'est pas très grand.",
-                  "py": "Wǒ jīnnián 15 suì, niánlíng bùdà."
-                },
-                {
-                  "t": "我最喜欢见面，和同学一起。",
-                  "fr": "Je préfère le temps de voir des gens, et être avec des camarades.",
-                  "py": "Wǒ zuì xǐhuān jiànmiàn, hé tóngxué yīqǐ."
-                },
-                {
-                  "t": "我们来自不同国家，但喜欢交流。",
-                  "fr": "Nous venons de différents pays, mais nous aimons communiquer.",
-                  "py": "Wǒmen lái zì不同 guójiā, dàn xǐhuān jiāoliú."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "作者来自哪个国家？",
-                  "choices": [
-                    "美国",
-                    "中国",
-                    "法国",
-                    "日本"
-                  ],
-                  "answer": 1,
-                  "explain": "文中明确提到'我来自中国'。"
-                },
-                {
-                  "q": "作者最喜欢什么？",
-                  "choices": [
-                    "学习",
-                    "见面",
-                    "运动",
-                    "唱歌"
-                  ],
-                  "answer": 1,
-                  "explain": "文中提到'我最喜欢见面'。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "我的新同学",
-              "sentences": [
-                {
-                  "t": "我的新同学来自美国。",
-                  "fr": "Mon nouveau camarade de classe vient des États-Unis.",
-                  "py": "wǒ de xīn tóngxué lái zì měiguó."
-                },
-                {
-                  "t": "他今年15岁。",
-                  "fr": "Il a 15 ans cette année.",
-                  "py": "tā jīnnián 15 suì."
-                },
-                {
-                  "t": "他喜欢打篮球。",
-                  "fr": "Il aime jouer au basket.",
-                  "py": "tā xǐhuān dǎ lánqiú."
-                },
-                {
-                  "t": "我们将在明天见面。",
-                  "fr": "Nous nous rencontrerons demain.",
-                  "py": "wǒmen jiāng zài míngtiān jiànmiàn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "新同学来自哪个国家？",
-                  "choices": [
-                    "中国",
-                    "韩国",
-                    "日本",
-                    "美国"
-                  ],
-                  "answer": 3,
-                  "explain": "文中明确提到新同学来自美国。"
-                },
-                {
-                  "q": "他们将在什么时候见面？",
-                  "choices": [
-                    "今天",
-                    "后天",
-                    "下周",
-                    "明天"
-                  ],
-                  "answer": 3,
-                  "explain": "文中提到他们将在明天见面。"
-                }
-              ]
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [],
-            "filtered": 6
+            "filtered": 1
           }
         }
       }
@@ -1461,7 +641,7 @@
       "type": "Renfort vocabulaire",
       "theme": "La musique et les concerts",
       "tiers": {
-        "exigeant": {
+        "standard": {
           "blocks": [
             {
               "type": "vocab",
@@ -1470,116 +650,116 @@
                   "id": "es-68fbaa24",
                   "term": "concierto",
                   "gloss": "concert",
-                  "example": "Voy a un concierto de rock mañana.",
-                  "exampleGloss": "Je vais à un concert de rock demain."
+                  "example": "Voy a un concierto de rock.",
+                  "exampleGloss": "I'm going to a rock concert."
                 },
                 {
-                  "id": "es-2b5eed7c",
-                  "term": "entrar",
-                  "gloss": "to enter",
-                  "example": "Tienes que entrar con tu entrada.",
-                  "exampleGloss": "Tu dois entrer avec ton billet."
+                  "id": "es-4436a76d",
+                  "term": "guitarra",
+                  "gloss": "guitar",
+                  "example": "El músico toca la guitarra.",
+                  "exampleGloss": "The musician plays the guitar."
                 },
                 {
-                  "id": "es-69198004",
-                  "term": "encender",
-                  "gloss": "to turn on",
-                  "example": "Enciende las luces del concierto.",
-                  "exampleGloss": "Allume les lumières du concert."
-                },
-                {
-                  "id": "es-1932ad89",
-                  "term": "fondo",
-                  "gloss": "background",
-                  "example": "El fondo del escenario es oscuro.",
-                  "exampleGloss": "Le fond de la scène est sombre."
-                },
-                {
-                  "id": "es-00bba60f",
-                  "term": "ritmo",
-                  "gloss": "rhythm",
-                  "example": "El ritmo del piano es rápido.",
-                  "exampleGloss": "Le rythme du piano est rapide."
+                  "id": "es-cebdd0c7",
+                  "term": "bailar",
+                  "gloss": "to dance",
+                  "example": "Los jóvenes bailan en la fiesta.",
+                  "exampleGloss": "The young people dance at the party."
                 },
                 {
                   "id": "es-1982f92e",
                   "term": "auditorio",
                   "gloss": "auditorium",
-                  "example": "El auditorio está lleno de personas.",
-                  "exampleGloss": "L'auditorium est plein de personnes."
+                  "example": "El concierto es en el auditorio.",
+                  "exampleGloss": "The concert is in the auditorium."
+                },
+                {
+                  "id": "es-b2da92aa",
+                  "term": "ritmico",
+                  "gloss": "rhythmic",
+                  "example": "La música es muy ritmica.",
+                  "exampleGloss": "The music is very rhythmic."
+                },
+                {
+                  "id": "es-b7b043b0",
+                  "term": "canción",
+                  "gloss": "song",
+                  "example": "Esa canción es popular.",
+                  "exampleGloss": "That song is popular."
                 }
               ]
             },
             {
               "type": "reading",
-              "title": "El concierto de jazz",
+              "title": "Un concierto en el auditorio",
               "sentences": [
                 {
-                  "t": "Luis: ¿Cuándo empieza el concierto?",
-                  "fr": "Luis: Quand commence le concert ?"
+                  "t": "Ana: ¿Vas al concierto?",
+                  "fr": "Ana: Are you going to the concert?"
                 },
                 {
-                  "t": "Ana: Empieza a las ocho y media.",
-                  "fr": "Ana: Il commence à huit heures et demie."
+                  "t": "Luis: Sí, voy al concierto de rock.",
+                  "fr": "Luis: Yes, I'm going to the rock concert."
                 },
                 {
-                  "t": "Luis: ¿Dónde se celebra?",
-                  "fr": "Luis: Où a lieu le concert ?"
+                  "t": "Ana: ¿Qué música tocan?",
+                  "fr": "Ana: What music do they play?"
                 },
                 {
-                  "t": "Ana: En el auditorio central.",
-                  "fr": "Ana: Dans l'auditorium central."
+                  "t": "Luis: Tocan música muy ritmica.",
+                  "fr": "Luis: They play very rhythmic music."
                 },
                 {
-                  "t": "Luis: ¿Tiene fondo musical?",
-                  "fr": "Luis: Y-a-t-il un fond musical ?"
+                  "t": "Ana: ¿En qué lugar es?",
+                  "fr": "Ana: Where is it?"
                 },
                 {
-                  "t": "Ana: Sí, el fondo es jazz.",
-                  "fr": "Ana: Oui, le fond est jazz."
+                  "t": "Luis: Es en el auditorio.",
+                  "fr": "Luis: It's in the auditorium."
                 },
                 {
-                  "t": "Luis: ¿Qué ritmo tiene?",
-                  "fr": "Luis: Quel rythme a-t-il ?"
+                  "t": "Ana: ¿Vas a bailar?",
+                  "fr": "Ana: Are you going to dance?"
                 },
                 {
-                  "t": "Ana: Tiene un ritmo lento y suave.",
-                  "fr": "Ana: Il a un rythme lent et doux."
+                  "t": "Luis: Sí, voy a bailar con mis amigos.",
+                  "fr": "Luis: Yes, I'm going to dance with my friends."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Cuándo empieza el concierto?",
+                  "q": "¿Qué tipo de música tocan en el concierto?",
                   "choices": [
-                    "A las diez.",
-                    "A las nueve.",
-                    "A las siete.",
-                    "A las ocho y media."
+                    "Música pop.",
+                    "Música jazz.",
+                    "Música clásica.",
+                    "Música muy ritmica."
                   ],
                   "answer": 3,
-                  "explain": "La respuesta está directamente en la primera frase del diálogo."
+                  "explain": "La respuesta correcta es 'Música muy ritmica', ya que se menciona en la conversación."
                 },
                 {
                   "q": "¿Dónde se celebra el concierto?",
                   "choices": [
-                    "En el auditorio central.",
-                    "En el teatro principal.",
-                    "En la plaza.",
-                    "En el estadio."
-                  ],
-                  "answer": 0,
-                  "explain": "La respuesta está en la tercera frase del diálogo."
-                },
-                {
-                  "q": "¿Qué tipo de fondo tiene el concierto?",
-                  "choices": [
-                    "Fondo artístico.",
-                    "Fondo musical.",
-                    "Fondo técnico.",
-                    "Fondo visual."
+                    "En un parque.",
+                    "En el auditorio.",
+                    "En un teatro.",
+                    "En un estudio."
                   ],
                   "answer": 1,
-                  "explain": "La respuesta está en la quinta y sexta frase del diálogo."
+                  "explain": "La respuesta correcta es 'En el auditorio', ya que se menciona directamente en la conversación."
+                },
+                {
+                  "q": "¿Qué hace Luis en el concierto?",
+                  "choices": [
+                    "Escucha música.",
+                    "Voy a bailar con mis amigos.",
+                    "Habla con amigos.",
+                    "Repite la canción."
+                  ],
+                  "answer": 1,
+                  "explain": "La respuesta correcta es 'Voy a bailar con mis amigos', ya que Luis menciona que va a bailar con sus amigos."
                 }
               ]
             }
@@ -1589,14 +769,150 @@
             "by": "qwen3:8b",
             "issues": [
               {
-                "where": "readings[0].sentences[5].fr",
-                "problem": "La traduction « Dans l'auditorium central. » est incorrecte. « En el auditorio central » se traduit par « Dans l'auditorium central ».",
-                "fix": "Dans l'auditorium central."
+                "where": "readings[0].questions[2].answer",
+                "problem": "La réponse correcte est 'Voy a bailar con mis amigos', mais l'indice indique 'Escucha música', ce qui est incorrect.",
+                "fix": "B"
+              }
+            ],
+            "filtered": 1
+          }
+        },
+        "exigeant": {
+          "blocks": [
+            {
+              "type": "vocab",
+              "items": [
+                {
+                  "id": "es-a9df7a76",
+                  "term": "entrada",
+                  "gloss": "entrée",
+                  "example": "Hoy hay entrada gratuita.",
+                  "exampleGloss": "Aujourd'hui, il y a une entrée gratuite."
+                },
+                {
+                  "id": "es-0e1914c8",
+                  "term": "boleto",
+                  "gloss": "billet",
+                  "example": "Compra un boleto para el concierto.",
+                  "exampleGloss": "Achète un billet pour le concert."
+                },
+                {
+                  "id": "es-e753dc5c",
+                  "term": "repertorio",
+                  "gloss": "répertoire",
+                  "example": "El repertorio del grupo es variado.",
+                  "exampleGloss": "Le répertoire du groupe est varié."
+                },
+                {
+                  "id": "es-e046cd0e",
+                  "term": "acústico",
+                  "gloss": "acoustique",
+                  "example": "El concierto fue en formato acústico.",
+                  "exampleGloss": "Le concert a eu lieu en format acoustique."
+                },
+                {
+                  "id": "es-94cf78bc",
+                  "term": "estilo",
+                  "gloss": "style",
+                  "example": "El estilo de la banda es único.",
+                  "exampleGloss": "Le style de la bande est unique."
+                },
+                {
+                  "id": "es-f1143089",
+                  "term": "festival",
+                  "gloss": "festival",
+                  "example": "El festival de música es en julio.",
+                  "exampleGloss": "Le festival de musique est en juillet."
+                }
+              ]
+            },
+            {
+              "type": "reading",
+              "title": "Concierto en el Parque",
+              "sentences": [
+                {
+                  "t": "Ana: ¿Vas al concierto?",
+                  "fr": "Ana: Vas-tu au concert ?"
+                },
+                {
+                  "t": "Luis: Sí, iré si hay entrada.",
+                  "fr": "Luis: Oui, je vais si il y a une entrée."
+                },
+                {
+                  "t": "Ana: ¡Qué bien! ¿Cuál es el repertorio?",
+                  "fr": "Ana: Quelle est la répertoire ?"
+                },
+                {
+                  "t": "Luis: Es acústico y variado.",
+                  "fr": "Luis: C'est acoustique et varié."
+                },
+                {
+                  "t": "Ana: ¿Tienes boleto?",
+                  "fr": "Ana: As-tu un billet ?"
+                },
+                {
+                  "t": "Luis: No, pero me gustaría ir.",
+                  "fr": "Luis: Non, mais j'aimerais y aller."
+                },
+                {
+                  "t": "Ana: ¡Pues te digo que es muy bueno!",
+                  "fr": "Ana: Je te dis que c'est très bon !"
+                },
+                {
+                  "t": "Luis: ¡Gracias! ¡Nos vemos!",
+                  "fr": "Luis: Merci ! À bientôt !"
+                }
+              ],
+              "questions": [
+                {
+                  "q": "¿Qué le pregunta Ana a Luis?",
+                  "choices": [
+                    "¿Qué hora es?",
+                    "¿Vas al concierto?",
+                    "¿Tienes boleto?",
+                    "¿Cuál es el estilo?"
+                  ],
+                  "answer": 1,
+                  "explain": "Ana demande à Luis s'il va au concert."
+                },
+                {
+                  "q": "¿Qué le dice Luis sobre el repertorio?",
+                  "choices": [
+                    "Es variado y acústico",
+                    "Es muy largo",
+                    "Es en vivo",
+                    "Es en directo"
+                  ],
+                  "answer": 0,
+                  "explain": "Luis dit que le repertorio est varié et acoustique."
+                },
+                {
+                  "q": "¿Qué le responde Ana a Luis?",
+                  "choices": [
+                    "No, no quiero ir",
+                    "¡Pues te digo que es muy bueno!",
+                    "Voy al concierto",
+                    "¿Cuándo es el concierto?"
+                  ],
+                  "answer": 1,
+                  "explain": "Ana répond à Luis en disant que le concert est très bon."
+                }
+              ]
+            }
+          ],
+          "reviewed": false,
+          "review": {
+            "by": "qwen3:8b",
+            "issues": [
+              {
+                "where": "readings[0].sentences[2].fr",
+                "problem": "La traduction de '¿Cuál es el repertorio?' est incorrecte : 'répertoire' est un nom masculin, donc 'la répertoire' est incorrect, il faut 'le répertoire'.",
+                "fix": "Ana: Quel est le répertoire ?"
               },
               {
-                "where": "readings[0].sentences[7].fr",
-                "problem": "La traduction « Il a un rythme lent et doux. » est incorrecte. « Tiene un ritmo lento y suave. » se traduit par « Il a un rythme lent et doux. ».",
-                "fix": "Il a un rythme lent et doux."
+                "where": "readings[0].questions[2].answer",
+                "problem": "La réponse correcte est '¿Cuál es el estilo?' mais la réponse indiquée est '¿Cuál es el repertorio?', ce qui est incorrect.",
+                "fix": "answer\": 3"
               }
             ],
             "filtered": 0
@@ -1613,176 +929,172 @@
       "type": "Vocabulaire + lecture",
       "theme": "Les courses au supermarché",
       "tiers": {
-        "standard": {
+        "exigeant": {
           "blocks": [
             {
               "type": "vocab",
               "items": [
                 {
-                  "id": "es-a44e766a",
-                  "term": "factura",
-                  "gloss": "facture",
-                  "example": "Tengo que pagar la factura del supermercado.",
-                  "exampleGloss": "Je dois payer la facture du supermarché."
+                  "id": "es-caf9bb4a",
+                  "term": "colocar",
+                  "gloss": "placer",
+                  "example": "Coloca los productos en el carrito.",
+                  "exampleGloss": "Place les produits dans le chariot."
+                },
+                {
+                  "id": "es-98778b44",
+                  "term": "estante",
+                  "gloss": "rayon",
+                  "example": "Busco el cereal en el estante.",
+                  "exampleGloss": "Je cherche les céréales sur le rayon."
+                },
+                {
+                  "id": "es-7338c529",
+                  "term": "carrito",
+                  "gloss": "chariot",
+                  "example": "El carrito está lleno de frutas.",
+                  "exampleGloss": "Le chariot est plein de fruits."
+                },
+                {
+                  "id": "es-6e484c64",
+                  "term": "verduras",
+                  "gloss": "légumes",
+                  "example": "Compra algunas verduras frescas.",
+                  "exampleGloss": "Achète quelques légumes frais."
                 },
                 {
                   "id": "es-66fcf467",
                   "term": "producto",
                   "gloss": "produit",
-                  "example": "Busco un producto fresco en la frutería.",
-                  "exampleGloss": "Je cherche un produit frais en légumerie."
+                  "example": "Este producto está en oferta.",
+                  "exampleGloss": "Ce produit est en promotion."
                 },
                 {
-                  "id": "es-7338c529",
-                  "term": "carrito",
-                  "gloss": "panier",
-                  "example": "Coloco los productos en el carrito.",
-                  "exampleGloss": "Je mets les produits dans le panier."
+                  "id": "es-afc1524e",
+                  "term": "sucursal",
+                  "gloss": "filiale",
+                  "example": "Voy a la sucursal más cercana.",
+                  "exampleGloss": "Je vais à la filiale la plus proche."
                 },
                 {
-                  "id": "es-fd90af24",
-                  "term": "precios",
-                  "gloss": "prix",
-                  "example": "Compara los precios de los productos.",
-                  "exampleGloss": "Comparez les prix des produits."
+                  "id": "es-a2039cb4",
+                  "term": "comprar",
+                  "gloss": "acheter",
+                  "example": "Compramos pan y leche.",
+                  "exampleGloss": "Nous achetons du pain et du lait."
                 },
                 {
-                  "id": "es-667d7af9",
-                  "term": "carnicería",
-                  "gloss": "boucherie",
-                  "example": "Voy a la carnicería por carne.",
-                  "exampleGloss": "Je vais à la boucherie pour de la viande."
-                },
-                {
-                  "id": "es-42852c04",
-                  "term": "verdulería",
-                  "gloss": "légumerie",
-                  "example": "Compro verduras en la verdulería.",
-                  "exampleGloss": "J'achète des légumes en légumerie."
-                },
-                {
-                  "id": "es-848c64ca",
-                  "term": "supermercado",
-                  "gloss": "supermarché",
-                  "example": "Voy al supermercado a comprar comida.",
-                  "exampleGloss": "Je vais au supermarché pour acheter de la nourriture."
-                },
-                {
-                  "id": "es-183221b9",
-                  "term": "cesta",
-                  "gloss": "panier",
-                  "example": "Pongo la cesta en el mostrador.",
-                  "exampleGloss": "Je mets le panier sur le comptoir."
+                  "id": "es-096b7025",
+                  "term": "listado",
+                  "gloss": "liste",
+                  "example": "Tengo un listado de compras.",
+                  "exampleGloss": "J'ai une liste de courses."
                 }
               ]
             },
             {
               "type": "reading",
-              "title": "Mi día en el supermercado",
+              "title": "La semana de compras",
               "sentences": [
                 {
-                  "t": "Lunes, 10 de octubre. Voy al supermercado a comprar alimentos.",
-                  "fr": "Lundi, 10 octobre. Je vais au supermarché pour acheter des aliments."
+                  "t": "Marta va al supermercado cada semana.",
+                  "fr": "Marta va au supermarché chaque semaine."
                 },
                 {
-                  "t": "Llego al supermercado a las nueve de la mañana.",
-                  "fr": "Je arrive au supermarché à neuf heures du matin."
+                  "t": "Lleva un carrito para organizar sus compras.",
+                  "fr": "Elle apporte un chariot pour organiser ses courses."
                 },
                 {
-                  "t": "Primero, voy a la carnicería a comprar carne.",
-                  "fr": "En premier lieu, je vais à la boucherie pour acheter de la viande."
+                  "t": "Primero busca las verduras en el estante.",
+                  "fr": "Elle commence par chercher les légumes sur le rayon."
                 },
                 {
-                  "t": "Luego, paso por la verdulería para comprar frutas y verduras.",
-                  "fr": "Ensuite, je passe par la légumerie pour acheter des fruits et légumes."
+                  "t": "Luego coloca los productos en el carrito.",
+                  "fr": "Elle place ensuite les produits dans le chariot."
                 },
                 {
-                  "t": "Mientras camino, comparo los precios de los productos.",
-                  "fr": "Alors que je marche, je compare les prix des produits."
+                  "t": "Tiene un listado para no olvidar nada.",
+                  "fr": "Elle a une liste pour ne pas oublier quoi que ce soit."
                 },
                 {
-                  "t": "Pongo todo en la cesta y camino hacia el mostrador.",
-                  "fr": "Je mets tout dans le panier et je marche vers le comptoir."
+                  "t": "A veces compra productos en oferta.",
+                  "fr": "Parfois, elle achète des produits en promotion."
                 },
                 {
-                  "t": "Finalmente, pago la factura en efectivo.",
-                  "fr": "Finalement, je paie la facture en espèces."
+                  "t": "La sucursal más cercana es su preferida.",
+                  "fr": "La filiale la plus proche est sa préférée."
                 },
                 {
-                  "t": "A veces, llevo la cesta al supermercado.",
-                  "fr": "Parfois, je porte le panier au supermarché."
+                  "t": "Le gusta organizar sus compras con cuidado.",
+                  "fr": "Elle aime bien organiser ses courses avec soin."
                 },
                 {
-                  "t": "Es importante comparar los precios antes de pagar.",
-                  "fr": "Il est important de comparer les prix avant de payer."
-                },
-                {
-                  "t": "Con la cesta llena, salgo del supermercado contento.",
-                  "fr": "Avec le panier plein, je sors du supermarché content."
+                  "t": "Siempre lleva un listado y una bolsa de papel.",
+                  "fr": "Elle apporte toujours une liste et une saco de papier."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Cuál es la fecha del texto?",
+                  "q": "¿Dónde va Marta cada semana?",
                   "choices": [
-                    "Martes, 11 de octubre.",
-                    "Sábado, 9 de octubre.",
-                    "Lunes, 10 de octubre.",
-                    "Viernes, 12 de octubre."
+                    "Al supermercado.",
+                    "A la farmacia.",
+                    "A la tienda de ropa.",
+                    "A la biblioteca."
                   ],
-                  "answer": 2,
-                  "explain": "La fecha del texto se menciona claramente al inicio."
+                  "answer": 0,
+                  "explain": "Marta va al supermercado cada semana según el texto."
                 },
                 {
-                  "q": "¿Qué hace el autor en la carnicería?",
+                  "q": "¿Qué lleva Marta para organizar sus compras?",
                   "choices": [
-                    "Compra pan.",
-                    "Compra carne.",
-                    "Compra frutas y verduras.",
-                    "Compra productos de limpieza."
-                  ],
-                  "answer": 1,
-                  "explain": "Se menciona claramente que va a la carnicería para comprar carne."
-                },
-                {
-                  "q": "¿Dónde compra el autor frutas y verduras?",
-                  "choices": [
-                    "En la tienda de ropa.",
-                    "En la carnicería.",
-                    "En la panadería.",
-                    "En la frutería."
+                    "Un bolso.",
+                    "Un cuaderno.",
+                    "Una mochila.",
+                    "Un carrito."
                   ],
                   "answer": 3,
-                  "explain": "El texto dice que pasa por la verdulería para comprar frutas y verduras."
+                  "explain": "Marta lleva un carrito para organizar sus compras."
                 },
                 {
-                  "q": "¿Cómo paga el autor la factura?",
+                  "q": "¿Qué hace primero Marta en el supermercado?",
                   "choices": [
-                    "Con tarjeta de crédito.",
-                    "Con un código de pago.",
-                    "Con efectivo.",
-                    "Con un cheque."
+                    "Busca las verduras.",
+                    "Compra los dulces.",
+                    "Lleva una bolsa.",
+                    "Coloca los productos."
+                  ],
+                  "answer": 0,
+                  "explain": "Primero busca las verduras en el estante."
+                },
+                {
+                  "q": "¿Qué es un listado?",
+                  "choices": [
+                    "Un estante.",
+                    "Una sucursal.",
+                    "Una lista.",
+                    "Un producto."
                   ],
                   "answer": 2,
-                  "explain": "El texto menciona que paga la factura en efectivo."
+                  "explain": "Un listado es una lista según el texto."
                 },
                 {
-                  "q": "¿Qué hace el autor antes de pagar?",
+                  "q": "¿Cuál es la sucursal preferida de Marta?",
                   "choices": [
-                    "Compra carne.",
-                    "Sale del supermercado.",
-                    "Llena la cesta.",
-                    "Compara los precios."
+                    "La más cercana.",
+                    "La más antigua.",
+                    "La más lejana.",
+                    "La más grande."
                   ],
-                  "answer": 3,
-                  "explain": "El texto dice que mientras camina, compara los precios de los productos."
+                  "answer": 0,
+                  "explain": "La sucursal más cercana es su preferida."
                 }
               ]
             },
             {
               "type": "production",
               "kind": "written",
-              "prompt": "Écris 2 à 3 phrases en espagnol sur la façon dont tu achètes tes courses au supermarché."
+              "prompt": "Écris 2 à 3 phrases en espagnol sur un supermarché que tu fréquentes. Mentionne ce que tu achètes et comment tu t’organises."
             }
           ],
           "reviewed": false,
@@ -1790,935 +1102,12 @@
             "by": "qwen3:8b",
             "issues": [
               {
-                "where": "readings[0].sentences[5].fr",
-                "problem": "Le mot 'marche' est utilisé à la place de 'marche' (verbe) ou 'marcher' (infinitif), mais la traduction 'je marche' est incorrecte car le contexte implique une action continue, donc 'je marche' est correct, mais la phrase est incohérente avec le contexte.",
-                "fix": "Je marche vers le comptoir."
+                "where": "readings[0].sentences[7].fr",
+                "problem": "La traduction de 'Le gusta organizar sus compras con cuidado.' est incorrecte : 'Elle aime bien organiser ses courses avec soin.' doit être 'Elle aime organiser ses courses avec soin.'",
+                "fix": "Elle aime organiser ses courses avec soin."
               }
             ],
             "filtered": 1
-          }
-        },
-        "exigeant": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "es-832780c4",
-                  "term": "lista de la compra",
-                  "gloss": "liste de courses",
-                  "example": "Tengo que hacer la lista de la compra antes de ir al supermercado.",
-                  "exampleGloss": "Je dois faire la liste de courses avant d'aller au supermarché."
-                },
-                {
-                  "id": "es-6ef81321",
-                  "term": "producto fresco",
-                  "gloss": "produit frais",
-                  "example": "El producto fresco es mejor para la salud.",
-                  "exampleGloss": "Le produit frais est meilleur pour la santé."
-                },
-                {
-                  "id": "es-70105510",
-                  "term": "carrito de compras",
-                  "gloss": "chariot de courses",
-                  "example": "Puse todos los productos en el carrito de compras.",
-                  "exampleGloss": "J'ai mis tous les produits dans le chariot de courses."
-                },
-                {
-                  "id": "es-2a1b162c",
-                  "term": "sección de frutas",
-                  "gloss": "section des fruits",
-                  "example": "Voy a la sección de frutas para buscar manzanas.",
-                  "exampleGloss": "Je vais à la section des fruits pour chercher des pommes."
-                },
-                {
-                  "id": "es-da284803",
-                  "term": "precio promocional",
-                  "gloss": "prix promotionnel",
-                  "example": "Hay un precio promocional en el producto de hoy.",
-                  "exampleGloss": "Il y a un prix promotionnel sur le produit d'aujourd'hui."
-                },
-                {
-                  "id": "es-e02021c3",
-                  "term": "descuento especial",
-                  "gloss": "remise spéciale",
-                  "example": "El descuento especial es solo hoy.",
-                  "exampleGloss": "La remise spéciale est uniquement aujourd'hui."
-                },
-                {
-                  "id": "es-125984ad",
-                  "term": "almacenamiento",
-                  "gloss": "stockage",
-                  "example": "El almacenamiento de la fruta es importante para evitar daños.",
-                  "exampleGloss": "Le stockage des fruits est important pour éviter les dégâts."
-                },
-                {
-                  "id": "es-42852c04",
-                  "term": "verdulería",
-                  "gloss": "boucherie",
-                  "example": "La verdulería está al lado del carrito de compras.",
-                  "exampleGloss": "La boucherie est à côté du chariot de courses."
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "Una mañana en el supermercado",
-              "sentences": [
-                {
-                  "t": "Luis llegó al supermercado a las nueve de la mañana.",
-                  "fr": "Luis est arrivé au supermarché à neuf heures du matin."
-                },
-                {
-                  "t": "Tiene que hacer la lista de la compra antes de empezar.",
-                  "fr": "Il doit faire la liste de courses avant de commencer."
-                },
-                {
-                  "t": "En la sección de frutas encontró manzanas y naranjas frescas.",
-                  "fr": "Dans la section des fruits, il a trouvé des pommes et des oranges fraîches."
-                },
-                {
-                  "t": "También buscó productos con precio promocional.",
-                  "fr": "Il a également cherché des produits avec un prix promotionnel."
-                },
-                {
-                  "t": "El descuento especial fue muy atractivo para su bolsillo.",
-                  "fr": "La remise spéciale était très attractive pour son budget."
-                },
-                {
-                  "t": "Luis colocó todos los productos en el carrito de compras.",
-                  "fr": "Luis a mis tous les produits dans le chariot de courses."
-                },
-                {
-                  "t": "Al final, se olvidó de algunos productos que necesitaba.",
-                  "fr": "Au final, il a oublié certains produits dont il avait besoin."
-                },
-                {
-                  "t": "Aunque no fue perfecto, logró completar la lista.",
-                  "fr": "Bien qu'il ne l'a pas été parfait, il a réussi à terminer la liste."
-                },
-                {
-                  "t": "El almacenamiento de los alimentos debe ser adecuado.",
-                  "fr": "Le stockage des aliments doit être adapté."
-                },
-                {
-                  "t": "Luis se fue del supermercado con una bolsa llena de cosas.",
-                  "fr": "Luis est parti du supermarché avec une saco pleine de choses."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "¿A qué hora llegó Luis al supermercado?",
-                  "choices": [
-                    "A las diez de la mañana.",
-                    "A las nueve de la mañana.",
-                    "A las doce del mediodía.",
-                    "A las ocho de la mañana."
-                  ],
-                  "answer": 1,
-                  "explain": "La oración menciona que Luis llegó a las nueve de la mañana."
-                },
-                {
-                  "q": "¿Qué tipo de productos buscó Luis en el supermercado?",
-                  "choices": [
-                    "Productos de limpieza.",
-                    "Productos con descuento especial.",
-                    "Productos de oficina.",
-                    "Productos de electrodomésticos."
-                  ],
-                  "answer": 1,
-                  "explain": "La oración dice que Luis buscó productos con precio promocional."
-                },
-                {
-                  "q": "¿Qué producto olvidó Luis en el supermercado?",
-                  "choices": [
-                    "Cerveza.",
-                    "Manzanas.",
-                    "Naranjas.",
-                    "Algunos productos que necesitaba."
-                  ],
-                  "answer": 3,
-                  "explain": "La oración menciona que Luis se olvidó de algunos productos que necesitaba."
-                },
-                {
-                  "q": "¿Dónde colocó Luis los productos?",
-                  "choices": [
-                    "En el carrito de la compra.",
-                    "En el estante de la fruta.",
-                    "En el mostrador del supermercado.",
-                    "En el almacén de la tienda."
-                  ],
-                  "answer": 0,
-                  "explain": "La oración indica que Luis colocó todos los productos en el carrito de compras."
-                },
-                {
-                  "q": "¿Qué consejo da la oración final?",
-                  "choices": [
-                    "No compre más de lo necesario.",
-                    "El almacenamiento de los alimentos debe ser adecuado.",
-                    "No se olvide de pagar.",
-                    "No vaya al supermercado en ayunas."
-                  ],
-                  "answer": 1,
-                  "explain": "La oración final sugiere que el almacenamiento de los alimentos debe ser adecuado."
-                }
-              ]
-            },
-            {
-              "type": "production",
-              "kind": "written",
-              "prompt": "Escribe dos o tres frases sobre tu experiencia al hacer la compra en el supermercado."
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[0].sentences[8].fr",
-                "problem": "La traduction de 'Aunque no fue perfecto, logró completar la lista.' est incorrecte : 'Bien qu'il ne l'a pas été parfait' est grammaticalement incorrect.",
-                "fix": "Bien qu'il ne l'ait pas été parfait"
-              },
-              {
-                "where": "readings[0].sentences[9].fr",
-                "problem": "La traduction de 'Luis se fue del supermercado con una bolsa llena de cosas.' est incorrecte : 'saco' est incorrect, le mot correct est 'sac' ou 'saco' (selon la région).",
-                "fix": "Luis est parti du supermarché avec un sac plein de choses."
-              },
-              {
-                "where": "readings[0].questions[1].answer",
-                "problem": "La réponse correcte est 'Productos con descuento especial' mais l'option 1 est 'Productos de limpieza', ce qui est incorrect.",
-                "fix": "answer: 2"
-              },
-              {
-                "where": "readings[0].questions[1].choices[1]",
-                "problem": "La traduction de 'Productos con descuento especial' est incorrecte : 'Produits avec un prix promotionnel' est correct, pas 'Produits avec un prix promotionnel'.",
-                "fix": "Productos con precio promocional"
-              },
-              {
-                "where": "readings[0].questions[4].answer",
-                "problem": "La réponse correcte est 'El almacenamiento de los alimentos debe ser adecuado' mais l'option 1 est 'No compre más de lo necesario', ce qui est incorrect.",
-                "fix": "answer: 2"
-              }
-            ],
-            "filtered": 0
-          }
-        }
-      }
-    },
-    {
-      "id": "zh-jeu-retour",
-      "day": "jeudi",
-      "slot": "Retour",
-      "lang": "zh",
-      "minutes": 30,
-      "type": "Lecture",
-      "theme": "La famille",
-      "tiers": {
-        "facile": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "zh-c86d1645",
-                  "term": "爸爸",
-                  "gloss": "père",
-                  "example": "我爸爸很忙。",
-                  "exampleGloss": "Mon père est très occupé.",
-                  "pinyin": "bà ba"
-                },
-                {
-                  "id": "zh-7d3b2b0e",
-                  "term": "妈妈",
-                  "gloss": "mère",
-                  "example": "妈妈在做饭。",
-                  "exampleGloss": "Ma mère fait la cuisine.",
-                  "pinyin": "mā ma"
-                },
-                {
-                  "id": "zh-b91fac80",
-                  "term": "哥哥",
-                  "gloss": "frère aîné",
-                  "example": "哥哥在看书。",
-                  "exampleGloss": "Mon frère aîné lit un livre.",
-                  "pinyin": "gē ge"
-                },
-                {
-                  "id": "zh-3d647cfd",
-                  "term": "妹妹",
-                  "gloss": "sœur cadette",
-                  "example": "妹妹在唱歌。",
-                  "exampleGloss": "Ma sœur cadette chante.",
-                  "pinyin": "mè me"
-                },
-                {
-                  "id": "zh-7cc8d6a5",
-                  "term": "家庭",
-                  "gloss": "famille",
-                  "example": "这是一个幸福的家庭。",
-                  "exampleGloss": "C’est une famille heureuse.",
-                  "pinyin": "jiā tíng"
-                },
-                {
-                  "id": "zh-48e9e532",
-                  "term": "照片",
-                  "gloss": "photo",
-                  "example": "这是我们的家庭照片。",
-                  "exampleGloss": "C’est notre photo de famille.",
-                  "pinyin": "zhào piàn"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "我们的家庭",
-              "sentences": [
-                {
-                  "t": "爸爸在看电视。",
-                  "fr": "Le père regarde la télévision.",
-                  "py": "bà ba zài kàn diàn shì."
-                },
-                {
-                  "t": "妈妈在做饭。",
-                  "fr": "La mère fait la cuisine.",
-                  "py": "mā ma zài zuò fàn."
-                },
-                {
-                  "t": "哥哥在看书。",
-                  "fr": "Le frère aîné lit un livre.",
-                  "py": "gē ge zài kàn shū."
-                },
-                {
-                  "t": "妹妹在唱歌。",
-                  "fr": "La sœur cadette chante.",
-                  "py": "mè me zài chàng gē."
-                },
-                {
-                  "t": "这是我们的家庭照片。",
-                  "fr": "C’est notre photo de famille.",
-                  "py": "zhè shì wǒ men de jiā tíng zhào piàn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "谁在看电视？",
-                  "choices": [
-                    "妈妈",
-                    "妹妹",
-                    "哥哥",
-                    "爸爸"
-                  ],
-                  "answer": 3,
-                  "explain": "文本中提到爸爸在看电视。"
-                },
-                {
-                  "q": "谁在做饭？",
-                  "choices": [
-                    "妹妹",
-                    "哥哥",
-                    "妈妈",
-                    "爸爸"
-                  ],
-                  "answer": 2,
-                  "explain": "文本中提到妈妈在做饭。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "我们的家人",
-              "sentences": [
-                {
-                  "t": "爸爸和妈妈在厨房。",
-                  "fr": "Le père et la mère sont dans la cuisine.",
-                  "py": "Bàba hé māma zài chúfáng."
-                },
-                {
-                  "t": "哥哥在帮忙。",
-                  "fr": "Le frère aîné est en train d'aider.",
-                  "py": "Gēgē zài bāngmáng."
-                },
-                {
-                  "t": "妹妹在看照片。",
-                  "fr": "La sœur cadette regarde des photos.",
-                  "py": "Mèimei zài kàn zhàopiàn."
-                },
-                {
-                  "t": "家庭很幸福。",
-                  "fr": "La famille est très heureuse.",
-                  "py": "Jiātíng hěn xìngfú."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "谁在厨房？",
-                  "choices": [
-                    "妹妹",
-                    "妈妈",
-                    "哥哥",
-                    "爸爸"
-                  ],
-                  "answer": 3,
-                  "explain": "文中说爸爸和妈妈在厨房。"
-                },
-                {
-                  "q": "谁在看照片？",
-                  "choices": [
-                    "爸爸",
-                    "妈妈",
-                    "哥哥",
-                    "妹妹"
-                  ],
-                  "answer": 3,
-                  "explain": "文中说妹妹在看照片。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "我们的照片",
-              "sentences": [
-                {
-                  "t": "爸爸和妈妈在照片里。",
-                  "fr": "Le père et la mère sont dans la photo.",
-                  "py": "Bàba hé māma zài túpiàn lǐ."
-                },
-                {
-                  "t": "哥哥和妹妹也在照片里。",
-                  "fr": "Le frère aîné et la sœur sont aussi dans la photo.",
-                  "py": "Gēgē hé mèimei yě zài túpiàn lǐ."
-                },
-                {
-                  "t": "这是我们的家庭照片。",
-                  "fr": "C'est une photo de notre famille.",
-                  "py": "Zhè shì wǒmen de jiātíng túpiàn."
-                },
-                {
-                  "t": "大家都很开心。",
-                  "fr": "Tout le monde est heureux.",
-                  "py": "Dàjiā dōu hěn kāixīn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "谁在照片里？",
-                  "choices": [
-                    "爸爸和妈妈",
-                    "哥哥和妹妹",
-                    "妈妈和哥哥",
-                    "爸爸和妹妹"
-                  ],
-                  "answer": 0,
-                  "explain": "La première phrase dit que le père et la mère sont dans la photo."
-                },
-                {
-                  "q": "这是什么照片？",
-                  "choices": [
-                    "旅行照片",
-                    "生日礼物",
-                    "生日照片",
-                    "家庭照片"
-                  ],
-                  "answer": 3,
-                  "explain": "La troisième phrase dit que c'est une photo de famille."
-                }
-              ]
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[0].sentences[4].py",
-                "problem": "Le pinyin 'zhè shì wǒ men de jiā tíng zhào piàn' est incorrect car 'wǒ men' devrait être 'wǒmen' (sans espace).",
-                "fix": "zhè shì wǒmen de jiā tíng zhào piàn"
-              },
-              {
-                "where": "readings[1].sentences[0].py",
-                "problem": "Le pinyin 'chúfáng' est incorrect, la bonne prononciation est 'chú fáng'.",
-                "fix": "bàba hé māma zài chú fáng"
-              },
-              {
-                "where": "readings[2].sentences[0].py",
-                "problem": "Le pinyin 'túpiàn lǐ' est incorrect, la bonne prononciation est 'tú piàn lǐ'.",
-                "fix": "tú piàn lǐ"
-              },
-              {
-                "where": "readings[2].sent,ences[1].py",
-                "problem": "Le pinyin 'yě zài túpiàn lǐ' est incorrect, la bonne prononciation est 'yě zài tú piàn lǐ'.",
-                "fix": "yě zài tú piàn lǐ"
-              },
-              {
-                "where": "readings[2].sentences[2].py",
-                "problem": "Le pinyin 'Zhè shì wǒmen de jiātíng túpiàn' est incorrect car 'jiātíng' devrait être séparé en 'jiā tíng' et 'túpiàn' devrait être 'tú piàn'.",
-                "fix": "Zhè shì wǒmen de jiā tíng tú piàn"
-              }
-            ],
-            "filtered": 1
-          }
-        },
-        "standard": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "zh-f1916d4c",
-                  "term": "兄弟",
-                  "gloss": "frère",
-                  "example": "我有一个兄弟。",
-                  "exampleGloss": "J'ai un frère.",
-                  "pinyin": "wǒ yǒu yī gè xiōngdì."
-                },
-                {
-                  "id": "zh-bf197d50",
-                  "term": "姐妹",
-                  "gloss": "sœur",
-                  "example": "她有一个姐妹。",
-                  "exampleGloss": "Elle a une sœur.",
-                  "pinyin": "tā yǒu yī gè jiějiě."
-                },
-                {
-                  "id": "zh-a4a08660",
-                  "term": "祖父母",
-                  "gloss": "grands-parents",
-                  "example": "我和祖父母一起吃饭。",
-                  "exampleGloss": "Je dîne avec mes grands-parents.",
-                  "pinyin": "wǒ hé zǔfùmǔ yīqǐ chīfàn."
-                },
-                {
-                  "id": "zh-6980874e",
-                  "term": "亲戚",
-                  "gloss": "parent",
-                  "example": "这是我的亲戚。",
-                  "exampleGloss": "C'est mon parent.",
-                  "pinyin": "zhè shì wǒ de qīnqī."
-                },
-                {
-                  "id": "zh-7cc8d6a5",
-                  "term": "家庭",
-                  "gloss": "famille",
-                  "example": "我们是一个幸福的家庭。",
-                  "exampleGloss": "Nous sommes une famille heureuse.",
-                  "pinyin": "wǒmen shì yīgè xīngfú de jiātíng."
-                },
-                {
-                  "id": "zh-48e9e532",
-                  "term": "照片",
-                  "gloss": "photo",
-                  "example": "这是我们的家庭照片。",
-                  "exampleGloss": "C'est notre photo de famille.",
-                  "pinyin": "zhè shì wǒmen de jiātíng zhàoxiàng."
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "La Famille de Xiao Ming",
-              "sentences": [
-                {
-                  "t": "小明有一个兄弟和一个姐妹。",
-                  "fr": "Xiao Ming a un frère et une sœur.",
-                  "py": "xiǎomíng yǒu yī gè xiōngdì hé yī gè jiějiě."
-                },
-                {
-                  "t": "他们经常一起吃饭。",
-                  "fr": "Ils dînent souvent ensemble.",
-                  "py": "tāmen jīngcháng yīqǐ chīfàn."
-                },
-                {
-                  "t": "他们的祖父母也来吃饭。",
-                  "fr": "Leurs grands-parents viennent aussi dîner.",
-                  "py": "tāmen de zǔfùmǔ yě lái chīfàn."
-                },
-                {
-                  "t": "这是他们的家庭照片。",
-                  "fr": "C'est leur photo de famille.",
-                  "py": "zhè shì tāmen de jiātíng zhàoxiàng."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "Qui est dans la photo de famille de Xiao Ming ?",
-                  "choices": [
-                    "Seulement Xiao Ming",
-                    "Xiao Ming et ses grands-parents",
-                    "Xiao Ming, son frère et sa sœur",
-                    "Xiao Ming et ses parents"
-                  ],
-                  "answer": 2,
-                  "explain": "La photo montre Xiao Ming, son frère et sa sœur."
-                },
-                {
-                  "q": "Qu'est-ce que Xiao Ming et sa sœur font souvent ?",
-                  "choices": [
-                    "Ils font du sport",
-                    "Ils dînent ensemble",
-                    "Ils jouent au football",
-                    "Ils regardent la télé"
-                  ],
-                  "answer": 1,
-                  "explain": "Ils dînent souvent ensemble."
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "La Famille de Xiao Hui",
-              "sentences": [
-                {
-                  "t": "Xiao Hui 有 兄弟 和 姐妹。",
-                  "fr": "Xiao Hui a des frères et sœurs.",
-                  "py": "Xiao Hui yǒu xiōngdì hé jiěmèi."
-                },
-                {
-                  "t": "他们 喜欢 一起 玩 游戏。",
-                  "fr": "Ils aiment jouer ensemble.",
-                  "py": "Tāmen xǐhuān yīqǐ wán yóuyì."
-                },
-                {
-                  "t": "祖父母 经常 来 家庭 照片。",
-                  "fr": "Les aînés viennent souvent voir les photos de la famille.",
-                  "py": "Zǔfùmǔ jīngcháng lái jiātíng zhàoxiàng."
-                },
-                {
-                  "t": "亲戚 也 喜欢 看 照片。",
-                  "fr": "Les autres membres de la famille aiment regarder les photos.",
-                  "py": "Qīnqī yě xǐhuān kàn zhàoxiàng."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "Xiao Hui a-t-il des frères et sœurs ?",
-                  "choices": [
-                    "Non",
-                    "Oui",
-                    "Peut-être",
-                    "On ne sait pas"
-                  ],
-                  "answer": 1,
-                  "explain": "Le texte dit explicitement qu'il a des frères et sœurs."
-                },
-                {
-                  "q": "Qui vient souvent voir les photos de la famille ?",
-                  "choices": [
-                    "Les aînés",
-                    "Les amis",
-                    "Les cousins",
-                    "Les frères et sœurs"
-                  ],
-                  "answer": 0,
-                  "explain": "Le texte mentionne que les aînés viennent souvent voir les photos."
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "La Famille de Xiao Li",
-              "sentences": [
-                {
-                  "t": "Xiao Li 有 兄弟 和 姐妹。",
-                  "fr": "Xiao Li a des frères et sœurs.",
-                  "py": "Xiao Li yǒu xiōngdì hé jiěmèi."
-                },
-                {
-                  "t": "他们 经常 看 祖父母 的 照片。",
-                  "fr": "Ils regardent souvent les photos de leurs grands-parents.",
-                  "py": "Tāmen jīngcháng kàn zǔfùmǔ de zhàopiàn."
-                },
-                {
-                  "t": "他们 的 家庭 很 和谐。",
-                  "fr": "Leur famille est très harmonieuse.",
-                  "py": "Tāmen de jiātíng hěn héxié."
-                },
-                {
-                  "t": "亲戚 都 喜欢 他们 的 照片。",
-                  "fr": "Tous les proches les aiment pour leurs photos.",
-                  "py": "Qīnqī dōu xǐhuān tāmen de zhàopiàn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "Xiao Li a-t-il des frères et sœurs ?",
-                  "choices": [
-                    "Non, il a des parents.",
-                    "Oui, il a des cousins.",
-                    "Non, il n'a pas de frères et sœurs.",
-                    "Oui, il a des frères et sœurs."
-                  ],
-                  "answer": 3,
-                  "explain": "La phrase dit explicitement que Xiao Li a des frères et sœurs."
-                },
-                {
-                  "q": "Qui regarde les photos de leurs grands-parents ?",
-                  "choices": [
-                    "Les parents",
-                    "Les grands-parents",
-                    "Les frères et sœurs",
-                    "Les cousins"
-                  ],
-                  "answer": 2,
-                  "explain": "La phrase indique que les frères et sœurs regardent les photos."
-                }
-              ]
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[1].sentences[2].py",
-                "problem": "La traduction du mot '祖父母' est incorrecte. Il faut utiliser 'zǔfùmǔ' et non 'zǔfùmǔ'.",
-                "fix": "zǔfùmǔ"
-              },
-              {
-                "where": "readings[1].sentences[3].py",
-                "problem": "La traduction du mot '亲戚' est incorrecte. Il faut utiliser 'qīnqī' et non 'qīnqī'.",
-                "fix": "qīnqī"
-              },
-              {
-                "where": "readings[2].sentences[1].py",
-                "problem": "La traduction du mot '他们' est incorrecte. Il faut utiliser 'tāmen' et non 'tāmen'.",
-                "fix": "tāmen"
-              },
-              {
-                "where": "readings[2].sentences[2].py",
-                "problem": "La traduction du mot '祖父母' est incorrecte. Il faut utiliser 'zǔfùmǔ' et non 'zǔfùmǔ'.",
-                "fix": "zǔfùmǔ"
-              },
-              {
-                "where": "readings[2].sentences[3].py",
-                "problem": "La traduction du mot '亲戚' est incorrecte. Il faut utiliser 'qīnqī' et non 'qīnqī'.",
-                "fix": "qīnqī"
-              },
-              {
-                "where": "readings[2].questions[1].explain",
-                "problem": "La traduction de '祖父母' est incorrecte. Il faut utiliser 'zǔfùmǔ' et non 'zǔfùmǔ'.",
-                "fix": "zǔfùmǔ"
-              }
-            ],
-            "filtered": 1
-          }
-        },
-        "exigeant": {
-          "blocks": [
-            {
-              "type": "vocab",
-              "items": [
-                {
-                  "id": "zh-2fdb1b3a",
-                  "term": "祖母",
-                  "gloss": "grand-mère",
-                  "example": "我祖母很和蔼。",
-                  "exampleGloss": "Ma grand-mère est très aimable.",
-                  "pinyin": "Zǔmǔ"
-                },
-                {
-                  "id": "zh-d1e73078",
-                  "term": "孙子",
-                  "gloss": "petit-fils",
-                  "example": "祖母有一个孙子。",
-                  "exampleGloss": "La grand-mère a un petit-fils.",
-                  "pinyin": "Zǔsūn"
-                },
-                {
-                  "id": "zh-c2412754",
-                  "term": "聚会",
-                  "gloss": "réunion",
-                  "example": "我们每周有一次家庭聚会。",
-                  "exampleGloss": "Nous avons une réunion familiale chaque semaine.",
-                  "pinyin": "Jùhuì"
-                },
-                {
-                  "id": "zh-82510965",
-                  "term": "礼物",
-                  "gloss": "cadeau",
-                  "example": "祖母送我一个礼物。",
-                  "exampleGloss": "La grand-mère m'a offert un cadeau.",
-                  "pinyin": "Lǐwù"
-                },
-                {
-                  "id": "zh-1ed10b9c",
-                  "term": "庆祝",
-                  "gloss": "célébrer",
-                  "example": "我们庆祝祖母的生日。",
-                  "exampleGloss": "Nous célébrons l'anniversaire de la grand-mère.",
-                  "pinyin": "Chéléng"
-                },
-                {
-                  "id": "zh-7a924341",
-                  "term": "分享",
-                  "gloss": "partager",
-                  "example": "我们分享快乐。",
-                  "exampleGloss": "Nous partageons la joie.",
-                  "pinyin": "Fēnxiǎng"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "家庭聚会",
-              "sentences": [
-                {
-                  "t": "祖母和孙子一起庆祝生日。",
-                  "fr": "La grand-mère et le petit-fils célèbrent ensemble l'anniversaire.",
-                  "py": "Zǔmǔ hé zǔsūn yīqǐ chéléngnián rì."
-                },
-                {
-                  "t": "他们分享很多快乐。",
-                  "fr": "Ils partagent beaucoup de joie.",
-                  "py": "Tāmen fēnxiǎng hěn duō kuàilè."
-                },
-                {
-                  "t": "祖母送了孙子一个礼物。",
-                  "fr": "La grand-mère a offert un cadeau au petit-fils.",
-                  "py": "Zǔmǔ sòng le zǔsūn yī ge lǐwù."
-                },
-                {
-                  "t": "大家在聚会中感到幸福。",
-                  "fr": "Tout le monde se sent heureux à la réunion.",
-                  "py": "Dàjiā zài jùhuì zhōng gǎndào xìngfú."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "谁送了孙子一个礼物？",
-                  "choices": [
-                    "父亲",
-                    "祖母",
-                    "兄弟",
-                    "朋友"
-                  ],
-                  "answer": 1,
-                  "explain": "文中提到祖母送了孙子一个礼物。"
-                },
-                {
-                  "q": "他们在哪里庆祝生日？",
-                  "choices": [
-                    "餐厅",
-                    "公园",
-                    "家里",
-                    "学校"
-                  ],
-                  "answer": 2,
-                  "explain": "文中提到他们在家庭聚会中庆祝生日，暗示在家里。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "礼物分享",
-              "sentences": [
-                {
-                  "t": "祖母准备了礼物。",
-                  "fr": "La grand-mère a préparé des cadeaux.",
-                  "py": "Zǔmǔ zhǔn bèi le lǐwù."
-                },
-                {
-                  "t": "孙子很期待聚会。",
-                  "fr": "Le petit-fils attendait impatiemment la fête.",
-                  "py": "Sūnzǐ hěn qīdài jùhuì."
-                },
-                {
-                  "t": "大家庆祝生日。",
-                  "fr": "Tous célébraient l'anniversaire.",
-                  "py": "Dàjiā qìngzhù shēngrì."
-                },
-                {
-                  "t": "他们分享快乐。",
-                  "fr": "Ils partageaient la joie.",
-                  "py": "Tāmen fēnxiǎng kuàilè."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "谁准备了礼物？",
-                  "choices": [
-                    "孙子",
-                    "朋友",
-                    "祖母",
-                    "邻居"
-                  ],
-                  "answer": 2,
-                  "explain": "祖母在文中明确提到准备了礼物。"
-                },
-                {
-                  "q": "他们庆祝什么？",
-                  "choices": [
-                    "节日",
-                    "生日",
-                    "婚礼",
-                    "毕业"
-                  ],
-                  "answer": 1,
-                  "explain": "文中提到大家庆祝生日。"
-                }
-              ]
-            },
-            {
-              "type": "reading",
-              "title": "家庭庆祝",
-              "sentences": [
-                {
-                  "t": "祖母带来礼物分享聚会。",
-                  "fr": "La grand-mère apporte des cadeaux pour partager lors de la fête.",
-                  "py": "Zǔmǔ bānlái lǐwù fēngfān huìjù."
-                },
-                {
-                  "t": "孙子喜欢庆祝节日。",
-                  "fr": "Le petit-fils aime célébrer les fêtes.",
-                  "py": "Sūnzi xǐhuān qìngzhù fàjié."
-                },
-                {
-                  "t": "大家在聚会中分享快乐。",
-                  "fr": "Tous partagent la joie lors de la fête.",
-                  "py": "Dàjiā zài huìjù zhōng fēngfān kuàilè."
-                },
-                {
-                  "t": "礼物让家庭更温暖。",
-                  "fr": "Les cadeaux rendent la famille plus chaleureuse.",
-                  "py": "Lǐwù ràng jiātíng gèng wēnnuǎn."
-                }
-              ],
-              "questions": [
-                {
-                  "q": "谁带来了礼物分享聚会？",
-                  "choices": [
-                    "祖母",
-                    "孙子",
-                    "朋友",
-                    "邻居"
-                  ],
-                  "answer": 0,
-                  "explain": "祖母是带来礼物分享聚会的人。"
-                },
-                {
-                  "q": "谁喜欢庆祝节日？",
-                  "choices": [
-                    "母亲",
-                    "祖母",
-                    "父亲",
-                    "孙子"
-                  ],
-                  "answer": 3,
-                  "explain": "孙子喜欢庆祝节日。"
-                }
-              ]
-            }
-          ],
-          "reviewed": false,
-          "review": {
-            "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[0].sentences[0].py",
-                "problem": "Pinyin incorrect : 'chéléngnián rì' est incorrect, la bonne transcription est 'chéngrì'.",
-                "fix": "Zǔmǔ hé zǔsūn yīqǐ chéngrì."
-              }
-            ],
-            "filtered": 5
           }
         }
       }
@@ -2741,220 +1130,166 @@
                   "id": "es-1388b778",
                   "term": "metro",
                   "gloss": "métro",
-                  "example": "Voy a tomar el metro para ir al trabajo.",
-                  "exampleGloss": "Je vais prendre le métro pour aller au travail."
-                },
-                {
-                  "id": "es-1ccac4ca",
-                  "term": "estación",
-                  "gloss": "station",
-                  "example": "La estación del metro es muy grande.",
-                  "exampleGloss": "La station du métro est très grande."
-                },
-                {
-                  "id": "es-1352a687",
-                  "term": "bajar",
-                  "gloss": "descendre",
-                  "example": "Tengo que bajar en la estación próxima.",
-                  "exampleGloss": "Je dois descendre à la station suivante."
-                },
-                {
-                  "id": "es-56a8d2e6",
-                  "term": "subir",
-                  "gloss": "monter",
-                  "example": "Subo al metro para llegar más rápido.",
-                  "exampleGloss": "Je monte en métro pour arriver plus vite."
-                },
-                {
-                  "id": "es-459b3b15",
-                  "term": "parada",
-                  "gloss": "arrêt",
-                  "example": "La parada del bus está cerca de la estación.",
-                  "exampleGloss": "L'arrêt du bus est près de la station."
-                },
-                {
-                  "id": "es-851c2e6d",
-                  "term": "caminar",
-                  "gloss": "marcher",
-                  "example": "Tengo que caminar un poco para llegar al metro.",
-                  "exampleGloss": "Je dois marcher un peu pour arriver au métro."
-                },
-                {
-                  "id": "es-8f9f97eb",
-                  "term": "calle",
-                  "gloss": "rue",
-                  "example": "Voy a caminar por la calle principal.",
-                  "exampleGloss": "Je vais marcher sur la rue principale."
+                  "example": "Voyo al metro para ir al trabajo.",
+                  "exampleGloss": "Je prends le métro pour aller au travail."
                 },
                 {
                   "id": "es-32c70ceb",
                   "term": "bus",
                   "gloss": "bus",
-                  "example": "El bus llega en diez minutos.",
-                  "exampleGloss": "Le bus arrive dans dix minutes."
+                  "example": "El bus llega a las 7 de la mañana.",
+                  "exampleGloss": "Le bus arrive à 7 heures du matin."
+                },
+                {
+                  "id": "es-459b3b15",
+                  "term": "parada",
+                  "gloss": "arrêt",
+                  "example": "La parada del metro está cerca de la escuela.",
+                  "exampleGloss": "L'arrêt du métro est près de l'école."
+                },
+                {
+                  "id": "es-ec24f23b",
+                  "term": "llegar",
+                  "gloss": "arriver",
+                  "example": "El metro llega en cinco minutos.",
+                  "exampleGloss": "Le métro arrive en cinq minutes."
+                },
+                {
+                  "id": "es-3d38c5b6",
+                  "term": "esperar",
+                  "gloss": "attendre",
+                  "example": "Espero al metro en la parada.",
+                  "exampleGloss": "J'attends le métro à l'arrêt."
+                },
+                {
+                  "id": "es-c1048c64",
+                  "term": "tarjeta",
+                  "gloss": "carte",
+                  "example": "Tengo una tarjeta para el metro.",
+                  "exampleGloss": "J'ai une carte pour le métro."
+                },
+                {
+                  "id": "es-1ccac4ca",
+                  "term": "estación",
+                  "gloss": "gare",
+                  "example": "La estación del metro es muy grande.",
+                  "exampleGloss": "La gare du métro est très grande."
+                },
+                {
+                  "id": "es-3ce867c1",
+                  "term": "viajar",
+                  "gloss": "voyager",
+                  "example": "Viajo en metro todos los días.",
+                  "exampleGloss": "Je voyage en métro tous les jours."
                 }
               ]
             },
             {
               "type": "reading",
-              "title": "Cómo llegar al centro",
+              "title": "El metro en la ciudad",
               "sentences": [
                 {
-                  "t": "El metro es una forma rápida de llegar al centro de la ciudad.",
-                  "fr": "Le métro est une façon rapide d'arriver au centre de la ville."
+                  "t": "El metro es un medio de transporte rápido.",
+                  "fr": "Le métro est un moyen de transport rapide."
                 },
                 {
-                  "t": "Tengo que tomar el metro en la estación más cercana.",
-                  "fr": "Je dois prendre le métro à la station la plus proche."
+                  "t": "Voyo al metro para llegar al trabajo.",
+                  "fr": "Je prends le métro pour arriver au travail."
                 },
                 {
-                  "t": "La estación del metro tiene varias paradas y un autobús que pasa cerca.",
-                  "fr": "La station du métro a plusieurs arrêts et un bus qui passe près."
+                  "t": "La parada del metro está cerca de mi casa.",
+                  "fr": "L'arrêt du métro est près de ma maison."
                 },
                 {
-                  "t": "Voy a caminar por la calle principal hasta llegar a la estación.",
-                  "fr": "Je vais marcher sur la rue principale jusqu'à arriver à la station."
+                  "t": "Espero al metro en la estación.",
+                  "fr": "J'attends le métro à la gare."
                 },
                 {
-                  "t": "Subo al metro en la parada número tres.",
-                  "fr": "Je monte en métro à l'arrêt numéro trois."
+                  "t": "Llega el metro en cinco minutos.",
+                  "fr": "Le métro arrive en cinq minutes."
                 },
                 {
-                  "t": "El bus llega a la estación en cinco minutos.",
-                  "fr": "Le bus arrive à la station en cinq minutes."
+                  "t": "Tengo una tarjeta para pagar el viaje.",
+                  "fr": "J'ai une carte pour payer le voyage."
                 },
                 {
-                  "t": "Luego, voy a caminar un poco más para llegar al centro.",
-                  "fr": "Ensuite, je vais marcher un peu plus pour arriver au centre."
+                  "t": "Viajo en metro todos los días.",
+                  "fr": "Je voyage en métro tous les jours."
                 },
                 {
-                  "t": "Es importante llegar a tiempo para no perder la conexión.",
-                  "fr": "Il est important d'arriver à temps pour ne pas perdre la connexion."
-                },
-                {
-                  "t": "Por eso, siempre llevo un reloj para saber la hora.",
-                  "fr": "Pour cela, je porte toujours un réveil pour savoir l'heure."
-                },
-                {
-                  "t": "Es una forma fácil de llegar al centro si sabes cómo moverte.",
-                  "fr": "C'est une façon facile d'arriver au centre si tu sais comment te déplacer."
+                  "t": "El metro es muy útil en la ciudad.",
+                  "fr": "Le métro est très utile en ville."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Cómo llega al centro?",
+                  "q": "¿Cómo llega el metro?",
                   "choices": [
-                    "Toma el bus y camina poco.",
-                    "Toma el bus y camina mucho.",
-                    "Toma el metro y camina un poco.",
-                    "Toma el metro y camina mucho."
+                    "En quince minutos.",
+                    "En diez minutos.",
+                    "En cinco minutos.",
+                    "En dos minutos."
                   ],
                   "answer": 2,
-                  "explain": "El texto menciona que toma el metro y camina un poco."
+                  "explain": "La frase dice que el metro llega en cinco minutos."
                 },
                 {
-                  "q": "¿Dónde toma el metro?",
+                  "q": "¿Dónde espera el metro el alumno?",
                   "choices": [
-                    "En la estación más lejana.",
-                    "En la estación principal.",
-                    "En la estación más cercana.",
-                    "En la estación central."
+                    "En la parada.",
+                    "En la calle.",
+                    "En la estación.",
+                    "En la escuela."
                   ],
                   "answer": 2,
-                  "explain": "El texto dice que toma el metro en la estación más cercana."
+                  "explain": "La frase dice que espera al metro en la estación."
                 },
                 {
-                  "q": "¿Cuánto tiempo tarda el bus en llegar a la estación?",
+                  "q": "¿Qué tiene el alumno para pagar el viaje?",
                   "choices": [
-                    "Veinte minutos.",
-                    "Treinta minutos.",
-                    "Diez minutos.",
-                    "Cinco minutos."
-                  ],
-                  "answer": 3,
-                  "explain": "El texto menciona que el bus llega a la estación en cinco minutos."
-                },
-                {
-                  "q": "¿Por qué es importante llegar a tiempo?",
-                  "choices": [
-                    "Para tomar el metro.",
-                    "Para llegar más rápido.",
-                    "Para caminar más.",
-                    "Para no perder la conexión."
-                  ],
-                  "answer": 3,
-                  "explain": "El texto dice que es importante llegar a tiempo para no perder la conexión."
-                },
-                {
-                  "q": "¿Qué lleva siempre para saber la hora?",
-                  "choices": [
-                    "Un libro.",
-                    "Un teléfono.",
-                    "Un reloj.",
-                    "Un mapa."
+                    "Un billete.",
+                    "Una moneda.",
+                    "Una tarjeta.",
+                    "Un billete de tren."
                   ],
                   "answer": 2,
-                  "explain": "El texto menciona que siempre lleva un reloj para saber la hora."
+                  "explain": "La frase dice que tiene una tarjeta para pagar el viaje."
+                },
+                {
+                  "q": "¿Cómo viaja el alumno todos los días?",
+                  "choices": [
+                    "En bus.",
+                    "En metro.",
+                    "En avión.",
+                    "En tren."
+                  ],
+                  "answer": 1,
+                  "explain": "La frase dice que viaja en metro todos los días."
+                },
+                {
+                  "q": "¿Qué dice sobre el metro en la ciudad?",
+                  "choices": [
+                    "Es pequeño.",
+                    "Es caro.",
+                    "Es muy útil.",
+                    "Es lento."
+                  ],
+                  "answer": 2,
+                  "explain": "La frase dice que el metro es muy útil en la ciudad."
                 }
               ]
             },
             {
               "type": "production",
               "kind": "written",
-              "prompt": "Écris 2 à 3 phrases en espagnol sur la façon de prendre le métro."
+              "prompt": "Écris 2 à 3 phrases en espagnol sur le thème du métro et des transports en ville."
             }
           ],
           "reviewed": false,
           "review": {
             "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[0].sentences[2].fr",
-                "problem": "La phrase manque un article défini 'la' avant 'estación'.",
-                "fix": "La station du métro a plusieurs arrêts et un bus qui passe près de la station."
-              },
-              {
-                "where": "readings[0].sentences[3].fr",
-                "problem": "La préposition 'sur' est incorrecte, il faut utiliser 'par' pour exprimer la direction.",
-                "fix": "Je vais marcher par la rue principale jusqu'à arriver à la station."
-              },
-              {
-                "where": "readings[0].sentences[8].fr",
-                "problem": "Le verbe 'arriver' est utilisé avec 'à' au lieu de 'pour' pour exprimer le but.",
-                "fix": "Il est important d'arriver à temps pour ne pas perdre la connexion."
-              },
-              {
-                "where": "readings[0].sentences[9].fr",
-                "problem": "Le pronom 'tu' est incorrect, il faut utiliser 'on' ou 'vous' pour le discours narratif.",
-                "fix": "C'est une façon facile d'arriver au centre si on sait comment se déplacer."
-              },
-              {
-                "where": "readings[0].questions[0].choices[1]",
-                "problem": "La réponse 'Toma el bus y camina mucho' est incorrecte car le texte indique 'caminar un poco'.",
-                "fix": "Toma el metro y camina poco."
-              },
-              {
-                "where": "readings[0].questions[0].choices[3]",
-                "problem": "La réponse 'Toma el metro y camina mucho' est incorrecte car le texte indique 'caminar un poco'.",
-                "fix": "Toma el metro y camina poco."
-              },
-              {
-                "where": "readings[0].questions[4].choices[0]",
-                "problem": "La réponse 'Un libro' est incorrecte car le texte indique 'un reloj'.",
-                "fix": "Un reloj."
-              },
-              {
-                "where": "readings[0].questions[4].choices[1]",
-                "problem": "La réponse 'Un teléfono' est incorrecte car le texte indique 'un reloj'.",
-                "fix": "Un reloj."
-              },
-              {
-                "where": "readings[0].questions[4].choices[3]",
-                "problem": "La réponse 'Un mapa' est incorrecte car le texte indique 'un reloj'.",
-                "fix": "Un reloj."
-              }
-            ],
-            "filtered": 1
+            "issues": [],
+            "filtered": 2
           }
         },
         "standard": {
@@ -2966,180 +1301,166 @@
                   "id": "es-1388b778",
                   "term": "metro",
                   "gloss": "métro",
-                  "example": "Tengo que tomar el metro para llegar al trabajo.",
-                  "exampleGloss": "Je dois prendre le métro pour arriver au travail."
-                },
-                {
-                  "id": "es-1ccac4ca",
-                  "term": "estación",
-                  "gloss": "gare",
-                  "example": "La estación del metro está muy cerca de mi casa.",
-                  "exampleGloss": "La gare du métro est très proche de ma maison."
-                },
-                {
-                  "id": "es-1352a687",
-                  "term": "bajar",
-                  "gloss": "descendre",
-                  "example": "Tengo que bajar en la estación de la Universidad.",
-                  "exampleGloss": "Je dois descendre à la gare de l'Université."
-                },
-                {
-                  "id": "es-56a8d2e6",
-                  "term": "subir",
-                  "gloss": "monter",
-                  "example": "Subo al metro para ir al centro de la ciudad.",
-                  "exampleGloss": "Je monte au métro pour aller au centre-ville."
+                  "example": "Voy a tomar el metro para llegar al trabajo.",
+                  "exampleGloss": "Je vais prendre le métro pour arriver au travail."
                 },
                 {
                   "id": "es-459b3b15",
                   "term": "parada",
                   "gloss": "arrêt",
-                  "example": "La parada del autobús está cerca del metro.",
-                  "exampleGloss": "L'arrêt du bus est près du métro."
+                  "example": "La parada del metro está cerca de la escuela.",
+                  "exampleGloss": "L'arrêt du métro est près de l'école."
+                },
+                {
+                  "id": "es-1ccac4ca",
+                  "term": "estación",
+                  "gloss": "gare",
+                  "example": "Tengo que cambiar de estación para llegar al centro.",
+                  "exampleGloss": "Je dois changer de gare pour arriver au centre."
+                },
+                {
+                  "id": "es-c1048c64",
+                  "term": "tarjeta",
+                  "gloss": "carte",
+                  "example": "Necesito una tarjeta para pagar el metro.",
+                  "exampleGloss": "Je dois avoir une carte pour payer le métro."
+                },
+                {
+                  "id": "es-3ce867c1",
+                  "term": "viajar",
+                  "gloss": "voyager",
+                  "example": "Es fácil viajar en metro en la ciudad.",
+                  "exampleGloss": "C'est facile de voyager en métro en ville."
+                },
+                {
+                  "id": "es-3d38c5b6",
+                  "term": "esperar",
+                  "gloss": "attendre",
+                  "example": "Tengo que esperar mucho tiempo en la parada.",
+                  "exampleGloss": "Je dois attendre beaucoup de temps à l'arrêt."
+                },
+                {
+                  "id": "es-ec24f23b",
+                  "term": "llegar",
+                  "gloss": "arriver",
+                  "example": "Voy a llegar al trabajo en metro.",
+                  "exampleGloss": "Je vais arriver au travail en métro."
                 },
                 {
                   "id": "es-851c2e6d",
                   "term": "caminar",
                   "gloss": "marcher",
-                  "example": "Tengo que caminar hasta la estación del metro.",
-                  "exampleGloss": "Je dois marcher jusqu'à la gare du métro."
-                },
-                {
-                  "id": "es-8f9f97eb",
-                  "term": "calle",
-                  "gloss": "rue",
-                  "example": "La calle principal es muy tranquila en el centro.",
-                  "exampleGloss": "La rue principale est très calme au centre-ville."
-                },
-                {
-                  "id": "es-32c70ceb",
-                  "term": "bus",
-                  "gloss": "bus",
-                  "example": "El bus pasa cada diez minutos por la calle.",
-                  "exampleGloss": "Le bus passe tous les dix minutes sur la rue."
+                  "example": "Siempre camino un poco antes de tomar el metro.",
+                  "exampleGloss": "Je marche toujours un peu avant de prendre le métro."
                 }
               ]
             },
             {
               "type": "reading",
-              "title": "Cómo llegar al centro",
+              "title": "El metro en la ciudad",
               "sentences": [
                 {
-                  "t": "El metro es una forma rápida de llegar al centro.",
-                  "fr": "Le métro est une façon rapide d'arriver au centre."
+                  "t": "El metro es una forma rápida de moverse por la ciudad.",
+                  "fr": "Le métro est une façon rapide de se déplacer en ville."
                 },
                 {
-                  "t": "Tengo que bajar en la estación de la Universidad.",
-                  "fr": "Je dois descendre à la gare de l'Université."
+                  "t": "Tengo que cambiar de estación para llegar al centro.",
+                  "fr": "Je dois changer de gare pour arriver au centre."
                 },
                 {
-                  "t": "La estación del metro está muy cerca de mi casa.",
-                  "fr": "La gare du métro est très proche de ma maison."
+                  "t": "La parada del metro está cerca de la escuela.",
+                  "fr": "L'arrêt du métro est près de l'école."
                 },
                 {
-                  "t": "Subo al metro para ir al centro de la ciudad.",
-                  "fr": "Je monte au métro pour aller au centre-ville."
+                  "t": "Necesito una tarjeta para pagar el metro.",
+                  "fr": "Je dois avoir une carte pour payer le métro."
                 },
                 {
-                  "t": "Después de bajar, camino por la calle principal.",
-                  "fr": "Après avoir descendu, je marche sur la rue principale."
+                  "t": "Voy a llegar al trabajo en metro.",
+                  "fr": "Je vais arriver au travail en métro."
                 },
                 {
-                  "t": "La calle principal es muy tranquila en el centro.",
-                  "fr": "La rue principale est très calme au centre-ville."
+                  "t": "Es fácil viajar en metro en la ciudad.",
+                  "fr": "C'est facile de voyager en métro en ville."
                 },
                 {
-                  "t": "El bus pasa cada diez minutos por la calle.",
-                  "fr": "Le bus passe tous les dix minutes sur la rue."
+                  "t": "Tengo que esperar mucho tiempo en la parada.",
+                  "fr": "Je dois attendre beaucoup de temps à l'arrêt."
                 },
                 {
-                  "t": "Tengo que llegar a la parada del bus antes de las 8.",
-                  "fr": "Je dois arriver à l'arrêt du bus avant 8 heures."
-                },
-                {
-                  "t": "Llegar al centro es fácil si usas el metro y el bus.",
-                  "fr": "Arriver au centre est facile si tu utilises le métro et le bus."
-                },
-                {
-                  "t": "Es importante planear el camino antes de salir.",
-                  "fr": "Il est important de planifier le chemin avant de partir."
+                  "t": "Siempre camino un poco antes de tomar el metro.",
+                  "fr": "Je marche toujours un peu avant de prendre le métro."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Cómo es la calle principal en el centro?",
+                  "q": "¿Cómo se puede moverse por la ciudad de forma rápida?",
                   "choices": [
-                    "Muy larga",
-                    "Muy tranquila",
-                    "Muy animada",
-                    "Muy iluminada"
+                    "En coche",
+                    "A pie",
+                    "En tren",
+                    "En metro"
+                  ],
+                  "answer": 3,
+                  "explain": "El metro es una forma rápida de moverse por la ciudad."
+                },
+                {
+                  "q": "¿Dónde está la parada del metro?",
+                  "choices": [
+                    "Al lado del parque",
+                    "Al lado del hospital",
+                    "Al lado de la escuela",
+                    "Al lado del centro comercial"
+                  ],
+                  "answer": 2,
+                  "explain": "La parada del metro está cerca de la escuela."
+                },
+                {
+                  "q": "¿Qué necesita para pagar el metro?",
+                  "choices": [
+                    "Una moneda",
+                    "Un documento",
+                    "Una tarjeta",
+                    "Un billete"
+                  ],
+                  "answer": 2,
+                  "explain": "Necesito una tarjeta para pagar el metro."
+                },
+                {
+                  "q": "¿Cómo llega al trabajo?",
+                  "choices": [
+                    "En coche",
+                    "En bicicleta",
+                    "En metro",
+                    "A pie"
+                  ],
+                  "answer": 2,
+                  "explain": "Voy a llegar al trabajo en metro."
+                },
+                {
+                  "q": "¿Qué hace antes de tomar el metro?",
+                  "choices": [
+                    "Cambiar de estación",
+                    "Caminar un poco",
+                    "Esperar mucho tiempo",
+                    "Pagar la tarjeta"
                   ],
                   "answer": 1,
-                  "explain": "La calle principal es muy tranquila en el centro."
-                },
-                {
-                  "q": "¿Qué medio de transporte se menciona como rápido para llegar al centro?",
-                  "choices": [
-                    "El bus",
-                    "La calle",
-                    "El metro",
-                    "La parada"
-                  ],
-                  "answer": 2,
-                  "explain": "El metro es una forma rápida de llegar al centro."
-                },
-                {
-                  "q": "¿Dónde tiene que bajar el narrador?",
-                  "choices": [
-                    "En la estación de la Universidad",
-                    "En el centro de la ciudad",
-                    "En la calle principal",
-                    "En la parada del bus"
-                  ],
-                  "answer": 0,
-                  "explain": "Tengo que bajar en la estación de la Universidad."
-                },
-                {
-                  "q": "¿Cuánto tiempo pasa el bus por la calle?",
-                  "choices": [
-                    "Cada dos minutos",
-                    "Cada veinte minutos",
-                    "Cada diez minutos",
-                    "Cada quince minutos"
-                  ],
-                  "answer": 2,
-                  "explain": "El bus pasa cada diez minutos por la calle."
-                },
-                {
-                  "q": "¿Qué debe hacer el narrador después de bajar del metro?",
-                  "choices": [
-                    "Planear el camino",
-                    "Llegar a la parada del bus",
-                    "Caminar por la calle principal",
-                    "Subir al bus"
-                  ],
-                  "answer": 2,
-                  "explain": "Después de bajar, camino por la calle principal."
+                  "explain": "Siempre camino un poco antes de tomar el metro."
                 }
               ]
             },
             {
               "type": "production",
               "kind": "written",
-              "prompt": "Escribe dos o tres frases en español sobre cómo llegar al centro de la ciudad."
+              "prompt": "Escribe dos o tres frases en español sobre cómo te mueves por la ciudad y qué transportes usas."
             }
           ],
           "reviewed": false,
           "review": {
             "by": "qwen3:8b",
-            "issues": [
-              {
-                "where": "readings[0].sentences[5].fr",
-                "problem": "Le verbe 'descendre' ne s'accorde pas avec le pronom 'je' (il faut 'descendu' au participe passé).",
-                "fix": "Après avoir descendu, je marche sur la rue principale."
-              }
-            ],
-            "filtered": 1
+            "issues": [],
+            "filtered": 2
           }
         },
         "exigeant": {
@@ -3151,167 +1472,159 @@
                   "id": "es-459b3b15",
                   "term": "parada",
                   "gloss": "arrêt",
-                  "example": "La parada del metro está muy cerca de la escuela.",
-                  "exampleGloss": "L'arrêt du métro est très proche de l'école."
+                  "example": "La parada del metro está muy concurrida.",
+                  "exampleGloss": "L'arrêt du métro est très fréquenté."
+                },
+                {
+                  "id": "es-1ccac4ca",
+                  "term": "estación",
+                  "gloss": "gare",
+                  "example": "Tengo que cambiar de estación.",
+                  "exampleGloss": "Je dois changer de gare."
                 },
                 {
                   "id": "es-56a8d2e6",
                   "term": "subir",
                   "gloss": "monter",
-                  "example": "Tengo que subir al metro para llegar a casa.",
-                  "exampleGloss": "Je dois monter dans le métro pour rentrer chez moi."
+                  "example": "Subo al metro en la estación principal.",
+                  "exampleGloss": "Je monte en métro à la gare principale."
                 },
                 {
-                  "id": "es-1352a687",
-                  "term": "bajar",
+                  "id": "es-43fb7bd3",
+                  "term": "descender",
                   "gloss": "descendre",
-                  "example": "Bajar del metro es rápido si sabes la parada correcta.",
-                  "exampleGloss": "Descendre du métro est rapide si tu connais la bonne arrêt."
+                  "example": "Debo descender en la siguiente parada.",
+                  "exampleGloss": "Je dois descendre à la prochaine arrêt."
                 },
                 {
-                  "id": "es-8f9f97eb",
-                  "term": "calle",
-                  "gloss": "rue",
-                  "example": "La calle principal tiene una parada de metro muy concurrida.",
-                  "exampleGloss": "La rue principale a une arrêt de métro très fréquenté."
+                  "id": "es-3938f936",
+                  "term": "concurrido",
+                  "gloss": "bondé",
+                  "example": "El metro está muy concurrido hoy.",
+                  "exampleGloss": "Le métro est très bondé aujourd'hui."
                 },
                 {
                   "id": "es-ec24f23b",
                   "term": "llegar",
                   "gloss": "arriver",
-                  "example": "Llegar al metro a tiempo es importante para no perder la conexión.",
-                  "exampleGloss": "Arriver au métro à temps est important pour ne pas perdre la connexion."
+                  "example": "Llegué a la estación tarde.",
+                  "exampleGloss": "J'ai arrive à la gare en retard."
                 },
                 {
-                  "id": "es-df912e80",
-                  "term": "conexión",
-                  "gloss": "connexion",
-                  "example": "La conexión entre la línea 1 y la línea 2 es muy eficiente.",
-                  "exampleGloss": "La connexion entre la ligne 1 et la ligne 2 est très efficace."
+                  "id": "es-3ce867c1",
+                  "term": "viajar",
+                  "gloss": "voyager",
+                  "example": "Viajo en metro todos los días.",
+                  "exampleGloss": "Je voyage en métro tous les jours."
                 },
                 {
-                  "id": "es-bed97175",
-                  "term": "plan",
-                  "gloss": "plan",
-                  "example": "Tengo un plan para llegar al metro sin perderme.",
-                  "exampleGloss": "J'ai un plan pour arriver au métro sans me perdre."
-                },
-                {
-                  "id": "es-e4cdec03",
-                  "term": "recorrido",
-                  "gloss": "itinéraire",
-                  "example": "El recorrido del metro es muy eficiente para desplazarse por la ciudad.",
-                  "exampleGloss": "L'itinéraire du métro est très efficace pour se déplacer dans la ville."
+                  "id": "es-851c2e6d",
+                  "term": "caminar",
+                  "gloss": "marcher",
+                  "example": "Caminaré hasta la estación.",
+                  "exampleGloss": "Je marcherai jusqu'à la gare."
                 }
               ]
             },
             {
               "type": "reading",
-              "title": "El metro como medio de transporte eficiente",
+              "title": "El metro en la ciudad",
               "sentences": [
                 {
-                  "t": "El metro es una forma eficiente de desplazarse por la ciudad.",
-                  "fr": "Le métro est une forme efficace de se déplacer dans la ville."
+                  "t": "El metro es una forma rápida de desplazarse en la ciudad.",
+                  "fr": "Le métro est une forme rapide de se déplacer en ville."
                 },
                 {
-                  "t": "Cada línea tiene varias paradas donde los usuarios pueden subir o bajar.",
-                  "fr": "Chaque ligne a plusieurs arrêts où les usagers peuvent monter ou descendre."
+                  "t": "En la estación, hay que esperar a que llegue el tren.",
+                  "fr": "À la gare, il faut attendre que le train arrive."
                 },
                 {
-                  "t": "Es importante llegar a tiempo para no perder la conexión.",
-                  "fr": "Il est important d'arriver à temps pour ne pas perdre la connexion."
+                  "t": "La parada del metro está muy concurrida por la mañana.",
+                  "fr": "L'arrêt du métro est très bondé le matin."
                 },
                 {
-                  "t": "El plan de recorrido del metro ayuda a conocer la ciudad mejor.",
-                  "fr": "Le plan d'itinéraire du métro aide à connaître la ville mieux."
+                  "t": "Subo al metro en la estación principal para llegar al trabajo.",
+                  "fr": "Je monte en métro à la gare principale pour arriver au travail."
                 },
                 {
-                  "t": "La calle principal tiene una parada muy concurrida por la mañana.",
-                  "fr": "La rue principale a une arrêt très fréquenté le matin."
+                  "t": "Siempre descendo en la siguiente estación para evitar la multitud.",
+                  "fr": "Je descends toujours à la prochaine gare pour éviter la foule."
                 },
                 {
-                  "t": "Subir al metro puede ser rápido si sabes la parada correcta.",
-                  "fr": "Monter dans le métro peut être rapide si tu connais la bonne arrêt."
+                  "t": "Viajar en metro es más cómodo que caminar por la ciudad.",
+                  "fr": "Voyager en métro est plus confortable que de marcher en ville."
                 },
                 {
-                  "t": "El metro conecta varias líneas para facilitar el desplazamiento.",
-                  "fr": "Le métro relie plusieurs lignes pour faciliter le déplacement."
+                  "t": "La mayoría de las personas toman el metro para ahorrar tiempo.",
+                  "fr": "La plupart des personnes prennent le métro pour économiser du temps."
                 },
                 {
-                  "t": "El recorrido del metro es más rápido que el bus en ciertas zonas.",
-                  "fr": "L'itinéraire du métro est plus rapide que le bus dans certaines zones."
-                },
-                {
-                  "t": "Tener un plan para llegar al metro evita perder tiempo.",
-                  "fr": "Avoir un plan pour arriver au métro évite de perdre du temps."
-                },
-                {
-                  "t": "El metro es una opción popular para los ciudadanos de la ciudad.",
-                  "fr": "Le métro est une option populaire pour les citoyens de la ville."
+                  "t": "Es importante conocer las rutas del metro para llegar al destino.",
+                  "fr": "Il est important de connaître les itinéraires du métro pour arriver à destination."
                 }
               ],
               "questions": [
                 {
-                  "q": "¿Cuál es una forma eficiente de desplazarse por la ciudad?",
+                  "q": "¿Cómo se desplaza rápido en la ciudad?",
                   "choices": [
-                    "El avión",
-                    "El metro",
-                    "El tren",
-                    "El bus"
+                    "En metro",
+                    "En avión",
+                    "En bicicleta",
+                    "A pie"
                   ],
-                  "answer": 1,
-                  "explain": "El metro se menciona como una forma eficiente de desplazarse por la ciudad."
+                  "answer": 0,
+                  "explain": "El texto menciona que el metro es una forma rápida de desplazarse."
                 },
                 {
-                  "q": "¿Qué es importante para no perder la conexión?",
+                  "q": "¿Qué hay que hacer antes de subir al metro?",
                   "choices": [
-                    "Bajar del metro",
-                    "Llegar a tiempo",
-                    "Subir al metro",
-                    "Llegar con prisa"
-                  ],
-                  "answer": 1,
-                  "explain": "El texto dice que es importante llegar a tiempo para no perder la conexión."
-                },
-                {
-                  "q": "¿Dónde hay una parada muy concurrida por la mañana?",
-                  "choices": [
-                    "En la estación de tren",
-                    "En el parque",
-                    "En la plaza",
-                    "En la calle principal"
+                    "Llegar a la estación",
+                    "Caminar mucho",
+                    "Ir al centro",
+                    "Esperar al tren"
                   ],
                   "answer": 3,
-                  "explain": "El texto menciona que la calle principal tiene una parada muy concurrida por la mañana."
+                  "explain": "El texto indica que hay que esperar a que llegue el tren antes de subir."
                 },
                 {
-                  "q": "¿Qué ayuda a conocer mejor la ciudad?",
+                  "q": "¿Por qué la parada del metro está muy concurrida?",
                   "choices": [
-                    "El plan de la ciudad",
-                    "El plan de recorrido del metro",
-                    "El mapa del tren",
-                    "El mapa del bus"
+                    "Porque es la mañana",
+                    "Porque hay un concierto",
+                    "Porque hay pocos usuarios",
+                    "Porque es la hora de la comida"
                   ],
-                  "answer": 1,
-                  "explain": "El texto dice que el plan de recorrido del metro ayuda a conocer mejor la ciudad."
+                  "answer": 0,
+                  "explain": "El texto menciona que la parada está muy concurrida por la mañana."
                 },
                 {
-                  "q": "¿Qué es más rápido que el bus en ciertas zonas?",
+                  "q": "¿Qué hace el autor para evitar la multitud?",
                   "choices": [
-                    "El tren",
-                    "El metro",
-                    "El avión",
-                    "El carrito"
+                    "Va en bicicleta",
+                    "Desciende en la siguiente estación",
+                    "Caminar mucho",
+                    "Llega tarde"
                   ],
                   "answer": 1,
-                  "explain": "El texto menciona que el recorrido del metro es más rápido que el bus en ciertas zonas."
+                  "explain": "El texto dice que siempre descende en la siguiente estación para evitar la multitud."
+                },
+                {
+                  "q": "¿Por qué viajar en metro es más cómodo?",
+                  "choices": [
+                    "Porque es barato",
+                    "Porque es más cómodo",
+                    "Porque es rápido",
+                    "Porque hay menos personas"
+                  ],
+                  "answer": 1,
+                  "explain": "El texto afirma que viajar en metro es más cómodo que caminar."
                 }
               ]
             },
             {
               "type": "production",
               "kind": "written",
-              "prompt": "Escribe dos o tres frases en español sobre cómo usar el metro eficientemente en la ciudad."
+              "prompt": "Écris 2 à 3 phrases en espagnol sur l'importance du métro dans la ville."
             }
           ],
           "reviewed": false,
@@ -3319,61 +1632,31 @@
             "by": "qwen3:8b",
             "issues": [
               {
-                "where": "vocab[3].exampleGloss",
-                "problem": "L'arrêt de métro est utilisé à la place de 'une arrêt de métro' qui est incorrect. Le pluriel de 'arrêt' est 'arrêts'.",
-                "fix": "L'arrêt de métro est très fréquenté."
-              },
-              {
-                "where": "vocab[4].exampleGloss",
-                "problem": "La phrase contient une erreur de conjugaison : 'a une arrêt' devrait être 'a une arrêt' (forme incorrecte du pluriel).",
-                "fix": "La rue principale a une arrêt très fréquenté."
-              },
-              {
-                "where": "vocab[5].exampleGloss",
-                "problem": "L'expression 'ne pas perdre la connexion' est correcte, mais la traduction 'ne pas perdre la connexion' est inexacte. La traduction correcte est 'ne pas perdre la connexion'.",
-                "fix": "Arriver au métro à temps est important pour ne pas perdre la connexion."
-              },
-              {
-                "where": "vocab[6].exampleGloss",
-                "problem": "L'expression 'la connexion entre la ligne 1 et la ligne 2 est très efficace' est correcte, mais la traduction 'la connexion entre la ligne 1 et la ligne 2 est très efficace' est inexacte. La traduction correcte est 'la connexion entre la ligne 1 et la ligne 2 est très efficace'.",
-                "fix": "La connexion entre la ligne 1 et la ligne 2 est très efficace."
-              },
-              {
-                "where": "vocab[7].exampleGloss",
-                "problem": "L'expression 'j'ai un plan pour arriver au métro sans me perdre' est correcte, mais la traduction 'j'ai un plan pour arriver au métro sans me perdre' est inexacte. La traduction correcte est 'j'ai un plan pour arriver au métro sans me perdre'.",
-                "fix": "J'ai un plan pour arriver au métro sans me perdre."
-              },
-              {
-                "where": "vocab[8].exampleGloss",
-                "problem": "L'expression 'l'itinéraire du métro est très efficace pour se déplacer dans la ville' est correcte, mais la traduction 'l'itinéraire du métro est très efficace pour se déplacer dans la ville' est inexacte. La traduction correcte est 'l'itinéraire du métro est très efficace pour se déplacer dans la ville'.",
-                "fix": "L'itinéraire du métro est très efficace pour se déplacer dans la ville."
+                "where": "readings[0].sentences[3].fr",
+                "problem": "L'arrêt du métro est très bondé le matin.",
+                "fix": "L'arrêt du métro est très concurrida le matin."
               },
               {
                 "where": "readings[0].sentences[5].fr",
-                "problem": "La phrase 'La rue principale a une arrêt très fréquenté le matin' contient une erreur de conjugaison : 'a une arrêt' devrait être 'a une arrêt' (forme incorrecte du pluriel).",
-                "fix": "La rue principale a une arrêt très fréquenté le matin."
+                "problem": "Je descends toujours à la prochaine gare pour éviter la foule.",
+                "fix": "Je descends toujours à la prochaine station pour éviter la foule."
               },
               {
                 "where": "readings[0].sentences[6].fr",
-                "problem": "La phrase 'Monter dans le métro peut être rapide si tu connais la bonne arrêt' contient une erreur de conjugaison : 'la bonne arrêt' devrait être 'la bonne arrêt' (forme incorrecte du pluriel).",
-                "fix": "Monter dans le métro peut être rapide si tu connais la bonne arrêt."
+                "problem": "La plupart des personnes prennent le métro pour économiser du temps.",
+                "fix": "La plupart des personnes prennent le métro pour gagner du temps."
               },
               {
-                "where": "readings[0].questions[3].choices[0]",
-                "problem": "L'option 'El plan de la ciudad' est incorrecte. La réponse correcte est 'El plan de recorrido del metro'.",
-                "fix": "El plan de recorrido del metro"
-              },
-              {
-                "where": "readings[0].questions[4].choices[1]",
-                "problem": "L'option 'El metro' est incorrecte. La réponse correcte est 'El recorrido del metro'.",
-                "fix": "El recorrido del metro"
+                "where": "readings[0].questions[2].choices[3]",
+                "problem": "Porque es la hora de la comida",
+                "fix": "Porque es la hora del almuerzo"
               }
             ],
-            "filtered": 1
+            "filtered": 2
           }
         }
       }
     }
   ],
-  "generatedAt": "2026-10-03T08:33:49.148Z"
+  "generatedAt": "2026-10-04T10:49:00.793Z"
 }

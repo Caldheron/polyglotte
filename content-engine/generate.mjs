@@ -132,7 +132,10 @@ function filtrerReview(issues, vue) {
 
 // ---------- validation (la forme est garantie par le schéma ; on vérifie le fond) ----------
 const HAN = /\p{Script=Han}/u;
-function valider(d, recette, lang, souple = false, sansVocab = false) {
+const bigrammes = (t) => { const c = [...t].filter((x) => HAN.test(x)); return new Set(c.slice(0, -1).map((x, i) => x + c[i + 1])); };
+const similarite = (a, b) => { const A = bigrammes(a), B = bigrammes(b); if (!A.size || !B.size) return 0; let n = 0; for (const x of A) if (B.has(x)) n++; return n / Math.min(A.size, B.size); };
+const partHan = (t) => { const c = [...String(t ?? '')].filter((x) => !/\s/.test(x)); return c.length ? c.filter((x) => HAN.test(x)).length / c.length : 0; };
+function valider(d, recette, lang, souple = false, sansVocab = false, avant = []) {
   const e = [], av = [], zh = lang === 'zh', rd = d.reading, [mn, mx] = recette.reading.longueur;
   const v = d.vocab;
   if (sansVocab) { /* passage suivant : pas de vocabulaire */ } else if (!Array.isArray(v) || Math.abs(v.length - recette.vocab) > 2) e.push(`vocab : ${recette.vocab} éléments attendus, reçu ${v?.length ?? 0}`);
@@ -140,6 +143,8 @@ function valider(d, recette, lang, souple = false, sansVocab = false) {
     if (![x.term, x.gloss, x.example, x.exampleGloss].every((s) => s?.trim())) e.push(`vocab[${i}] incomplet`);
     if (zh && !HAN.test(x.term ?? '')) e.push(`vocab[${i}] : le terme doit être en caractères chinois`);
     if (zh && !x.pinyin?.trim()) e.push(`vocab[${i}] : pinyin manquant`);
+    if (zh && /\d/.test(x.pinyin ?? '')) e.push(`vocab[${i}] : chiffre dans le pinyin (écrire les tons en diacritiques)`);
+    if (zh && partHan(x.gloss) > 0.3) e.push(`vocab[${i}] : la traduction doit être en français`);
     if (!zh && HAN.test(x.term ?? '')) e.push(`vocab[${i}] : le terme doit être en ${lang}`);
   });
   if (!rd?.sentences?.length) return { erreurs: [...e, 'reading : aucune phrase'], avert: av };
@@ -149,6 +154,17 @@ function valider(d, recette, lang, souple = false, sansVocab = false) {
     if (!zh && HAN.test(s.t ?? '')) e.push(`phrase ${i} : caractères chinois inattendus`);
   });
   const texte = rd.sentences.map((s) => s.t).join(zh ? '' : ' ');
+  if (zh) { // garde-fous sur les défauts observés le 02/10 : chiffres dans le pinyin, français manquant, passages quasi identiques
+    rd.sentences.forEach((s, i) => {
+      if (/\d/.test(s.py ?? '')) e.push(`phrase ${i} : chiffre dans le pinyin (écrire les nombres en lettres pinyin)`);
+      if (HAN.test(s.py ?? '')) e.push(`phrase ${i} : le pinyin ne doit contenir aucun caractère chinois`);
+      if (partHan(s.fr) > 0.3) e.push(`phrase ${i} : la traduction doit être en français`);
+    });
+    (rd.questions ?? []).forEach((q, i) => { if (partHan(q.q) > 0.3 || partHan(q.explain) > 0.3) e.push(`question ${i} : question et explication doivent être en français`); });
+    avant.forEach((p, k) => {
+      if (similarite(texte, p.sentences.map((x) => x.t).join('')) > 0.5) e.push(`reading trop semblable au passage ${k + 1} : change de situation, de personnages et de phrases`);
+    });
+  }
   const taille = zh ? [...texte].filter((c) => HAN.test(c)).length : texte.split(/\s+/).filter(Boolean).length;
   if (taille < mn * 0.7 || taille > mx * 1.3)
     (souple ? av : e).push(`reading trop ${taille < mn ? 'court' : 'long'} : ${taille} ${zh ? 'caractères' : 'mots'} (${rd.sentences.length} phrases), ${mn} à ${mx} attendus`);
@@ -225,7 +241,7 @@ async function genererTier({ cfg, lang, recette, tier, dejaVus, review, theme })
     const p = await avecReessais(cfg,
       promptPassage({ cfg, lang, recette, tier, theme, n, total, termes: data.vocab.map((x) => x.term), titres: data.readings.map((r) => r.title) }),
       obj({ reading: schemaPour(recette, lang).properties.reading }),
-      (d) => valider(d, recette, lang, souple, true));
+      (d) => valider(d, recette, lang, souple, true, data.readings));
     data.readings.push(p.data.reading);
     avert.push(...p.avert);
   }

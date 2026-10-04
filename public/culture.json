@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "genere": "2026-10-04T10:50:08.101Z",
+  "source": "Wikipédia",
+  "sujets": [
+    {
+      "id": "es-flamenco",
+      "langue": "es",
+      "theme": "Musique",
+      "titre": "Flamenco",
+      "fr": "https://fr.wikipedia.org/wiki/Flamenco",
+      "cible": "https://es.wikipedia.org/wiki/Flamenco",
+      "titreCible": "Flamenco"
+    },
+    {
+      "id": "es-gaudi",
+      "langue": "es",
+      "theme": "Arts",
+      "titre": "Antoni Gaudí",
+      "fr": "https://fr.wikipedia.org/wiki/Antoni_Gaud%C3%AD",
+      "cible": "https://es.wikipedia.org/wiki/Antoni_Gaud%C3%AD",
+      "titreCible": "Antoni Gaudí"
+    },
+    {
+      "id": "es-sagrada",
+      "langue": "es",
+      "theme": "Lieux",
+      "titre": "Sagrada Família",
+      "fr": "https://fr.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia",
+      "cible": "https://es.wikipedia.org/wiki/Templo_Expiatorio_de_la_Sagrada_Familia",
+      "titreCible": "Templo Expiatorio de la Sagrada Familia"
+    },
+    {
+      "id": "es-alhambra",
+      "langue": "es",
+      "theme": "Lieux",
+      "titre": "Alhambra",
+      "fr": "https://fr.wikipedia.org/wiki/Alhambra",
+      "cible": "https://es.wikipedia.org/wiki/Alhambra_(desambiguaci%C3%B3n)",
+      "titreCible": "Alhambra (desambiguación)"
+    },
+    {
+      "id": "es-paella",
+      "langue": "es",
+      "theme": "Cuisine",
+      "titre": "Paella",
+      "fr": "https://fr.wikipedia.org/wiki/Paella",
+      "cible": "https://es.wikipedia.org/wiki/Paella",
+      "titreCible": "Paella"
+    },
+    {
+      "id": "es-tapas",
+      "langue": "es",
+      "theme": "Cuisine",
+      "titre": "Tapas",
+      "fr": "https://fr.wikipedia.org/wiki/Tapas",
+      "cible": "https://es.wikipedia.org/wiki/Tapas",
+      "titreCible": "Tapas"
+    },
+    {
+      "id": "es-gazpacho",
+      "langue": "es",
+      "theme": "Cuisine",
+      "titre": "Gazpacho",
+      "fr": "https://fr.wikipedia.org/wiki/Gazpacho",
+      "cible": "https://es.wikipedia.org/wiki/Gazpacho_(desambiguaci%C3%B3n)",
+      "titreCible": "Gazpacho (desambiguación)"
+    },
+    {
+      "id": "es-almodovar",
+      "langue": "es",
+      "theme": "Cinéma",
+      "titre": "Pedro Almodóvar",
+      "fr": "https://fr.wikipedia.org/wiki/Pedro_Almod%C3%B3var",
+      "cible": "https://es.wikipedia.org/wiki/Pedro_Almod%C3%B3var",
+      "titreCible": "Pedro Almodóvar"
+    },
+    {
+      "id": "es-quichotte",
+      "langue": "es",
+      "theme": "Littérature",
+      "titre": "Don Quichotte",
+      "fr": "https://fr.wikipedia.org/wiki/Don_Quichotte",
+      "cible": "https://es.wikipedia.org/wiki/Don_Quijote_de_la_Mancha",
+      "titreCible": "Don Quijote de la Mancha"
+    },
+    {
+      "id": "es-dali",
+      "langue": "es",
+      "theme": "Arts",
+      "titre": "Salvador Dalí",
+      "fr": "https://fr.wikipedia.org/wiki/Salvador_Dal%C3%AD",
+      "cible": "https://es.wikipedia.org/wiki/Salvador_Dal%C3%AD",
+      "titreCible": "Salvador Dalí"
+    },
+    {
+      "id": "es-picasso",
+      "langue": "es",
+      "theme": "Arts",
+      "titre": "Pablo Picasso",
+      "fr": "https://fr.wikipedia.org/wiki/Pablo_Picasso",
+      "cible": "https://es.wikipedia.org/wiki/Pablo_Picasso",
+      "titreCible": "Pablo Picasso"
+    },
+    {
+      "id": "es-kahlo",
+      "langue": "es",
+      "theme": "Arts",
+      "titre": "Frida Kahlo",
+      "fr": "https://fr.wikipedia.org/wiki/Frida_Kahlo",
+      "cible": "https://es.wikipedia.org/wiki/Frida_Kahlo",
+      "titreCible": "Frida Kahlo"
+    },
+    {
+      "id": "es-machu",
+      "langue": "es",
+      "theme": "Lieux",
+      "titre": "Machu Picchu",
+      "fr": "https://fr.wikipedia.org/wiki/Machu_Picchu",
+      "cible": "https://es.wikipedia.org/wiki/Machu_Picchu",
+      "titreCible": "Machu Picchu"
+    },
+    {
+      "id": "es-tango",
+      "langue": "es",
+      "theme": "Musique",
+      "titre": "Tango",
+      "fr": "https://fr.wikipedia.org/wiki/Tango",
+      "cible": "https://es.wikipedia.org/wiki/Tango_(desambiguaci%C3%B3n)",
+      "titreCible": "Tango (desambiguación)"
+    },
+    {
+      "id": "zh-muraille",
+      "langue": "zh",
+      "theme": "Lieux",
+      "titre": "Grande Muraille",
+      "fr": "https://fr.wikipedia.org/wiki/Grande_Muraille",
+      "cible": "https://zh.wikipedia.org/wiki/%E9%95%BF%E5%9F%8E",
+      "titreCible": "长城"
+    },
+    {
+      "id": "zh-cite",
+      "langue": "zh",
+      "theme": "Lieux",
+      "titre": "Cité interdite",
+      "fr": "https://fr.wikipedia.org/wiki/Cit%C3%A9_interdite",
+      "cible": "https://zh.wikipedia.org/wiki/%E6%95%85%E5%AE%AB",
+      "titreCible": "故宫"
+    },
+    {
+      "id": "zh-nouvelan",
+      "langue": "zh",
+      "theme": "Culture",
+      "titre": "Nouvel An chinois",
+      "fr": "https://fr.wikipedia.org/wiki/Nouvel_An_chinois",
+      "cible": "https://zh.wikipedia.org/wiki/%E6%98%A5%E7%AF%80",
+      "titreCible": "春節"
+    },
+    {
+      "id": "zh-lanternes",
+      "langue": "zh",
+      "theme": "Culture",
+      "titre": "Fête des lanternes",
+      "fr": "https://fr.wikipedia.org/wiki/F%C3%AAte_des_lanternes",
+      "cible": "https://zh.wikipedia.org/wiki/%E5%85%83%E5%AE%B5%E8%8A%82",
+      "titreCible": "元宵节"
+    },
+    {
+      "id": "zh-opera",
+      "langue": "zh",
+      "theme": "Arts",
+      "titre": "Opéra de Pékin",
+      "fr": "https://fr.wikipedia.org/wiki/Op%C3%A9ra_de_P%C3%A9kin",
+      "cible": "https://zh.wikipedia.org/wiki/%E4%BA%AC%E5%89%A7",
+      "titreCible": "京剧"
+    },
+    {
+      "id": "zh-calli",
+      "langue": "zh",
+      "theme": "Arts",
+      "titre": "Calligraphie extrême-orientale",
+      "fr": "https://fr.wikipedia.org/wiki/Calligraphie_extr%C3%AAme-orientale",
+      "cible": "https://zh.wikipedia.org/wiki/%E6%9D%B1%E4%BA%9E%E6%9B%B8%E6%B3%95",
+      "titreCible": "東亞書法"
+    },
+    {
+      "id": "zh-the",
+      "langue": "zh",
+      "theme": "Cuisine",
+      "titre": "Thé",
+      "fr": "https://fr.wikipedia.org/wiki/Th%C3%A9",
+      "cible": "https://zh.wikipedia.org/wiki/%E8%8C%B6",
+      "titreCible": "茶"
+    },
+    {
+      "id": "zh-dimsum",
+      "langue": "zh",
+      "theme": "Cuisine",
+      "titre": "Dimsum",
+      "fr": "https://fr.wikipedia.org/wiki/Dimsum",
+      "cible": "https://zh.wikipedia.org/wiki/%E5%BB%A3%E5%BC%8F%E9%BB%9E%E5%BF%83",
+      "titreCible": "廣式點心"
+    },
+    {
+      "id": "zh-pekin",
+      "langue": "zh",
+      "theme": "Lieux",
+      "titre": "Pékin",
+      "fr": "https://fr.wikipedia.org/wiki/P%C3%A9kin",
+      "cible": "https://zh.wikipedia.org/wiki/%E5%8C%97%E4%BA%AC%E5%B8%82",
+      "titreCible": "北京市"
+    },
+    {
+      "id": "zh-shanghai",
+      "langue": "zh",
+      "theme": "Lieux",
+      "titre": "Shanghai",
+      "fr": "https://fr.wikipedia.org/wiki/Shanghai",
+      "cible": "https://zh.wikipedia.org/wiki/%E4%B8%8A%E6%B5%B7%E5%B8%82",
+      "titreCible": "上海市"
+    },
+    {
+      "id": "zh-confucius",
+      "langue": "zh",
+      "theme": "Histoire",
+      "titre": "Confucius",
+      "fr": "https://fr.wikipedia.org/wiki/Confucius",
+      "cible": "https://zh.wikipedia.org/wiki/%E5%AD%94%E5%AD%90",
+      "titreCible": "孔子"
+    },
+    {
+      "id": "zh-terrecuite",
+      "langue": "zh",
+      "theme": "Histoire",
+      "titre": "Armée de terre cuite",
+      "fr": "https://fr.wikipedia.org/wiki/Arm%C3%A9e_de_terre_cuite",
+      "cible": "https://zh.wikipedia.org/wiki/%E7%A7%A6%E5%A7%8B%E7%9A%87%E5%85%B5%E9%A9%AC%E4%BF%91",
+      "titreCible": "秦始皇兵马俑"
+    },
+    {
+      "id": "zh-panda",
+      "langue": "zh",
+      "theme": "Nature",
+      "titre": "Panda géant",
+      "fr": "https://fr.wikipedia.org/wiki/Panda_g%C3%A9ant",
+      "cible": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E7%86%8A%E7%8C%AB",
+      "titreCible": "大熊猫"
+    },
+    {
+      "id": "ja-ghibli",
+      "langue": "ja",
+      "theme": "Cinéma",
+      "titre": "Studio Ghibli",
+      "fr": "https://fr.wikipedia.org/wiki/Studio_Ghibli",
+      "cible": "https://ja.wikipedia.org/wiki/%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA%E3%82%B8%E3%83%96%E3%83%AA",
+      "titreCible": "スタジオジブリ"
+    },
+    {
+      "id": "ja-miyazaki",
+      "langue": "ja",
+      "theme": "Cinéma",
+      "titre": "Hayao Miyazaki",
+      "fr": "https://fr.wikipedia.org/wiki/Hayao_Miyazaki",
+      "cible": "https://ja.wikipedia.org/wiki/%E5%AE%AE%E5%B4%8E%E9%A7%BF",
+      "titreCible": "宮崎駿"
+    },
+    {
+      "id": "ja-totoro",
+      "langue": "ja",
+      "theme": "Cinéma",
+      "titre": "Mon voisin Totoro",
+      "fr": "https://fr.wikipedia.org/wiki/Mon_voisin_Totoro",
+      "cible": "https://ja.wikipedia.org/wiki/%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%AE%E3%83%88%E3%83%88%E3%83%AD",
+      "titreCible": "となりのトトロ"
+    },
+    {
+      "id": "ja-chihiro",
+      "langue": "ja",
+      "theme": "Cinéma",
+      "titre": "Le Voyage de Chihiro",
+      "fr": "https://fr.wikipedia.org/wiki/Le_Voyage_de_Chihiro",
+      "cible": "https://ja.wikipedia.org/wiki/%E5%8D%83%E3%81%A8%E5%8D%83%E5%B0%8B%E3%81%AE%E7%A5%9E%E9%9A%A0%E3%81%97",
+      "titreCible": "千と千尋の神隠し"
+    },
+    {
+      "id": "ja-kurosawa",
+      "langue": "ja",
+      "theme": "Cinéma",
+      "titre": "Akira Kurosawa",
+      "fr": "https://fr.wikipedia.org/wiki/Akira_Kurosawa",
+      "cible": "https://ja.wikipedia.org/wiki/%E9%BB%92%E6%BE%A4%E6%98%8E",
+      "titreCible": "黒澤明"
+    },
+    {
+      "id": "ja-anime",
+      "langue": "ja",
+      "theme": "Anime",
+      "titre": "Anime",
+      "fr": "https://fr.wikipedia.org/wiki/Anime",
+      "cible": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%8B%E3%83%A1_(%E6%97%A5%E6%9C%AC%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BD%9C%E5%93%81)",
+      "titreCible": "アニメ (日本のアニメーション作品)"
+    },
+    {
+      "id": "ja-manga",
+      "langue": "ja",
+      "theme": "Anime",
+      "titre": "Manga",
+      "fr": "https://fr.wikipedia.org/wiki/Manga",
+      "cible": "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E6%BC%AB%E7%94%BB",
+      "titreCible": "日本の漫画"
+    },
+    {
+      "id": "ja-tezuka",
+      "langue": "ja",
+      "theme": "Anime",
+      "titre": "Osamu Tezuka",
+      "fr": "https://fr.wikipedia.org/wiki/Osamu_Tezuka",
+      "cible": "https://ja.wikipedia.org/wiki/%E6%89%8B%E5%A1%9A%E6%B2%BB%E8%99%AB",
+      "titreCible": "手塚治虫"
+    },
+    {
+      "id": "ja-jpop",
+      "langue": "ja",
+      "theme": "Musique",
+      "titre": "J-pop",
+      "fr": "https://fr.wikipedia.org/wiki/J-pop",
+      "cible": "https://ja.wikipedia.org/wiki/J-POP",
+      "titreCible": "J-POP"
+    },
+    {
+      "id": "ja-utada",
+      "langue": "ja",
+      "theme": "Musique",
+      "titre": "Hikaru Utada",
+      "fr": "https://fr.wikipedia.org/wiki/Hikaru_Utada",
+      "cible": "https://ja.wikipedia.org/wiki/%E5%AE%87%E5%A4%9A%E7%94%B0%E3%83%92%E3%82%AB%E3%83%AB",
+      "titreCible": "宇多田ヒカル"
+    },
+    {
+      "id": "ja-kyoto",
+      "langue": "ja",
+      "theme": "Lieux",
+      "titre": "Kyoto",
+      "fr": "https://fr.wikipedia.org/wiki/Kyoto",
+      "cible": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%B8%82",
+      "titreCible": "京都市"
+    },
+    {
+      "id": "ja-tokyo",
+      "langue": "ja",
+      "theme": "Lieux",
+      "titre": "Tokyo",
+      "fr": "https://fr.wikipedia.org/wiki/Tokyo",
+      "cible": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E4%BA%AC%E9%83%BD",
+      "titreCible": "東京都"
+    },
+    {
+      "id": "ja-fuji",
+      "langue": "ja",
+      "theme": "Lieux",
+      "titre": "Mont Fuji",
+      "fr": "https://fr.wikipedia.org/wiki/Mont_Fuji",
+      "cible": "https://ja.wikipedia.org/wiki/%E5%AF%8C%E5%A3%AB%E5%B1%B1",
+      "titreCible": "富士山"
+    },
+    {
+      "id": "ja-sushi",
+      "langue": "ja",
+      "theme": "Cuisine",
+      "titre": "Sushi",
+      "fr": "https://fr.wikipedia.org/wiki/Sushi",
+      "cible": "https://ja.wikipedia.org/wiki/%E5%AF%BF%E5%8F%B8",
+      "titreCible": "寿司"
+    },
+    {
+      "id": "ja-kimono",
+      "langue": "ja",
+      "theme": "Culture",
+      "titre": "Kimono",
+      "fr": "https://fr.wikipedia.org/wiki/Kimono",
+      "cible": "https://ja.wikipedia.org/wiki/%E5%92%8C%E6%9C%8D",
+      "titreCible": "和服"
+    },
+    {
+      "id": "ja-hanami",
+      "langue": "ja",
+      "theme": "Culture",
+      "titre": "Hanami",
+      "fr": "https://fr.wikipedia.org/wiki/Hanami",
+      "cible": "https://ja.wikipedia.org/wiki/%E8%8A%B1%E8%A6%8B",
+      "titreCible": "花見"
+    },
+    {
+      "id": "ja-shinkansen",
+      "langue": "ja",
+      "theme": "Lieux",
+      "titre": "Shinkansen",
+      "fr": "https://fr.wikipedia.org/wiki/Shinkansen",
+      "cible": "https://ja.wikipedia.org/wiki/%E6%96%B0%E5%B9%B9%E7%B7%9A",
+      "titreCible": "新幹線"
+    }
+  ]
+}

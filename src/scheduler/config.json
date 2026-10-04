@@ -8,12 +8,12 @@
   "semaine": {
     "lundi":    [{ "slot": "Trajet", "lang": "es", "minutes": 20, "type": "Renfort vocabulaire" }],
     "mardi":    [{ "slot": "Aller", "lang": "es", "minutes": 30, "type": "Vocabulaire + lecture" },
-                 { "slot": "Retour", "lang": "zh", "minutes": 30, "type": "Lecture" }],
+                 { "slot": "Retour", "lang": "zh", "minutes": 30, "type": "Cartes de vocabulaire" }],
     "mercredi": [{ "slot": "Trajet", "lang": "es", "minutes": 20, "type": "Renfort vocabulaire" }],
     "jeudi":    [{ "slot": "Aller", "lang": "es", "minutes": 30, "type": "Vocabulaire + lecture" },
-                 { "slot": "Retour", "lang": "zh", "minutes": 30, "type": "Lecture" }],
+                 { "slot": "Retour", "lang": "zh", "minutes": 30, "type": "Cartes de vocabulaire" }],
     "vendredi": [{ "slot": "Aller", "lang": "es", "minutes": 30, "type": "Vocabulaire + lecture" },
-                 { "slot": "Retour", "lang": "zh", "minutes": 30, "type": "Lecture" }],
+                 { "slot": "Retour", "lang": "zh", "minutes": 30, "type": "Cartes de vocabulaire" }],
     "samedi":   [{ "slot": "Libre", "lang": "ja", "minutes": 15, "type": "Immersion" }],
     "dimanche": [{ "slot": "Libre", "lang": "ja", "minutes": 15, "type": "Immersion" }]
   }

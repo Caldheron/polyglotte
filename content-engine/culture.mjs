@@ -10,11 +10,20 @@ import path from 'node:path';
 const ICI = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const api = args.includes('--api') ? args[args.indexOf('--api') + 1] : 'https://fr.wikipedia.org/w/api.php';
+const UA = 'Polyglotte-PWA/1.0 (https://github.com/Caldheron/polyglotte; apprentissage personnel)';
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
 const url = (lang, t) => `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(t.replace(/ /g, '_'))}`;
 
 async function resoudre(s) {
   const q = `${api}?action=query&format=json&formatversion=2&redirects=1&prop=langlinks&lllimit=50&lllang=${s.langue}&titles=${encodeURIComponent(s.fr)}`;
-  const r = await fetch(q, { headers: { 'User-Agent': 'Polyglotte-PWA/1.0 (apprentissage personnel)' }, signal: AbortSignal.timeout(20000) });
+  let r;
+  for (let n = 1; n <= 4; n++) { // sur un 429, on attend le délai demandé par Wikipédia puis on réessaie
+    r = await fetch(q, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(20000) });
+    if (r.status !== 429 || n === 4) break;
+    const attente = (Number(r.headers.get('retry-after')) || 10) * 1000;
+    console.log(`  429 : attente de ${attente / 1000} s (essai ${n}/3)…`);
+    await pause(attente);
+  }
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   const page = (await r.json()).query?.pages?.[0];
   if (!page || page.missing) return { erreur: 'article français introuvable' };
@@ -33,7 +42,7 @@ for (const s of sujets) {
     console.error(`Wikipédia injoignable ou refus (${e.message}). Connexion Internet active ?`);
     process.exit(1);
   }
-  await new Promise((r) => setTimeout(r, 250)); // on ménage le serveur
+  await pause(1000); // on ménage le serveur
 }
 const sortie = path.join(ICI, '..', 'public', 'culture.json');
 await mkdir(path.dirname(sortie), { recursive: true });

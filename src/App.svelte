@@ -11,6 +11,7 @@
   import Cartes from './Cartes.svelte';
   import Lecture from './Lecture.svelte';
   import Sauvegarde from './Sauvegarde.svelte';
+  import Credits from './Credits.svelte';
   import { evaluerSiJoignable } from './lib/eval.js';
 
   const aujourdhui = jourDe();
@@ -35,17 +36,27 @@
       document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && r.update());
     }
   });
-  const KANJI_PAR_SESSION = 5;
-  let lot = $state(undefined), actif = $state(null), kanji = $state(undefined);
+  // Langues « cartes seules » : mots issus d'un dictionnaire, sans lot Qwen. Japonais : kanji N5 ; chinois : mots HSK 3.0 (CFDICT).
+  // nouveaux = nouvelles cartes par session ; revisions = maximum de cartes à revoir par session.
+  const CARTES = {
+    ja: { fichier: './kanji-n5.json', cle: 'kanji', nouveaux: 5, revisions: 10, session: 'ja-kanji' },
+    zh: { fichier: './zh-vocab.json', cle: 'mots', nouveaux: 10, revisions: 20, session: 'zh-mots' }
+  };
+  let lot = $state(undefined), actif = $state(null), listes = $state.raw({});
   onMount(async () => {
     lot = await chargerLot(); evaluerSiJoignable();
-    try { const r = await fetch('./kanji-n5.json'); kanji = r.ok ? await r.json() : null; } catch { kanji = null; }
+    for (const [l, c] of Object.entries(CARTES)) {
+      let liste = null;
+      try { const r = await fetch(c.fichier); if (r.ok) liste = (await r.json())[c.cle] ?? null; } catch { /* fichier absent : pas de bouton */ }
+      listes = { ...listes, [l]: liste };
+    }
   });
-  async function lancerKanji() { // japonais : cartes de kanji N5, issues du dictionnaire (pas de lot Qwen)
-    const connus = new Map((await all('cards')).filter((c) => c.lang === 'ja').map((c) => [c.id, c]));
-    const nouveaux = kanji.kanji.filter((k) => !connus.get(k.id)?.seen).slice(0, KANJI_PAR_SESSION);
-    await ensureCards('ja', nouveaux);
-    actif = { revision: { lang: 'ja', cartes: await dueCards('ja', nouveaux.map((k) => k.id)), enregistrer: `ja-kanji-${new Date().toISOString().slice(0, 10)}` } };
+  async function lancerCartes(lang) {
+    const c = CARTES[lang];
+    const connus = new Map((await all('cards')).filter((x) => x.lang === lang).map((x) => [x.id, x]));
+    const nouveaux = listes[lang].filter((k) => !connus.get(k.id)?.seen).slice(0, c.nouveaux);
+    await ensureCards(lang, nouveaux);
+    actif = { revision: { lang, cartes: await dueCards(lang, nouveaux.map((k) => k.id), c.revisions), enregistrer: `${c.session}-${new Date().toISOString().slice(0, 10)}` } };
   }
   async function lancer(s) {
     const session = sessionDuJour(lot, jour, s);
@@ -85,7 +96,7 @@
             <div class="txt">
               <strong>{s.langue.nom}</strong>
               <span>{s.slot} · {s.type}</span>
-              {#if s.lang === 'ja' ? kanji : lot && sessionDuJour(lot, jour, s)}<button class="go" onclick={() => (s.lang === 'ja' ? lancerKanji() : lancer(s))}>Commencer ▸</button>{/if}
+              {#if CARTES[s.lang] ? listes[s.lang] : lot && sessionDuJour(lot, jour, s)}<button class="go" onclick={() => (CARTES[s.lang] ? lancerCartes(s.lang) : lancer(s))}>Commencer ▸</button>{/if}
             </div>
             <span class="min">{s.minutes}<small>min</small></span>
           </div>
@@ -101,9 +112,10 @@
       {/each}
     </nav>
     <p class="hebdo">Semaine : {totalSemaine()} min</p>
+    <p class="hebdo">Données : CFDICT (chine.in), KANJIDIC2, HSK 3.0, Wikipédia. <button class="lien" onclick={() => (onglet = 'synchro')}>Crédits et licences</button></p>
   {:else if onglet === 'prod' || onglet === 'synchro'}
     <Evaluation mode={onglet} />
-    {#if onglet === 'synchro'}<Sauvegarde />{/if}
+    {#if onglet === 'synchro'}<Sauvegarde /><Credits />{/if}
   {:else if onglet === 'progres'}
     <Progres />
   {:else if onglet === 'cartes'}
@@ -162,5 +174,6 @@
   .tabs { position:fixed; bottom:0; left:0; right:0; display:flex; background:var(--tabs); padding-bottom:env(safe-area-inset-bottom); }
   .tabs button { flex:1; border:0; background:none; padding:.85rem .1rem; font:.7rem "Helvetica Neue",Arial,sans-serif; color:var(--mute); }
   .tabs .actif { color:var(--ink); font-weight:500; box-shadow:inset 0 3px var(--ink); }
+  .lien { border:0; background:none; color:var(--ink); text-decoration:underline; padding:0; font:inherit; }
   button:focus-visible { outline:2px solid var(--ink); outline-offset:2px; }
 </style>
